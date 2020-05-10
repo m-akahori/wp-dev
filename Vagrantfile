@@ -7,7 +7,7 @@ Vagrant.require_version '>= 1.8.6'
 
 Vagrant.configure(2) do |config|
 
-  vccw_version = '3.1.2';
+  vccw_version = '3.21.1';
 
   _conf = YAML.load(
     File.open(
@@ -43,18 +43,20 @@ Vagrant.configure(2) do |config|
   end
 
   config.vm.box = ENV['wp_box'] || _conf['wp_box']
-  config.vm.box_version = "<= 20161209"
+  config.vm.box_version = "= 20180107"
   config.ssh.forward_agent = true
 
   config.vm.box_check_update = true
 
   config.vm.hostname = _conf['hostname']
-  config.vm.network :private_network, ip: _conf['ip']
+  config.vm.network :private_network, ip: _conf['ip'], hostsupdater: "skip"
 
   config.vm.synced_folder _conf['synced_folder'],
-      _conf['document_root'], :create => "true", :mount_options => ['dmode=755', 'fmode=644']
+      _conf['document_root'], :create => "true", :mount_options => ['dmode=755', 'fmode=644'],
+      SharedFoldersEnableSymlinksCreate: false
 
   if Vagrant.has_plugin?('vagrant-hostsupdater')
+    config.hostsupdater.aliases = _conf['hostname_aliases']
     config.hostsupdater.remove_on_suspend = true
   end
 
@@ -76,9 +78,11 @@ Vagrant.configure(2) do |config|
     end
     vb.customize ['modifyvm', :id, '--natdnsproxy1', 'on']
     vb.customize ['modifyvm', :id, '--natdnshostresolver1', 'on']
+    vb.customize ['setextradata', :id, 'VBoxInternal/Devices/VMMDev/0/Config/GetHostTimeDisabled', 0]
   end
 
   config.vm.provision "ansible_local" do |ansible|
+    ansible.compatibility_mode = "2.0"
     ansible.extra_vars = {
       vccw: _conf
     }
@@ -87,6 +91,7 @@ Vagrant.configure(2) do |config|
 
   if File.exists?(File.join(ENV["HOME"], '.vccw/playbook-post.yml'))
     config.vm.provision "ansible" do |ansible|
+      ansible.compatibility_mode = "2.0"
       ansible.extra_vars = {
         vccw: _conf
       }
@@ -100,6 +105,7 @@ Vagrant.configure(2) do |config|
 
   if File.exists?(File.join(File.dirname(__FILE__), 'playbook-post.yml')) then
     config.vm.provision "ansible_local" do |ansible|
+      ansible.compatibility_mode = "2.0"
       ansible.extra_vars = {
         vccw: _conf
       }
@@ -109,5 +115,9 @@ Vagrant.configure(2) do |config|
 
   if File.exists?(File.join(File.dirname(__FILE__), 'provision-post.sh')) then
     config.vm.provision :shell, :privileged => false, :path => File.join( File.dirname(__FILE__), 'provision-post.sh' )
+  end
+
+  if File.exists?(File.join(File.dirname(__FILE__), 'run-always.sh')) then
+    config.vm.provision :shell, :path => File.join( File.dirname(__FILE__), 'run-always.sh' ), run: 'always'
   end
 end

@@ -1,1 +1,4 @@
-path: wordpress
+require:
+  - wp-cli/browse-command.php
+@vccw.test:
+  ssh: vagrant:vccw.test:/var/www/html
