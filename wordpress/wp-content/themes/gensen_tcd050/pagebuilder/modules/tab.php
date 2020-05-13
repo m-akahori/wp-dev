@@ -29,13 +29,22 @@ add_action('page_builder_admin_scripts', 'page_builder_widget_tab_admin_scripts'
 function get_page_builder_widget_tab_default_values() {
 	$default_values = array(
 		'widget_index' => '',
+		'tab_type' => 'type1',
+		'type2_tab_color' => '#000000',
+		'type2_tab_bg_color' => '#eeeeee',
+		'type2_tab_color_active' => '#ffffff',
+		'type2_tab_bg_color_active' => '#222222',
+		'type2_tab_color_hover' => '#ffffff',
+		'type2_tab_bg_color_hover' => '#222222',
+		'type3_tab_color' => '#000000',
+		'type3_tab_bg_color' => '#f6f6f6',
+		'type3_tab_color_active' => '#000000',
+		'type3_tab_bg_color_active' => '#ffffff',
+		'type3_tab_color_hover' => '#666666',
+		'type3_tab_bg_color_hover' => '#f6f6f6',
 		'margin_bottom' => 30,
 		'margin_bottom_mobile' => 30,
-		'tab_type' => 'type1',
-		'tab_color' => '#000000',
-		'tab_bg_color' => '#eeeeee',
-		'tab_color_active' => '#ffffff',
-		'tab_bg_color_active' => '#222222'
+		'first_tab_open_mobile' => 0,
 	);
 
 	return apply_filters('get_page_builder_widget_tab_default_values', $default_values);
@@ -51,6 +60,12 @@ function get_page_builder_widget_tab_default_row_values() {
 		'content_type' => 'type1',
 
 		// content type1用
+		'headline' => '',
+		'content' => '',
+		'type1_padding' => 30,
+		'type1_padding_mobile' => 15,
+
+		// content type2用
 		'headline' => '',
 		'content' => '',
 
@@ -131,6 +146,22 @@ function form_page_builder_widget_tab($values = array()) {
 	// デフォルト値
 	$default_values = apply_filters('page_builder_widget_tab_default_values', get_page_builder_widget_tab_default_values(), 'form');
 
+	// 旧バージョン値変換
+	if (isset($values['tab_color'])) {
+		$values['type2_tab_color'] = $values['tab_color'];
+	}
+	if (isset($values['tab_bg_color'])) {
+		$values['type2_tab_bg_color'] = $values['tab_bg_color'];
+	}
+	if (isset($values['tab_color_active'])) {
+		$values['type2_tab_color_active'] = $values['tab_color_active'];
+		$values['type2_tab_color_hover'] = $values['tab_color_active'];
+	}
+	if (isset($values['tab_bg_color_active'])) {
+		$values['type2_tab_bg_color_active'] = $values['tab_bg_color_active'];
+		$values['type2_tab_bg_color_hover'] = $values['tab_bg_color_active'];
+	}
+
 	// デフォルト値に入力値をマージ
 	$values = array_merge($default_values, (array) $values);
 ?>
@@ -140,7 +171,8 @@ function form_page_builder_widget_tab($values = array()) {
 	<?php
 		$radio_options = array(
             'type1' => __('Type 1 (Background color: White fixed, Border: Yes, Arrangement of tab: Left)', 'tcd-w'),
-            'type2' => __('Type 2 (background color: any color, border line: none, arrangement of tabs: even)', 'tcd-w')
+            'type2' => __('Type 2 (background color: any color, border line: none, arrangement of tabs: even)', 'tcd-w'),
+            'type3' => __('Type 3 (background color: any color, border line: Yes, arrangement of tabs: even)', 'tcd-w'),
 		);
 		$radio_html = array();
 		foreach($radio_options as $key => $value) {
@@ -154,30 +186,86 @@ function form_page_builder_widget_tab($values = array()) {
 	?>
 </div>
 
-<div class="form-field form-field-radio form-field-tab_type-type2 hidden">
+<div class="form-field form-field-tab_type-type2 hidden">
 	<h4><?php _e('Tab color', 'tcd-w'); ?></h4>
 	<table style="margin-top:5px;">
 		<tr>
 			<td><?php _e('Font color', 'tcd-w'); ?></td>
-			<td><input type="text" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][tab_color]" value="<?php echo esc_attr($values['tab_color']); ?>" class="pb-wp-color-picker" data-default-color="<?php echo esc_attr($default_values['tab_color']); ?>" /></td>
+			<td><input type="text" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][type2_tab_color]" value="<?php echo esc_attr($values['type2_tab_color']); ?>" class="pb-wp-color-picker" data-default-color="<?php echo esc_attr($default_values['type2_tab_color']); ?>" /></td>
 		</tr>
 		<tr>
 			<td><?php _e('Background color', 'tcd-w'); ?></td>
-			<td><input type="text" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][tab_bg_color]" value="<?php echo esc_attr($values['tab_bg_color']); ?>" class="pb-wp-color-picker" data-default-color="<?php echo esc_attr($default_values['tab_bg_color']); ?>" /></td>
+			<td><input type="text" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][type2_tab_bg_color]" value="<?php echo esc_attr($values['type2_tab_bg_color']); ?>" class="pb-wp-color-picker" data-default-color="<?php echo esc_attr($default_values['type2_tab_bg_color']); ?>" /></td>
 		</tr>
 	</table>
 </div>
 
-<div class="form-field form-field-radio form-field-tab_type-type2 hidden">
+<div class="form-field form-field-tab_type-type2 hidden">
 	<h4><?php _e('Active tab color', 'tcd-w'); ?></h4>
 	<table style="margin-top:5px;">
 		<tr>
 			<td><?php _e('Font color', 'tcd-w'); ?></td>
-			<td><input type="text" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][tab_color_active]" value="<?php echo esc_attr($values['tab_color_active']); ?>" class="pb-wp-color-picker" data-default-color="<?php echo esc_attr($default_values['tab_color_active']); ?>" /></td>
+			<td><input type="text" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][type2_tab_color_active]" value="<?php echo esc_attr($values['type2_tab_color_active']); ?>" class="pb-wp-color-picker" data-default-color="<?php echo esc_attr($default_values['type2_tab_color_active']); ?>" /></td>
 		</tr>
 		<tr>
 			<td><?php _e('Background color', 'tcd-w'); ?></td>
-			<td><input type="text" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][tab_bg_color_active]" value="<?php echo esc_attr($values['tab_bg_color_active']); ?>" class="pb-wp-color-picker" data-default-color="<?php echo esc_attr($default_values['tab_bg_color_active']); ?>" /></td>
+			<td><input type="text" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][type2_tab_bg_color_active]" value="<?php echo esc_attr($values['type2_tab_bg_color_active']); ?>" class="pb-wp-color-picker" data-default-color="<?php echo esc_attr($default_values['type2_tab_bg_color_active']); ?>" /></td>
+		</tr>
+	</table>
+</div>
+
+<div class="form-field form-field-tab_type-type2 hidden">
+	<h4><?php _e('Tab hover color', 'tcd-w'); ?></h4>
+	<table style="margin-top:5px;">
+		<tr>
+			<td><?php _e('Font color', 'tcd-w'); ?></td>
+			<td><input type="text" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][type2_tab_color_hover]" value="<?php echo esc_attr($values['type2_tab_color_hover']); ?>" class="pb-wp-color-picker" data-default-color="<?php echo esc_attr($default_values['type2_tab_color_hover']); ?>" /></td>
+		</tr>
+		<tr>
+			<td><?php _e('Background color', 'tcd-w'); ?></td>
+			<td><input type="text" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][type2_tab_bg_color_hover]" value="<?php echo esc_attr($values['type2_tab_bg_color_hover']); ?>" class="pb-wp-color-picker" data-default-color="<?php echo esc_attr($default_values['type2_tab_bg_color_hover']); ?>" /></td>
+		</tr>
+	</table>
+</div>
+
+<div class="form-field form-field-tab_type-type3 hidden">
+	<h4><?php _e('Tab color', 'tcd-w'); ?></h4>
+	<table style="margin-top:5px;">
+		<tr>
+			<td><?php _e('Font color', 'tcd-w'); ?></td>
+			<td><input type="text" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][type3_tab_color]" value="<?php echo esc_attr($values['type3_tab_color']); ?>" class="pb-wp-color-picker" data-default-color="<?php echo esc_attr($default_values['type3_tab_color']); ?>" /></td>
+		</tr>
+		<tr>
+			<td><?php _e('Background color', 'tcd-w'); ?></td>
+			<td><input type="text" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][type3_tab_bg_color]" value="<?php echo esc_attr($values['type3_tab_bg_color']); ?>" class="pb-wp-color-picker" data-default-color="<?php echo esc_attr($default_values['type3_tab_bg_color']); ?>" /></td>
+		</tr>
+	</table>
+</div>
+
+<div class="form-field form-field-tab_type-type3 hidden">
+	<h4><?php _e('Active tab color', 'tcd-w'); ?></h4>
+	<table style="margin-top:5px;">
+		<tr>
+			<td><?php _e('Font color', 'tcd-w'); ?></td>
+			<td><input type="text" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][type3_tab_color_active]" value="<?php echo esc_attr($values['type3_tab_color_active']); ?>" class="pb-wp-color-picker" data-default-color="<?php echo esc_attr($default_values['type3_tab_color_active']); ?>" /></td>
+		</tr>
+		<tr>
+			<td><?php _e('Background color', 'tcd-w'); ?></td>
+			<td><input type="text" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][type3_tab_bg_color_active]" value="<?php echo esc_attr($values['type3_tab_bg_color_active']); ?>" class="pb-wp-color-picker" data-default-color="<?php echo esc_attr($default_values['type3_tab_bg_color_active']); ?>" /></td>
+		</tr>
+	</table>
+</div>
+
+<div class="form-field form-field-tab_type-type3 hidden">
+	<h4><?php _e('Tab hover color', 'tcd-w'); ?></h4>
+	<table style="margin-top:5px;">
+		<tr>
+			<td><?php _e('Font color', 'tcd-w'); ?></td>
+			<td><input type="text" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][type3_tab_color_hover]" value="<?php echo esc_attr($values['type3_tab_color_hover']); ?>" class="pb-wp-color-picker" data-default-color="<?php echo esc_attr($default_values['type3_tab_color_hover']); ?>" /></td>
+		</tr>
+		<tr>
+			<td><?php _e('Background color', 'tcd-w'); ?></td>
+			<td><input type="text" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][type3_tab_bg_color_hover]" value="<?php echo esc_attr($values['type3_tab_bg_color_hover']); ?>" class="pb-wp-color-picker" data-default-color="<?php echo esc_attr($default_values['type3_tab_bg_color_hover']); ?>" /></td>
 		</tr>
 	</table>
 </div>
@@ -336,6 +424,16 @@ function form_page_builder_widget_tab_repeater_row($values = array(), $row_value
 				?>
 			</div>
 
+			<div class="form-field form-field-content_type-type1">
+				<h4><?php _e('Padding', 'tcd-w'); ?></h4>
+				<input type="number" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][repeater][<?php echo esc_attr($values['repeater_index']); ?>][type1_padding]" value="<?php echo esc_attr($row_values['type1_padding']); ?>" class="small-text" min="0" /> px
+			</div>
+
+			<div class="form-field form-field-content_type-type1">
+				<h4><?php _e('Padding for mobile', 'tcd-w'); ?></h4>
+				<input type="number" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][repeater][<?php echo esc_attr($values['repeater_index']); ?>][type1_padding_mobile]" value="<?php echo esc_attr($row_values['type1_padding_mobile']); ?>" class="small-text" min="0" /> px
+			</div>
+
 			<div class="form-field form-field-content_type-type2 hidden">
 				<?php
 					// リピーター内リピーター type2
@@ -350,7 +448,7 @@ function form_page_builder_widget_tab_repeater_row($values = array(), $row_value
 				?>
 			</div>
 
-			<div class="form-field form-field-content_type-type4 hidden">
+			<div class="form-field form-field-radio form-field-content_type-type4 hidden">
 				<div class="form-field form-field-video_type">
 					<h4><?php _e('Video type', 'tcd-w'); ?></h4>
 					<?php
@@ -404,11 +502,11 @@ function form_page_builder_widget_tab_repeater_row($values = array(), $row_value
 				<table style="margin-top:5px;">
 					<tr>
 						<td><?php _e('Font color', 'tcd-w'); ?></td>
-						<td><input type="text" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][repeater][<?php echo esc_attr($values['repeater_index']); ?>][nav_color]" value="<?php echo esc_attr($row_values['nav_color']); ?>" class="pb-wp-color-picker" data-default-color="<?php echo esc_attr($default_values['nav_color']); ?>" /></td>
+						<td><input type="text" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][repeater][<?php echo esc_attr($values['repeater_index']); ?>][nav_color]" value="<?php echo esc_attr($row_values['nav_color']); ?>" class="pb-wp-color-picker" data-default-color="<?php echo esc_attr($default_row_values['nav_color']); ?>" /></td>
 					</tr>
 					<tr>
 						<td><?php _e('Background color', 'tcd-w'); ?></td>
-						<td><input type="text" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][repeater][<?php echo esc_attr($values['repeater_index']); ?>][nav_bg_color]" value="<?php echo esc_attr($row_values['nav_bg_color']); ?>" class="pb-wp-color-picker" data-default-color="<?php echo esc_attr($default_values['nav_bg_color']); ?>" /></td>
+						<td><input type="text" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][repeater][<?php echo esc_attr($values['repeater_index']); ?>][nav_bg_color]" value="<?php echo esc_attr($row_values['nav_bg_color']); ?>" class="pb-wp-color-picker" data-default-color="<?php echo esc_attr($default_row_values['nav_bg_color']); ?>" /></td>
 					</tr>
 				</table>
 			</div>
@@ -418,11 +516,11 @@ function form_page_builder_widget_tab_repeater_row($values = array(), $row_value
 				<table style="margin-top:5px;">
 					<tr>
 						<td><?php _e('Font color', 'tcd-w'); ?></td>
-						<td><input type="text" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][repeater][<?php echo esc_attr($values['repeater_index']); ?>][nav_color_active]" value="<?php echo esc_attr($row_values['nav_color_active']); ?>" class="pb-wp-color-picker" data-default-color="<?php echo esc_attr($default_values['nav_color_active']); ?>" /></td>
+						<td><input type="text" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][repeater][<?php echo esc_attr($values['repeater_index']); ?>][nav_color_active]" value="<?php echo esc_attr($row_values['nav_color_active']); ?>" class="pb-wp-color-picker" data-default-color="<?php echo esc_attr($default_row_values['nav_color_active']); ?>" /></td>
 					</tr>
 					<tr>
 						<td><?php _e('Background color', 'tcd-w'); ?></td>
-						<td><input type="text" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][repeater][<?php echo esc_attr($values['repeater_index']); ?>][nav_bg_color_active]" value="<?php echo esc_attr($row_values['nav_bg_color_active']); ?>" class="pb-wp-color-picker" data-default-color="<?php echo esc_attr($default_values['nav_bg_color_active']); ?>" /></td>
+						<td><input type="text" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][repeater][<?php echo esc_attr($values['repeater_index']); ?>][nav_bg_color_active]" value="<?php echo esc_attr($row_values['nav_bg_color_active']); ?>" class="pb-wp-color-picker" data-default-color="<?php echo esc_attr($default_row_values['nav_bg_color_active']); ?>" /></td>
 					</tr>
 				</table>
 			</div>
@@ -589,15 +687,15 @@ function form_page_builder_widget_tab_repeater_level2_row_type2($values = array(
 				<table style="margin-top:5px;">
 					<tr>
 						<td><?php _e('Font size', 'tcd-w'); ?></td>
-						<td><input type="text" name="<?php echo esc_attr($repeater_level2_name_base); ?>[headline_font_size]" value="<?php echo esc_attr($repeater_level2_values['headline_font_size']); ?>" class="pb-input-narrow hankaku" /> px</td>
+						<td><input type="number" name="<?php echo esc_attr($repeater_level2_name_base); ?>[headline_font_size]" value="<?php echo esc_attr($repeater_level2_values['headline_font_size']); ?>" class="small-text" min="0" /> px</td>
 					</tr>
 					<tr>
 						<td><?php _e('Font size for mobile', 'tcd-w'); ?></td>
-						<td><input type="text" name="<?php echo esc_attr($repeater_level2_name_base); ?>[headline_font_size_mobile]" value="<?php echo esc_attr($repeater_level2_values['headline_font_size_mobile']); ?>" class="pb-input-narrow hankaku" /> px</td>
+						<td><input type="numer" name="<?php echo esc_attr($repeater_level2_name_base); ?>[headline_font_size_mobile]" value="<?php echo esc_attr($repeater_level2_values['headline_font_size_mobile']); ?>" class="small-text" min="0" /> px</td>
 					</tr>
 					<tr>
 						<td><?php _e('Font color', 'tcd-w'); ?></td>
-						<td><input type="text" name="<?php echo esc_attr($repeater_level2_name_base); ?>[headline_font_color]" value="<?php echo esc_attr($repeater_level2_values['headline_font_color']); ?>" class="pb-wp-color-picker" data-default-color="<?php echo esc_attr($default_values['headline_font_color']); ?>" /></td>
+						<td><input type="text" name="<?php echo esc_attr($repeater_level2_name_base); ?>[headline_font_color]" value="<?php echo esc_attr($repeater_level2_values['headline_font_color']); ?>" class="pb-wp-color-picker" data-default-color="<?php echo esc_attr($default_row_values['headline_font_color']); ?>" /></td>
 					</tr>
 					<tr>
 						<td><?php _e('Font family', 'tcd-w'); ?></td>
@@ -640,15 +738,15 @@ function form_page_builder_widget_tab_repeater_level2_row_type2($values = array(
 				<table style="margin-top:5px;">
 					<tr>
 						<td><?php _e('Font size', 'tcd-w'); ?></td>
-						<td><input type="text" name="<?php echo esc_attr($repeater_level2_name_base); ?>[content_font_size]" value="<?php echo esc_attr($repeater_level2_values['content_font_size']); ?>" class="pb-input-narrow hankaku" /> px</td>
+						<td><input type="number" name="<?php echo esc_attr($repeater_level2_name_base); ?>[content_font_size]" value="<?php echo esc_attr($repeater_level2_values['content_font_size']); ?>" class="small-text" min="0" /> px</td>
 					</tr>
 					<tr>
 						<td><?php _e('Font size for mobile', 'tcd-w'); ?></td>
-						<td><input type="text" name="<?php echo esc_attr($repeater_level2_name_base); ?>[content_font_size_mobile]" value="<?php echo esc_attr($repeater_level2_values['content_font_size_mobile']); ?>" class="pb-input-narrow hankaku" /> px</td>
+						<td><input type="number" name="<?php echo esc_attr($repeater_level2_name_base); ?>[content_font_size_mobile]" value="<?php echo esc_attr($repeater_level2_values['content_font_size_mobile']); ?>" class="small-text" min="0" /> px</td>
 					</tr>
 					<tr>
 						<td><?php _e('Font color', 'tcd-w'); ?></td>
-						<td><input type="text" name="<?php echo esc_attr($repeater_level2_name_base); ?>[content_font_color]" value="<?php echo esc_attr($repeater_level2_values['content_font_color']); ?>" class="pb-wp-color-picker" data-default-color="<?php echo esc_attr($default_values['content_font_color']); ?>" /></td>
+						<td><input type="text" name="<?php echo esc_attr($repeater_level2_name_base); ?>[content_font_color]" value="<?php echo esc_attr($repeater_level2_values['content_font_color']); ?>" class="pb-wp-color-picker" data-default-color="<?php echo esc_attr($default_row_values['content_font_color']); ?>" /></td>
 					</tr>
 					<tr>
 						<td><?php _e('Font family', 'tcd-w'); ?></td>
@@ -851,37 +949,26 @@ add_filter('tiny_mce_before_init', 'page_builder_widget_tab_tiny_mce_before_init
 /**
  * フォーム 右サイドバー
  */
-function form_rightbar_page_builder_widget_tab($values = array()) {
+function form_rightbar_page_builder_widget_tab($values = array(), $widget_id = null, $args = array()) {
 	// デフォルト値
-	$default_values = apply_filters('page_builder_widget_tab_default_values', array(
-		'widget_index' => '',
-		'margin_bottom' => 30,
-		'margin_bottom_mobile' => 30,
-		'first_tab_open_mobile' => 0
-	), 'form_rightbar');
+	$default_values = apply_filters('page_builder_widget_tab_default_values', get_page_builder_widget_tab_default_values(), 'form_rightbar');
 
 	// デフォルト値に入力値をマージ
 	$values = array_merge($default_values, (array) $values);
 ?>
 
-<h3><?php _e('Margin setting', 'tcd-w'); ?></h3>
-<div class="form-field">
-	<label><?php _e('Margin bottom', 'tcd-w'); ?></label>
-	<input type="text" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][margin_bottom]" value="<?php echo esc_attr($values['margin_bottom']); ?>" class="pb-input-narrow hankaku" /> px
-	<p class="pb-description"><?php _e('Space below the content.<br />Default is 30px.', 'tcd-w'); ?></p>
-</div>
-<div class="form-field">
-	<label><?php _e('Margin bottom for mobile', 'tcd-w'); ?></label>
-	<input type="text" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][margin_bottom_mobile]" value="<?php echo esc_attr($values['margin_bottom_mobile']); ?>" class="pb-input-narrow hankaku" /> px
-	<p class="pb-description"><?php _e('Space below the content.<br />Default is 30px.', 'tcd-w'); ?></p>
-</div>
-<h3><?php _e('Display setting', 'tcd-w'); ?></h3>
-<div class="form-field">
-	<label><input type="checkbox" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][first_tab_open_mobile]" value="1"<?php if ($values['first_tab_open_mobile']) echo ' checked="checked"'; ?> /> <?php _e('Open first tab for mobile', 'tcd-w'); ?></label>
+<h3 data-pb-toggle-target=".pb-right-sidebar-display" data-pb-toggle-status="open"><?php _e('Display setting', 'tcd-w'); ?></h3>
+<div class="pb-toggle-content pb-right-sidebar-display">
+	<div class="form-field">
+		<label><input type="checkbox" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][first_tab_open_mobile]" value="1"<?php if ($values['first_tab_open_mobile']) echo ' checked="checked"'; ?> /> <?php _e('Open first tab for mobile', 'tcd-w'); ?></label>
+	</div>
 </div>
 
 <?php
+	// 以降は標準右サイドバー
+	form_rightbar_page_builder_widget($values, $widget_id, $args);
 }
+
 
 /**
  * フロント出力
@@ -994,7 +1081,7 @@ function display_page_builder_widget_tab($values = array(), $widget_index = null
       <div class="pb_tab_slider pb_tab_slider-type3">
 <?php
 			// リピーター内リピーター行の並び
-				$j = 0;
+			$j = 0;
 			if (!empty($repeater_values['row3_index']) && is_array($repeater_values['row3_index'])) {
 				// リピーター内リピーター行ループ
 				foreach($repeater_values['row3_index'] as $key => $repeater_level2_index) {
@@ -1067,6 +1154,7 @@ function display_page_builder_widget_tab($values = array(), $widget_index = null
 			if (!empty($repeater_values['content'])) {
 				if (!$is_remove_filter_the_content) {
 					remove_filter('the_content', 'page_builder_filter_the_content', 8);
+					$is_remove_filter_the_content = true;
 				}
 				echo apply_filters('the_content', $repeater_values['content']);
 			}
@@ -1198,13 +1286,15 @@ function page_builder_widget_tab_css() {
 	// 現記事で使用しているtabコンテンツデータを取得
 	$post_widgets = get_page_builder_post_widgets(get_the_ID(), 'pb-widget-tab');
 	if ($post_widgets) {
+		$css = array();
+		$css_mobile = array();
+
 		// 行デフォルト値
 		$default_row_values = apply_filters('page_builder_widget_tab_default_row_values', get_page_builder_widget_tab_default_row_values());
 
 		foreach($post_widgets as $post_widget) {
 			$widget_index = $post_widget['widget_index'];
 			$values = $post_widget['widget_value'];
-			$repeater_values = $post_widget['widget_value'];
 
 			// リピーター行の並び
 			if (!empty($values['repeater_index']) && is_array($values['repeater_index'])) {
@@ -1224,9 +1314,32 @@ function page_builder_widget_tab_css() {
 			if (empty($repeater_indexes)) continue;
 
 			// tab type2
-			if ($values['tab_type'] = 'type2') {
-				echo $post_widget['css_class'].' .pb_tab-type2 ul.resp-tabs-list li { color: '.esc_attr($repeater_values['tab_color']).'; background-color: '.esc_attr($repeater_values['tab_bg_color']).'; }'."\n";
-				echo $post_widget['css_class'].' .pb_tab-type2 ul.resp-tabs-list li.resp-tab-active, '.$post_widget['css_class'].' .pb_tab-type2 ul.resp-tabs-list li:hover { color: '.esc_attr($repeater_values['tab_color_active']).'; background-color: '.esc_attr($repeater_values['tab_bg_color_active']).'; }'."\n";
+			if ($values['tab_type'] == 'type2') {
+				// 旧バージョン値変換
+				if (isset($values['tab_color'])) {
+					$values['type2_tab_color'] = $values['tab_color'];
+				}
+				if (isset($values['tab_bg_color'])) {
+					$values['type2_tab_bg_color'] = $values['tab_bg_color'];
+				}
+				if (isset($values['tab_color_active'])) {
+					$values['type2_tab_color_active'] = $values['tab_color_active'];
+					$values['type2_tab_color_hover'] = $values['tab_color_active'];
+				}
+				if (isset($values['tab_bg_color_active'])) {
+					$values['type2_tab_bg_color_active'] = $values['tab_bg_color_active'];
+					$values['type2_tab_bg_color_hover'] = $values['tab_bg_color_active'];
+				}
+
+				$css[] = $post_widget['css_class'].' .pb_tab-type2 ul.resp-tabs-list li { color: '.esc_attr($values['type2_tab_color']).'; background-color: '.esc_attr($values['type2_tab_bg_color']).'; }';
+				$css[] = $post_widget['css_class'].' .pb_tab-type2 ul.resp-tabs-list li:hover { color: '.esc_attr($values['type2_tab_color_hover']).'; background-color: '.esc_attr($values['type2_tab_bg_color_hover']).'; }';
+				$css[] = $post_widget['css_class'].' .pb_tab-type2 ul.resp-tabs-list li.resp-tab-active { color: '.esc_attr($values['type2_tab_color_active']).'; background-color: '.esc_attr($values['type2_tab_bg_color_active']).'; }';
+
+			// tab type3
+			} elseif ($values['tab_type'] == 'type3') {
+				$css[] = $post_widget['css_class'].' .pb_tab-type3 ul.resp-tabs-list li { color: '.esc_attr($values['type3_tab_color']).'; background-color: '.esc_attr($values['type3_tab_bg_color']).'; }';
+				$css[] = $post_widget['css_class'].' .pb_tab-type3 ul.resp-tabs-list li:hover { color: '.esc_attr($values['type3_tab_color_hover']).'; background-color: '.esc_attr($values['type3_tab_bg_color_hover']).'; }';
+				$css[] = $post_widget['css_class'].' .pb_tab-type3 ul.resp-tabs-list li.resp-tab-active { color: '.esc_attr($values['type3_tab_color_active']).'; background-color: '.esc_attr($values['type3_tab_bg_color_active']).'; }';
 			}
 
 			$i = 0;
@@ -1235,13 +1348,18 @@ function page_builder_widget_tab_css() {
 				$repeater_values = $values['repeater'][$repeater_index];
 				$repeater_values = array_merge($default_row_values, $repeater_values);
 
+				// content type1
+				if ($repeater_values['content_type'] == 'type1') {
+					$css[] = $post_widget['css_class'].' .pb_tab_content-'.$i.' { padding: '.esc_attr($repeater_values['type1_padding']).'px; }';
+					$css_mobile[] = $post_widget['css_class'].' .pb_tab_content-'.$i.' { padding: '.esc_attr($repeater_values['type1_padding_mobile']).'px; }';
+
 				// content type2
-				if ($repeater_values['content_type'] == 'type2') {
+				} elseif ($repeater_values['content_type'] == 'type2') {
 					// リピーター内リピーター行の並び
 					if (!empty($repeater_values['row2_index']) && is_array($repeater_values['row2_index'])) {
 
-						echo $post_widget['css_class'].' .pb_tab_content-'.$i.' .pb_tab_slider .slick-dots li button { color: '.esc_attr($repeater_values['nav_color']).'; background-color: '.esc_attr($repeater_values['nav_bg_color']).'; }'."\n";
-						echo $post_widget['css_class'].' .pb_tab_content-'.$i.' .pb_tab_slider .slick-dots li.slick-active button, '.$post_widget['css_class'].' .pb_tab_content-'.$i.' .pb_tab_slider .slick-dots li button:hover { color: '.esc_attr($repeater_values['nav_color_active']).'; background-color: '.esc_attr($repeater_values['nav_bg_color_active']).'; }'."\n";
+						$css[] = $post_widget['css_class'].' .pb_tab_content-'.$i.' .pb_tab_slider .slick-dots li button { color: '.esc_attr($repeater_values['nav_color']).'; background-color: '.esc_attr($repeater_values['nav_bg_color']).'; }';
+						$css[] = $post_widget['css_class'].' .pb_tab_content-'.$i.' .pb_tab_slider .slick-dots li.slick-active button, '.$post_widget['css_class'].' .pb_tab_content-'.$i.' .pb_tab_slider .slick-dots li button:hover { color: '.esc_attr($repeater_values['nav_color_active']).'; background-color: '.esc_attr($repeater_values['nav_bg_color_active']).'; }';
 
 						$j = 0;
 						// リピーター内リピーター行ループ
@@ -1253,23 +1371,47 @@ function page_builder_widget_tab_css() {
 							$repeater_level2_values = $repeater_values['row2'][$repeater_level2_index];
 
 							$j++;
-							echo $post_widget['css_class'].' .pb_tab_content-'.$i.' .pb_tab_slider_item-'.$j.' .pb_tab_text { background-color: '.esc_attr($repeater_level2_values['content_bg_color']).'; }'."\n";
-							echo $post_widget['css_class'].' .pb_tab_content-'.$i.' .pb_tab_slider_item-'.$j.' .pb_tab_headline { color: '.esc_attr($repeater_level2_values['headline_font_color']).'; font-size: '.esc_attr($repeater_level2_values['headline_font_size']).'px; text-align: '.esc_attr($repeater_level2_values['headline_text_align']).'; }'."\n";
-							echo $post_widget['css_class'].' .pb_tab_content-'.$i.' .pb_tab_slider_item-'.$j.' .pb_tab_description { color: '.esc_attr($repeater_level2_values['content_font_color']).'; font-size: '.esc_attr($repeater_level2_values['content_font_size']).'px; text-align: '.esc_attr($repeater_level2_values['content_text_align']).'; }'."\n";
+							$css[] = $post_widget['css_class'].' .pb_tab_content-'.$i.' .pb_tab_slider_item-'.$j.' .pb_tab_text { background-color: '.esc_attr($repeater_level2_values['content_bg_color']).'; }';
+							$css[] = $post_widget['css_class'].' .pb_tab_content-'.$i.' .pb_tab_slider_item-'.$j.' .pb_tab_headline { color: '.esc_attr($repeater_level2_values['headline_font_color']).'; font-size: '.esc_attr($repeater_level2_values['headline_font_size']).'px; text-align: '.esc_attr($repeater_level2_values['headline_text_align']).'; }';
+							$css[] = $post_widget['css_class'].' .pb_tab_content-'.$i.' .pb_tab_slider_item-'.$j.' .pb_tab_description { color: '.esc_attr($repeater_level2_values['content_font_color']).'; font-size: '.esc_attr($repeater_level2_values['content_font_size']).'px; text-align: '.esc_attr($repeater_level2_values['content_text_align']).'; }';
 
-							echo "@media only screen and (max-width: 767px) {\n";
-							echo '  '.$post_widget['css_class'].' .pb_tab_content-'.$i.' .pb_tab_slider_item-'.$j.' .pb_tab_headline { font-size: '.esc_attr($repeater_level2_values['headline_font_size_mobile']).'px; }'."\n";
-							echo '  '.$post_widget['css_class'].' .pb_tab_content-'.$i.' .pb_tab_slider_item-'.$j.' .pb_tab_description { font-size: '.esc_attr($repeater_level2_values['content_font_size_mobile']).'px; }'."\n";
-							echo "}\n";
+							$css_mobile[] = $post_widget['css_class'].' .pb_tab_content-'.$i.' .pb_tab_slider_item-'.$j.' .pb_tab_headline { font-size: '.esc_attr($repeater_level2_values['headline_font_size_mobile']).'px; }';
+							$css_mobile[] = $post_widget['css_class'].' .pb_tab_content-'.$i.' .pb_tab_slider_item-'.$j.' .pb_tab_description { font-size: '.esc_attr($repeater_level2_values['content_font_size_mobile']).'px; }';
 						}
 					}
 
 				// content type3
 				} elseif ($repeater_values['content_type'] == 'type3') {
-					echo $post_widget['css_class'].' .pb_tab_content-'.$i.' .pb_tab_slider .slick-arrow { color: '.esc_attr($repeater_values['nav_color']).'; background-color: '.esc_attr($repeater_values['nav_bg_color']).'; }'."\n";
-					echo $post_widget['css_class'].' .pb_tab_content-'.$i.' .pb_tab_slider .slick-arrow:hover { color: '.esc_attr($repeater_values['nav_color_active']).'; background-color: '.esc_attr($repeater_values['nav_bg_color_active']).'; }'."\n";
+					$css[] = $post_widget['css_class'].' .pb_tab_content-'.$i.' .pb_tab_slider .slick-arrow { color: '.esc_attr($repeater_values['nav_color']).'; background-color: '.esc_attr($repeater_values['nav_bg_color']).'; }';
+					$css[] = $post_widget['css_class'].' .pb_tab_content-'.$i.' .pb_tab_slider .slick-arrow:hover { color: '.esc_attr($repeater_values['nav_color_active']).'; background-color: '.esc_attr($repeater_values['nav_bg_color_active']).'; }';
 				}
 			}
+		}
+
+		if ($css && is_array($css)) {
+			foreach($css as $value) {
+				$value = trim($value);
+				if ($value) {
+					echo $value."\n";
+				}
+			}
+		} elseif ($css && is_string($css)) {
+			echo $css;
+		}
+
+		if ($css_mobile && is_array($css_mobile)) {
+			echo "@media only screen and (max-width: 767px) {\n";
+			foreach($css_mobile as $value) {
+				$value = trim($value);
+				if ($value) {
+					echo '  '.$value."\n";
+				}
+			}
+			echo "}\n";
+		} elseif ($css && is_string($css_mobile)) {
+			echo "@media only screen and (max-width: 767px) {\n";
+			echo $css_mobile;
+			echo "}\n";
 		}
 	}
 }

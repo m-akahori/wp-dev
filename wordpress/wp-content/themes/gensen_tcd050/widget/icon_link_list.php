@@ -39,7 +39,7 @@ class tcdw_icon_menu_list_widget extends WP_Widget {
 			__( 'Icon menu list (tcd ver)', 'tcd-w' ),
 			array(
 				'classname' => 'tcdw_icon_menu_list_widget',
-				'description' => __('Displays banner list.', 'tcd-w')
+				'description' => __('Displays link list with icon.', 'tcd-w')
 			)
 		);
 	}

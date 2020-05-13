@@ -15,10 +15,10 @@
       $sub_title = $dp_options['header_sub_txt_404'];
       if (!is_mobile()) {
         $title_font_size = ( ! empty( $dp_options['header_txt_size_404'] ) ) ? $dp_options['header_txt_size_404'] : 38;
-        $sub_title_font_size = ( ! empty( $dp_options['header_sub_title_size_404'] ) ) ? $dp_options['header_sub_title_size_404'] : 16;
+        $sub_title_font_size = ( ! empty( $dp_options['header_sub_txt_size_404'] ) ) ? $dp_options['header_sub_txt_size_404'] : 16;
       } else {
-        $title_font_size = ( ! empty( $dp_options['header_txt_size_404'] ) ) ? $dp_options['header_txt_size_404'] : 28;
-        $sub_title_font_size = ( ! empty( $dp_options['header_sub_title_size_404'] ) ) ? $dp_options['header_sub_title_size_404'] : 14;
+        $title_font_size = ( ! empty( $dp_options['header_txt_size_404_mobile'] ) ) ? $dp_options['header_txt_size_404_mobile'] : 28;
+        $sub_title_font_size = ( ! empty( $dp_options['header_sub_txt_size_404_mobile'] ) ) ? $dp_options['header_sub_txt_size_404_mobile'] : 14;
       }
       $font_color = ( ! empty( $dp_options['header_txt_color_404'] ) ) ? $dp_options['header_txt_color_404'] : '#ffffff';
       $shadow1 = ( ! empty( $dp_options['dropshadow_404_h'] ) ) ? $dp_options['dropshadow_404_h'] : 2;

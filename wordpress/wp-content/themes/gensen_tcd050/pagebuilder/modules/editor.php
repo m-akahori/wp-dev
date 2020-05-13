@@ -6,7 +6,7 @@
 add_page_builder_widget(array(
 	'id' => 'pb-widget-editor',
 	'form' => 'form_page_builder_widget_editor',
-	'form_rightbar' => 'form_rightbar_page_builder_widget_editor',
+	'form_rightbar' => 'form_rightbar_page_builder_widget', // 標準右サイドバー
 	'display' => 'display_page_builder_widget_editor',
 	'title' => __('Sentence', 'tcd-w'),
 	'priority' => 16
@@ -45,36 +45,6 @@ function form_page_builder_widget_editor($values = array()) {
 			)
 		);
 	?>
-</div>
-
-<?php
-}
-
-/**
- * フォーム 右サイドバー
- */
-function form_rightbar_page_builder_widget_editor($values = array()) {
-	// デフォルト値
-	$default_values = apply_filters('page_builder_widget_editor_default_values', array(
-		'widget_index' => '',
-		'margin_bottom' => 30,
-		'margin_bottom_mobile' => 30
-	), 'form_rightbar');
-
-	// デフォルト値に入力値をマージ
-	$values = array_merge($default_values, (array) $values);
-?>
-
-<h3><?php _e('Margin setting', 'tcd-w'); ?></h3>
-<div class="form-field">
-	<label><?php _e('Margin bottom', 'tcd-w'); ?></label>
-	<input type="text" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][margin_bottom]" value="<?php echo esc_attr($values['margin_bottom']); ?>" class="pb-input-narrow" /> px
-	<p class="pb-description"><?php _e('Space below the content.<br />Default is 30px.', 'tcd-w'); ?></p>
-</div>
-<div class="form-field">
-	<label><?php _e('Margin bottom for mobile', 'tcd-w'); ?></label>
-	<input type="text" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][margin_bottom_mobile]" value="<?php echo esc_attr($values['margin_bottom_mobile']); ?>" class="pb-input-narrow hankaku" /> px
-	<p class="pb-description"><?php _e('Space below the content.<br />Default is 30px.', 'tcd-w'); ?></p>
 </div>
 
 <?php

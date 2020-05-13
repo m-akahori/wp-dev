@@ -147,7 +147,7 @@ require get_template_directory() . '/functions/custom_search.php';
 
 // ビジュアルエディタに表(テーブル)の機能を追加 -----------------------------------------------
 function mce_external_plugins_table($plugins) {
-	$plugins['table'] = '//cdn.tinymce.com/4/plugins/table/plugin.min.js';
+	$plugins['table'] = 'https://cdnjs.cloudflare.com/ajax/libs/tinymce/4.7.4/plugins/table/plugin.min.js';
 	return $plugins;
 }
 add_filter( 'mce_external_plugins', 'mce_external_plugins_table' );
@@ -608,6 +608,7 @@ if (function_exists('register_post_type')) {
 							'new_item_name' => __('Name Of New Category', 'tcd-w'),
 						),
 						'public' => true,
+						'show_in_rest' => true,
 						'show_ui' => true,
 						'show_admin_column' => true,
 						'hierarchical' => true,
@@ -645,6 +646,7 @@ if (function_exists('register_post_type')) {
 			'public' => true,
 			'publicly_queryable' => true,
 			'menu_position' => 5,
+			'show_in_rest' => true,
 			'show_ui' => true,
 			'query_var' => true,
 			'rewrite' => true,
@@ -675,6 +677,7 @@ if (function_exists('register_post_type')) {
 							'new_item_name' => __('Name Of New Category', 'tcd-w'),
 						),
 						'public' => true,
+						'show_in_rest' => true,
 						'show_ui' => true,
 						'show_admin_column' => true,
 						'hierarchical' => true,
@@ -688,6 +691,7 @@ if (function_exists('register_post_type')) {
 			register_taxonomy( $dp_options['introduce_tag_slug'], $dp_options['introduce_slug'], array(
 			 	'hierarchical' => false,
 				'public' => true,
+				'show_in_rest' => true,
 				'show_ui' => true,
 				'show_admin_column' => true,
 				'capabilities' => array(
@@ -718,6 +722,7 @@ if (function_exists('register_post_type')) {
 			'public' => true,
 			'publicly_queryable' => true,
 			'menu_position' => 5,
+			'show_in_rest' => true,
 			'show_ui' => true,
 			'query_var' => true,
 			'rewrite' => true,

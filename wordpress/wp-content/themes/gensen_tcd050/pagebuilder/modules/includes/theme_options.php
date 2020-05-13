@@ -47,7 +47,7 @@ function page_builder_get_primary_color($default = null) {
 	if (function_exists('get_design_plus_option')) {
 		$dp_options = get_design_plus_option();
 
-		$primary_color_theme_option_keys = apply_filters('page_builder_primary_color_theme_option_keys', array('primary_color', 'pickedcolor1'));
+		$primary_color_theme_option_keys = apply_filters('page_builder_primary_color_theme_option_keys', array('primary_color', 'main_color', 'pickedcolor1'));
 		if ($primary_color_theme_option_keys) {
 			foreach((array) $primary_color_theme_option_keys as $theme_option_key) {
 				if (is_string($theme_option_key) && !empty($dp_options[$theme_option_key])) {

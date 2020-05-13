@@ -27,6 +27,7 @@ $dp_default_options = array(
 	'use_emoji' => 1,
 	'use_quicktags' => 1,
 	'css_code' => '',
+	'custom_head' => '',
 	'use_ogp' => 0,
 	'fb_app_id' => '',
 	'ogp_image' => '',
@@ -48,6 +49,16 @@ $dp_default_options = array(
 	'dropshadow_404_v' => 2,
 	'dropshadow_404_b' => 2,
 	'dropshadow_404_c' => '#888888',
+
+  // Google Map
+	'gmap_api_key' => '',
+	'gmap_marker_type' => 'type1',
+	'gmap_custom_marker_type' => 'type1',
+	'gmap_marker_text' => '',
+	'gmap_marker_color' => '#ffffff',
+	'gmap_marker_img' => '',
+	'gmap_marker_bg' => '#000000',
+
 //logo
 	'logo_font_size' => 36,
 	'logo_font_size_fix' => 36,
@@ -698,6 +709,19 @@ $load_icon_type = array(
 );
 
 
+// Google Maps
+global $gmap_marker_type_options;
+$gmap_marker_type_options = array(
+  'type1' => array( 'value' => 'type1', 'label' => __( 'Use default marker', 'tcd-w' ) ),
+  'type2' => array( 'value' => 'type2', 'label' => __( 'Use custom marker', 'tcd-w' ) )
+);
+global $gmap_custom_marker_type_options;
+$gmap_custom_marker_type_options = array(
+  'type1' => array( 'value' => 'type1', 'label' => __( 'Text', 'tcd-w' ) ),
+  'type2' => array( 'value' => 'type2', 'label' => __( 'Image', 'tcd-w' ) )
+);
+
+
 // ヘッダーコンテンツの設定
 global $header_content_type_options;
 $header_content_type_options = array(
@@ -778,7 +802,7 @@ $search_results_tag_filter_options = array(
 
 // テーマオプション画面の作成
 function theme_options_do_page() {
- global $dp_default_options, $load_time_options, $load_icon_type, $hover_type_options, $hover2_direct_options, $font_type_options, $headline_font_type_options, $responsive_options, $header_content_type_options, $slider_time_options, $post_num3_options, $post_num_options, $header_fix_options, $sns_type_top_options, $sns_type_btm_options, $dp_upload_error, $footer_nav_type_options, $footer_widget_options, $footer_bar_icon_options, $footer_bar_button_options, $footer_bar_display_options, $pw_align_options, $search_results_tag_filter_options;
+ global $dp_default_options, $load_time_options, $load_icon_type, $hover_type_options, $hover2_direct_options, $font_type_options, $headline_font_type_options, $responsive_options, $header_content_type_options, $slider_time_options, $post_num3_options, $post_num_options, $header_fix_options, $sns_type_top_options, $sns_type_btm_options, $dp_upload_error, $footer_nav_type_options, $footer_widget_options, $footer_bar_icon_options, $footer_bar_button_options, $footer_bar_display_options, $pw_align_options, $search_results_tag_filter_options, $gmap_marker_type_options, $gmap_custom_marker_type_options;
     $dp_options = get_desing_plus_option();
 
  if ( ! isset( $_REQUEST['settings-updated'] ) )
@@ -1074,11 +1098,58 @@ function theme_options_do_page() {
     <input type="submit" class="button-ml" value="<?php echo __( 'Save Changes', 'tcd-w' ); ?>" />
    </div>
 
+   <?php // Google Map ----------------------------------------- ?>
+   <div class="theme_option_field cf">
+		<h3 class="theme_option_headline"><?php _e( 'Google Maps settings', 'tcd-w' );  ?></h3>
+     <h4 class="theme_option_headline2"><?php _e( 'API key', 'tcd-w' ); ?></h4>
+     <input type="text" class="regular-text" name="dp_options[gmap_api_key]" value="<?php echo esc_attr( $dp_options['gmap_api_key'] ); ?>">
+     <h4 class="theme_option_headline2"><?php _e( 'Marker type', 'tcd-w' ); ?></h4>
+     <?php foreach ( $gmap_marker_type_options as $option ) : ?>
+     <p><label id="gmap_marker_type_button_<?php echo esc_attr( $option['value'] ); ?>"><input type="radio" name="dp_options[gmap_marker_type]" value="<?php echo esc_attr( $option['value'] ); ?>" <?php checked( $option['value'], $dp_options['gmap_marker_type'] ); ?>> <?php echo esc_html_e( $option['label'] ); ?></label></p>
+     <?php endforeach; ?>
+     <div id="gmap_marker_type2_area" style="<?php if($dp_options['gmap_marker_type'] == 'type1'){ echo 'display:none;'; } else { echo 'display:block;'; }; ?>">
+      <h4 class="theme_option_headline2"><?php _e( 'Custom marker type', 'tcd-w' ); ?></h4>
+      <?php foreach ( $gmap_custom_marker_type_options as $option ) : ?>
+      <p><label id="gmap_custom_marker_type_button_<?php echo esc_attr( $option['value'] ); ?>"><input type="radio" name="dp_options[gmap_custom_marker_type]" value="<?php echo esc_attr( $option['value'] ); ?>" <?php checked( $option['value'], $dp_options['gmap_custom_marker_type'] ); ?>> <?php echo esc_html_e( $option['label'] ); ?></label></p>
+      <?php endforeach; ?>
+      <div id="gmap_custom_marker_type1_area" style="<?php if ( $dp_options['gmap_custom_marker_type'] == 'type1') { echo 'display:block;'; } else { echo 'display:none;'; }; ?>">
+       <h4 class="theme_option_headline2"><?php _e( 'Custom marker text', 'tcd-w' ); ?></h4>
+       <input type="text" name="dp_options[gmap_marker_text]" value="<?php echo esc_attr( $dp_options['gmap_marker_text'] ); ?>" class="regular-text">
+       <p><label><?php _e( 'Font color', 'tcd-w' ); ?></label> <input type="text" id="gmap_marker_color" name="dp_options[gmap_marker_color]" value="<?php echo esc_attr( $dp_options['gmap_marker_color'] ); ?>" class="c-color-picker" data-default-color="<?php echo esc_attr($dp_default_options['gmap_marker_color']); ?>" /></p>
+      </div>
+      <div id="gmap_custom_marker_type2_area" style="<?php if ( $dp_options['gmap_custom_marker_type'] == 'type1') { echo 'display:none;'; } else { echo 'display:block;'; }; ?>">
+       <h4 class="theme_option_headline2"><?php _e( 'Custom marker image', 'tcd-w' ); ?></h4>
+       <p><?php _e( 'Recommended size: width:60px, height:20px', 'tcd-w' ); ?></p>
+       <div class="image_box cf">
+      	<div class="cf cf_media_field hide-if-no-js gmap_marker_img">
+         <input type="hidden" value="<?php echo esc_attr( $dp_options['gmap_marker_img'] ); ?>" id="gmap_marker_img" name="dp_options[gmap_marker_img]" class="cf_media_id">
+         <div class="preview_field"><?php if ( $dp_options['gmap_marker_img'] ) { echo wp_get_attachment_image($dp_options['gmap_marker_img'], 'medium' ); } ?></div>
+         <div class="button_area">
+          <input type="button" value="<?php _e( 'Select Image', 'tcd-w' ); ?>" class="cfmf-select-img button">
+          <input type="button" value="<?php _e( 'Remove Image', 'tcd-w' ); ?>" class="cfmf-delete-img button <?php if ( ! $dp_options['gmap_marker_img'] ) { echo 'hidden'; } ?>">
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+     <h4 class="theme_option_headline2"><?php _e( 'Marker style', 'tcd-w' ); ?></h4>
+     <p><label><?php _e( 'Background color', 'tcd-w' ); ?></label><input type="text" id="gmap_marker_bg" name="dp_options[gmap_marker_bg]" value="<?php echo esc_attr( $dp_options['gmap_marker_bg'] ); ?>" class="c-color-picker" data-default-color="<?php echo esc_attr($dp_default_options['gmap_marker_bg']); ?>" /></p>
+    <input type="submit" class="button-ml" value="<?php _e( 'Save Changes', 'tcd-w' ); ?>">
+   </div><!-- END .theme_option_field -->
+
    <?php // ユーザーCSS用の自由記入欄 ?>
    <div class="theme_option_field cf">
     <h3 class="theme_option_headline"><?php _e('Free input area for user definition CSS.', 'tcd-w'); ?></h3>
     <p><?php _e('Code example:<br /><strong>.example { font-size:12px; }</strong>', 'tcd-w'); ?></p>
     <textarea id="dp_options[css_code]" class="large-text" cols="50" rows="10" name="dp_options[css_code]"><?php echo esc_textarea( $dp_options['css_code'] ); ?></textarea>
+    <input type="submit" class="button-ml" value="<?php echo __( 'Save Changes', 'tcd-w' ); ?>" />
+   </div>
+
+   <?php // Custom head/script ?>
+   <div class="theme_option_field cf">
+    <h3 class="theme_option_headline"><?php _e( 'Free input area for user definition scripts.', 'tcd-w' ); ?></h3>
+    <p><?php esc_html_e( 'Custom Script will output the end of the <head> tag. Please insert scripts (i.e. Google Analytics script), including <script>tag.', 'tcd-w' ); ?></p>
+    <textarea id="dp_options[custom_head]" class="large-text" cols="50" rows="10" name="dp_options[custom_head]"><?php echo esc_textarea( $dp_options['custom_head'] ); ?></textarea>
     <input type="submit" class="button-ml" value="<?php echo __( 'Save Changes', 'tcd-w' ); ?>" />
    </div>
 
@@ -2799,7 +2870,7 @@ function theme_options_do_page() {
     <input type="text" class="c-color-picker" name="dp_options[header_text_color]" value="<?php echo esc_attr( $dp_options['header_text_color'] ); ?>" data-default-color="<?php echo esc_attr( $dp_default_options['header_text_color'] ); ?>" />
     <h4 class="theme_option_headline2"><?php _e('Background color', 'tcd-w'); ?></h4>
     <input type="text" class="c-color-picker" name="dp_options[header_bg_color]" value="<?php echo esc_attr( $dp_options['header_bg_color'] ); ?>" data-default-color="<?php echo esc_attr( $dp_default_options['header_bg_color'] ); ?>" />
-    <h4 class="theme_option_headline2"><?php _e( 'Opacity of background over header content', 'tcd-w' ); ?></h4>
+    <h4 class="theme_option_headline2"><?php _e( 'Opacity of background of header bar', 'tcd-w' ); ?></h4>
     <p><?php _e('If you set the header content display setting on the top page, you can set the header bar background transparency displayed on the header content.<br>Please enter the number 0 - 1.0. (e.g. 0)', 'tcd-w'); ?></p>
     <input type="text"class="font_size hankaku" name="dp_options[index_header_bg_opacity]" value="<?php echo esc_attr( $dp_options['index_header_bg_opacity'] ); ?>" />
     <h4 class="theme_option_headline2"><?php _e( 'Text color for fixed header', 'tcd-w' ); ?></h4>
@@ -3361,7 +3432,7 @@ function theme_options_do_page() {
  */
 function theme_options_validate( $input ) {
 
-	global $dp_default_options, $load_time_options, $load_icon_type, $hover_type_options, $hover2_direct_options, $font_type_options, $headline_font_type_options, $responsive_options, $header_content_type_options, $slider_time_options, $post_num3_options, $post_num_options, $header_fix_options, $sns_type_top_options, $sns_type_btm_options, $dp_upload_error, $footer_nav_type_options, $footer_widget_options, $footer_bar_icon_options, $footer_bar_button_options, $footer_bar_display_options, $pw_align_options, $search_results_tag_filter_options;
+	global $dp_default_options, $load_time_options, $load_icon_type, $hover_type_options, $hover2_direct_options, $font_type_options, $headline_font_type_options, $responsive_options, $header_content_type_options, $slider_time_options, $post_num3_options, $post_num_options, $header_fix_options, $sns_type_top_options, $sns_type_btm_options, $dp_upload_error, $footer_nav_type_options, $footer_widget_options, $footer_bar_icon_options, $footer_bar_button_options, $footer_bar_display_options, $pw_align_options, $search_results_tag_filter_options, $gmap_marker_type_options, $gmap_custom_marker_type_options;
 
 	// 色の設定
 	$input['pickedcolor1'] = wp_filter_nohtml_kses( $input['pickedcolor1'] );
@@ -3402,6 +3473,9 @@ function theme_options_validate( $input ) {
 	// オリジナルスタイルの設定
 	$input['css_code'] = $input['css_code'];
 
+	// custom script
+	$input['custom_head'] = $input['custom_head'];
+
 	// レスポンシブの設定
 	if ( ! isset( $input['responsive'] ) || ! array_key_exists( $input['responsive'], $responsive_options ) )
 		$input['responsive'] = $dp_default_options['responsive'];
@@ -3421,6 +3495,16 @@ function theme_options_validate( $input ) {
 		$input['load_time'] = $dp_default_options['load_time'];
 	if ( ! isset( $input['load_icon'] ) || ! array_key_exists( $input['load_icon'], $load_icon_type ) )
 		$input['load_icon'] = $dp_default_options['load_icon'];
+
+  // Google Maps 
+ 	$input['gmap_api_key'] = wp_filter_nohtml_kses( $input['gmap_api_key'] );
+ 	if ( ! isset( $input['gmap_marker_type'] ) ) $input['gmap_marker_type'] = null;
+ 	if ( ! array_key_exists( $input['gmap_marker_type'], $gmap_marker_type_options ) ) $input['gmap_marker_type'] = null;
+ 	if ( ! isset( $input['gmap_custom_marker_type'] ) ) $input['gmap_custom_marker_type'] = null;
+ 	if ( ! array_key_exists( $input['gmap_custom_marker_type'], $gmap_custom_marker_type_options ) ) $input['gmap_custom_marker_type'] = null;
+ 	$input['gmap_marker_text'] = wp_filter_nohtml_kses( $input['gmap_marker_text'] );
+ 	$input['gmap_marker_color'] = wp_filter_nohtml_kses( $input['gmap_marker_color'] );
+ 	$input['gmap_marker_img'] = wp_filter_nohtml_kses( $input['gmap_marker_img'] );
 
 	// 404 ページ
 	$input['header_image_404'] = wp_filter_nohtml_kses( $input['header_image_404'] );

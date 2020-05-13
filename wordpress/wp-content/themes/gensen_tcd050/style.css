@@ -5,7 +5,7 @@ Theme URI:
 Description:WordPressテーマ「GENSEN」
 Author:Design Plus
 Author URI:http://design-plus1.com/tcd-w/
-Version:1.6
+Version:1.9.1
 Text Domain:tcd-w
 */
 
@@ -190,7 +190,7 @@ a.menu_button { display:none; }
   .fix_top.header_fix.admin-bar { padding-top:100px; }
   .fix_top.header_fix.admin-bar #header_top { top:32px; }
 }
-@media only screen and (max-width:991px) {
+@media only screen and (max-width:1024px) {
   .mobile_fix_top.header_fix.admin-bar { padding-top:92px; }
   .mobile_fix_top.header_fix.admin-bar #header { top:32px; }
 }
@@ -343,6 +343,15 @@ form.columns-5 .header_search_button { width:14.36%; }
   100% { opacity:1; -webkit-transform:translate3d(0, 0, 0); transform:translate3d(0, 0, 0); }
 }
 
+@-webkit-keyframes headerCaptionAnimation {
+  0% { opacity:0; -webkit-transform:translate3d(0, 30px, 0); transform:translate3d(0, 30px, 0); }
+  100% { opacity:1; -webkit-transform:translate3d(0, -50%, 0); transform:translate3d(0, -50%, 0); }
+}
+@keyframes headerCaptionAnimation {
+  0% { opacity:0; -webkit-transform:translate3d(0, 30px, 0); transform:translate3d(0, 30px, 0); }
+  100% { opacity:1; -webkit-transform:translate3d(0, -50%, 0); transform:translate3d(0, -50%, 0); }
+}
+
 /* video, youtube */
 .slider_video_wrapper { width:100%; position:relative; }
 .slider_video_wrapper:before { content:''; display:block; padding-top:56.25%; /* aspect 16:9 */ }
@@ -439,7 +448,7 @@ form.columns-5 .header_search_button { width:14.36%; }
 #header_image .caption { margin:0; width:100%; padding:0 20px; line-height:1.5; text-align:center; font-size:32px; color:#fff; position:absolute; top:50%; left:0;
   -webkit-transform:translate3d(0,-50%,0); -mox-transform:translate3d(0,-50%,0); -ms-transform:translate3d(0,-50%,0); -o-transform:translate3d(0,-50%,0); transform:translate3d(0,-50%,0);
   -webkit-box-sizing:border-box; -moz-box-sizing:border-box; -ms-box-sizing:border-box; -o-box-sizing:border-box; box-sizing:border-box;
-  -webkit-animation:sliderCaptionAnimation 1s ease both 1s; animation:sliderCaptionAnimation 1s ease both 1s;
+  -webkit-animation:headerCaptionAnimation 1s ease both 1s; animation:headerCaptionAnimation 1s ease both 1s;
 }
 #header_image .caption_bar { margin:0; padding:14px 20px; width:100%; line-height:1.2; text-align:center; font-size:42px; color:#fff; background:rgba(73,36,13,0.7); position:absolute; bottom:0; left:0;
   -webkit-box-sizing:border-box; -moz-box-sizing:border-box; -ms-box-sizing:border-box; -o-box-sizing:border-box; box-sizing:border-box;
@@ -729,7 +738,7 @@ ul.page-numbers li.disable { display:none; }
 .introduce_archive_banner_link-2col a span { width:50%; }
 .introduce_archive_banner_link-2col .catch { padding:0 36px; }
 .introduce_archive_banner_link-2col .image { height:100%; overflow:hidden; position:relative; }
-.introduce_archive_banner_link-2col .image img { width:initial; min-width:100%; height:100%; position:absolute; top:0; bottom:0; left:50%;
+.introduce_archive_banner_link-2col .image img { width:initial; width: auto; min-width:100%; height:100%; position:absolute; top:0; bottom:0; left:50%;
   -webkit-transform:translate3d(-50%,0,0); -moz-transform:translate3d(-50%,0,0); -ms-transform:translate3d(-50%,0,0); -o-transform:translate3d(-50%,0,0); transform:translate3d(-50%,0,0);
 }
 .introduce_archive_banner_link-text { text-align:center; }

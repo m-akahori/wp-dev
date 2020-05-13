@@ -285,6 +285,13 @@ function custom_search_posts_clauses( $clauses, $wp_query ) {
 		// 本文検索
 		if ( in_array( 'content', $dp_options['searcn_keywords_target'] ) ) {
 			$is_search_content = true;
+
+			// ページビルダー用
+			$clauses['join'] .= " LEFT JOIN $wpdb->postmeta AS pm_usepb ON ($wpdb->posts.ID = pm_usepb.post_id AND pm_usepb.meta_key = 'use_page_builder') ";
+			$clauses['join'] .= " LEFT JOIN $wpdb->postmeta AS pm_pbdata ON ($wpdb->posts.ID = pm_pbdata.post_id AND pm_pbdata.meta_key = 'page_builder') ";
+
+			// group by
+			$clauses['groupby'] = "$wpdb->posts.ID";
 		} else {
 			$is_search_content = false;
 		}
@@ -298,22 +305,18 @@ function custom_search_posts_clauses( $clauses, $wp_query ) {
 				$is_search_tag = $dp_options['introduce_tag_slug'];
 			}
 			if ( $is_search_tag ) {
-				// tax/term join
-				$tag_slug = esc_sql( $is_search_tag );
-				$clauses['join'] .= " LEFT JOIN $wpdb->term_relationships AS trel ON ($wpdb->posts.ID = trel.object_id) ";
-				$clauses['join'] .= " LEFT JOIN $wpdb->term_taxonomy AS ttax ON (ttax.taxonomy = '{$tag_slug}' AND trel.term_taxonomy_id = ttax.term_taxonomy_id) ";
-				$clauses['join'] .= " LEFT JOIN $wpdb->terms AS tter ON (ttax.term_id = tter.term_id) ";
-
 				// group by
 				$clauses['groupby'] = "$wpdb->posts.ID";
 			}
 		}
 
 		$wheres = array();
+		$keyword_count = 0;
 
 		foreach( explode( ' ', $custom_search_vars['search_keywords'] ) as $keyword ) {
 			$keyword = trim( $keyword );
 			if ( ! $keyword ) continue;
+			$keyword_count++;
 
 			// LIKEエスケープ
 			$esc_like_keyword = '%' . esc_sql( $wpdb->esc_like( $keyword ) ) . '%';
@@ -326,19 +329,28 @@ function custom_search_posts_clauses( $clauses, $wp_query ) {
 			// 本文検索
 			if ( $is_search_content ) {
 				$wheres['content'][] = "$wpdb->posts.post_content LIKE '$esc_like_keyword'";
+
+				// ページビルダー用
+				$wheres['pagebuilder'][] = "(pm_usepb.meta_value = '1' AND pm_pbdata.meta_value LIKE '$esc_like_keyword')";
 			}
 
 			// タグ検索
 			if ( $is_search_tag ) {
-				$wheres['tag'][] = "tter.name LIKE '$esc_like_keyword'";
+				// tax/term join
+				$tag_slug = esc_sql( $is_search_tag );
+				$clauses['join'] .= " LEFT JOIN $wpdb->term_relationships AS trel{$keyword_count} ON ($wpdb->posts.ID = trel{$keyword_count}.object_id) ";
+				$clauses['join'] .= " LEFT JOIN $wpdb->term_taxonomy AS ttax{$keyword_count} ON (ttax{$keyword_count}.taxonomy = '{$tag_slug}' AND trel{$keyword_count}.term_taxonomy_id = ttax{$keyword_count}.term_taxonomy_id) ";
+				$clauses['join'] .= " LEFT JOIN $wpdb->terms AS tter{$keyword_count} ON (ttax{$keyword_count}.term_id = tter{$keyword_count}.term_id) ";
+
+				$wheres['tag'][] = "tter{$keyword_count}.name LIKE '$esc_like_keyword'";
 			}
 		}
 
 		// OR検索
-		if ( ! empty( $_REQUEST['search_keywords_operator'] ) && $_REQUEST['search_keywords_operator'] == 'or') {
-			if ( count( $wheres ) == 1) {
+		if ( ! empty( $_REQUEST['search_keywords_operator'] ) && $_REQUEST['search_keywords_operator'] == 'or' ) {
+			if ( count( $wheres ) == 1 ) {
 				$clauses['where'] .= " AND (" . implode( " OR ", array_shift( $wheres ) ) . ")";
-			} elseif ( count( $wheres ) > 1) {
+			} elseif ( count( $wheres ) > 1 ) {
 				$wheres2 = array();
 				foreach( $wheres as $key => $where ) {
 					$wheres2[] = implode( " OR ", $where );
@@ -350,7 +362,7 @@ function custom_search_posts_clauses( $clauses, $wp_query ) {
 		} else {
 			if ( count( $wheres ) == 1 ) {
 				$clauses['where'] .= " AND (" . implode( " AND ", array_shift( $wheres ) ) . ")";
-			} elseif (count( $wheres ) > 1) {
+			} elseif (count( $wheres ) > 1 ) {
 				$wheres2 = array();
 				foreach( $wheres as $key => $where ) {
 					$wheres2[] = implode( " AND ", $where );

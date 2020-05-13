@@ -52,7 +52,7 @@
  <div id="article">
 
 <?php if ($display_title == 'show') { ?>
-  <h1 id="post_title" class="rich_font"><?php the_title(); ?></h2>
+  <h1 id="post_title" class="rich_font"><?php the_title(); ?></h1>
 <?php } ?>
 
   <div class="post_content clearfix">

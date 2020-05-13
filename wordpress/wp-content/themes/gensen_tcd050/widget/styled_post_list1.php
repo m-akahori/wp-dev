@@ -56,6 +56,7 @@ class styled_post_list1_widget extends WP_Widget {
 			if (empty($instance[$post_type]['show'])) continue;
 			$post_num = $instance[$post_type]['post_num'];
 			$post_order = $instance[$post_type]['post_order'];
+		    $show_date = $instance[$post_type]['show_date'];
 
 			if ($post_order=='date2') {
 				$order = 'ASC';
@@ -134,7 +135,7 @@ class styled_post_list1_widget extends WP_Widget {
 				'title' => $value,
 				'post_num' => '5',
 				'post_order' => 'date1',
-				'show_date' => '1'
+				'show_date' => '0'
 			);
 			if (isset($instance[$post_type])) {
 				$instance[$post_type] = array_merge($post_type_defaults, $instance[$post_type]);
@@ -151,7 +152,7 @@ class styled_post_list1_widget extends WP_Widget {
 	<?php // widet title dummy ?>
 	<input id="<?php echo $this->get_field_id('title'); ?>" type="hidden" value="" />
 
-<?php	foreach($this->post_types as $post_type => $value) : ?>
+<?php foreach($this->post_types as $post_type => $value) : ?>
 
 	<h3 class="tcd_toggle_widget_headline"><?php echo $value; ?></h3>
 	<div class="tcd_toggle_widget_box">

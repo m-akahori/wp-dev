@@ -3,9 +3,51 @@ jQuery(document).ready(function($){
 	var $pb_metabox = $('#page_builder-metabox');
 	if (!$pb_metabox.size()) return false;
 
+	// Gutenberg editorフラグ
+	var is_gutenberg_editor = false;
+
 	// WordPress Color Picker
 	// 旧jscolorの共存仕様で.pb-color*は使えないので注意
 	$pb_metabox.find('.pb-row-container .pb-wp-color-picker, #pb-add-row-modal .pb-wp-color-picker').wpColorPicker();
+
+	// 汎用トグル
+	$pb_metabox.find('[data-pb-toggle-target]').each(function(){
+		var status = $(this).attr('data-pb-toggle-status');
+		if (status == 'close' || status == 'hide' || status == 'hidden') {
+			$(this).attr('data-pb-toggle-status', 'close');
+			var target = $(this).attr('data-pb-toggle-target');
+			$pb_metabox.find(target).hide();
+		} else {
+			$(this).attr('data-pb-toggle-status', 'open');
+		}
+	});
+	$pb_metabox.on('click', '.pb-modal [data-pb-toggle-target]', function(e){
+		var $this = $(this);
+		var $target = $(this).closest('.pb-modal').find($($(this).attr('data-pb-toggle-target')));
+
+		if ($target.length) {
+			if ($target.is(':visible')) {
+				$this.attr('data-pb-toggle-status', 'closing');
+				$target.slideUp(500, function(){
+					$this.attr('data-pb-toggle-status', 'close');
+				});
+			} else {
+				var accordion = $(this).attr('data-pb-toggle-accordion') || '';
+				accordion = (accordion.toLowerCase() === 'true' || Number(accordion)) ;
+				if (accordion) {
+					var $siblings_handlar = $this.siblings('[data-pb-toggle-target][data-pb-toggle-status="open"]').attr('data-pb-toggle-status', 'closing');
+					$target.siblings('.pb-toggle-content:visible').slideUp(500, function(){
+						$siblings_handlar.attr('data-pb-toggle-status', 'close');
+					});
+				}
+
+				$this.attr('data-pb-toggle-status', 'open');
+				$target.slideDown(400);
+			}
+		}
+
+		return false;
+	});
 
 	// ツールバー追従
 	var toolbar_vars = { status: '' };
@@ -19,6 +61,16 @@ jQuery(document).ready(function($){
 		toolbar_vars.left = Math.ceil(offset.left);
 		toolbar_vars.window_height = window.innerHeight ? window.innerHeight : $(window).height();
 		toolbar_vars.status = '';
+		toolbar_vars.timer = 0;
+		toolbar_vars.wp_toolbar_height = 0;
+		if ($('#wpadminbar').css('position') == 'fixed') {
+			toolbar_vars.wp_toolbar_height += $('#wpadminbar').height();
+		}
+		if (is_gutenberg_editor) {
+			toolbar_vars.scroll_parent = $('.edit-post-layout__content').get(0);
+			toolbar_vars.$scroll_parent = $('.edit-post-layout__content');
+			toolbar_vars.wp_toolbar_height += $('.edit-post-header').innerHeight();
+		}
 		toolbar_scroll()
 	};
 	var toolbar_scroll = function(){
@@ -26,7 +78,12 @@ jQuery(document).ready(function($){
 		var start = toolbar_vars.top;
 		var end_abs = toolbar_vars.top + $pb_metabox.innerHeight() - toolbar_vars.height;
 		var end_fixed = end_abs - toolbar_vars.window_height * 0.25;
-		var scrollTop = window.scrollY || document.documentElement.scrollTop;
+
+		if (is_gutenberg_editor) {
+			var scrollTop = toolbar_vars.scroll_parent.scrollTop || toolbar_vars.$scroll_parent.scrollTop();
+		} else {
+			var scrollTop = window.scrollY || document.documentElement.scrollTop;
+		}
 
 		if (scrollTop > start && scrollTop < end_fixed) {
 			if (toolbar_vars.status != 'fixed') {
@@ -38,7 +95,7 @@ jQuery(document).ready(function($){
 				$tb.css({
 					width: toolbar_vars.width,
 					position: 'fixed',
-					top: 32, // wpadminbarの高さ
+					top: toolbar_vars.wp_toolbar_height,
 					left: toolbar_vars.left,
 					zIndex: 2
 				});
@@ -53,7 +110,7 @@ jQuery(document).ready(function($){
 				$tb.css({
 					width: toolbar_vars.width,
 					position: 'absolute',
-					top: scrollTop - start + 32,
+					top: scrollTop - start + toolbar_vars.wp_toolbar_height,
 					left: 0,
 					zIndex: 2
 				});
@@ -66,17 +123,37 @@ jQuery(document).ready(function($){
 	};
 	var toolbar_scroll_on = function(){
 		toolbar_init();
-		$(window).on('resize', toolbar_init).on('scroll', toolbar_scroll);
+		$(window).on('resize', toolbar_init);
+		if (is_gutenberg_editor) {
+			clearTimeout(toolbar_vars.timer);
+			toolbar_vars.timer = setTimeout(function(){
+				$('.edit-post-layout__content').on('scroll', toolbar_scroll);
+			}, 100);
+		} else {
+			clearTimeout(toolbar_vars.timer);
+			toolbar_vars.timer = setTimeout(function(){
+				$(window).on('scroll', toolbar_scroll);
+			}, 100);
+		}
 	};
 	var toolbar_scroll_off = function(){
 		toolbar_vars.status = '';
 		$(window).off('resize', toolbar_init);
-		$(window).off('scroll', toolbar_scroll);
+		if (is_gutenberg_editor) {
+			$('.edit-post-layout__content').off('scroll', toolbar_scroll);
+		} else {
+			$(window).off('scroll', toolbar_scroll);
+		}
 	};
 
 	// モーダル表示中にモーダル外スクロール禁止
 	var current_scroll_x, current_scroll_y
 	var window_scroll_disable = function() {
+		// モーダル表示中クラス追加
+		if (is_gutenberg_editor) {
+			$('body').addClass('pagebuilder-modal-active');
+		}
+
 		current_scroll_y = $(window).scrollTop();
 		current_scroll_x = $(window).scrollLeft();
 		$(window).off('scroll.window_scroll_disable');
@@ -92,6 +169,11 @@ jQuery(document).ready(function($){
 
 	// モーダル外スクロール許可
 	var window_scroll_enable = function() {
+		// モーダル表示中クラス削除
+		if (is_gutenberg_editor) {
+			$('body').removeClass('pagebuilder-modal-active');
+		}
+
 		$(window).off('scroll.window_scroll_disable');
 	};
 
@@ -108,56 +190,219 @@ jQuery(document).ready(function($){
 	};
 	$(window).resize(fit_cell_height);
 
-	// wp-editor-tabsにpage builder追加
-	$('#wp-content-wrap .wp-editor-tabs').append('<span id="content-pagebuilder" class="hide-if-no-js wp-switch-editor switch-pagebuilder">' + $pb_metabox.find('.hndle span').html() + '</span>');
+	// Block editor(Gutenberg)対応
+	if ($('.block-editor__container').length) {
+		is_gutenberg_editor = true;
+		$pb_metabox.addClass('attached-to-editor attached-to-block-editor');
 
-	// wp-editor-tabsのpage builderクリック
-	$('#wp-content-wrap .wp-editor-tabs #content-pagebuilder').on('click', function(){
-		$('#post').addClass('pagebuilder-active');
-		$pb_metabox.show().find('> .inside').show();
+		// 現在のビジュアルエディターorコードエディター
+		var current_editor;
 
-		// ページビルダーフラグをon
-		$pb_metabox.find('[name="use_page_builder"]').val(1);
+		// ヘッダー右の詳細ボタンクリック
+		$('#editor').on('click', '.edit-post-more-menu button:first', function(){
+			setTimeout(function(){
+				// ポップメニューが開いてなければ終了
+				if (!$('#editor .edit-post-more-menu__content').length) return;
 
-		// 行内のカラムの高さを合わせる
-		fit_cell_height();
+				var $code_editor_select_button, $current_editor_button, $pb_select_button, $select_button_parent;
+				var pb_select_button_label = pagebuilder_i18n.page_builder || 'Page Builder';
 
-		// ツールバー追従
-		toolbar_scroll_on();
+				// コードエディターボタン取得
+				if (pagebuilder_i18n.code_editor && $('.edit-post-more-menu__content button:contains("'+pagebuilder_i18n.code_editor+'")').length) {
+					$code_editor_select_button = $('.edit-post-more-menu__content button:contains("'+pagebuilder_i18n.code_editor+'")');
+				} else if ($('.edit-post-more-menu__content button:contains("コードエディター")').length) {
+					$code_editor_select_button = $('.edit-post-more-menu__content button:contains("コードエディター")');
+				} else if ($('.edit-post-more-menu__content button:contains("Code Editor")').length) {
+					$code_editor_select_button = $('.edit-post-more-menu__content button:contains("Code Editor")');
+				}
+				if (!$code_editor_select_button) return;
 
-		return false;
-	});
+				// コードエディターボタンの親
+				$select_button_parent = $code_editor_select_button.parent();
 
-	// 通常エディターに戻す
-	$pb_metabox.find('.pb-switch-to-standard').on('click', function() {
-		$('#post').removeClass('pagebuilder-active');
-		$pb_metabox.hide();
+				// チェックありの既存エディター取得
+				$current_editor_button = $select_button_parent.find('.has-icon, .components-icon-button');
 
-		// ページビルダーフラグをoff
-		$pb_metabox.find('[name="use_page_builder"]').val(0);
+				// チェックありの既存エディターの値を変数current_editorにセット
+				switch ($current_editor_button.text()) {
+					case pagebuilder_i18n.visual_editor :
+					case 'Visual Editor' :
+					case 'ビジュアルエディター' :
+						current_editor = 'visual';
+						break;
 
-		// ツールバー追従無効
-		toolbar_scroll_off();
+					case pagebuilder_i18n.code_editor :
+					case 'Code Editor' :
+					case 'コードエディター' :
+						current_editor = 'text';
+						break;
+				}
 
-		// WPエディター用にresize実行
-		$(window).resize();
+				// ページビルダーボタン生成
+				// ページビルダー有効時
+				if ($pb_metabox.find('[name="use_page_builder"]').val() == 1) {
+					// チェックあり
+					$pb_select_button = $('<button type="button" aria-checked="true" role="menuitemradio" class="components-button components-icon-button components-menu-item__button has-icon"><svg aria-hidden="true" role="img" focusable="false" class="dashicon dashicons-yes" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><path d="M14.83 4.89l1.34.94-5.81 8.38H9.02L5.78 9.67l1.34-1.25 2.57 2.4z"></path></svg>' + pb_select_button_label + '</button>');
 
-		return false;
-	}).show();
+					// チェックありの既存エディターのチェックを外す
+					$current_editor_button.removeClass('has-icon components-icon-button').find('svg, .dashicon').remove();
 
-	// メタボックスをエディターの後ろに移動
-	$pb_metabox.insertAfter('#wp-content-wrap').hide().addClass('attached-to-editor');
+					// 既存エディターのショートカットを削除
+					$select_button_parent.find('.components-menu-item__shortcut').remove();
+				} else {
+					$pb_select_button = $('<button type="button" aria-checked="false" role="menuitemradio" class="components-button components-menu-item__button">' + pb_select_button_label + '</button>');
+				}
 
-	// ページビルダーフラグがonならページビルダー表示
-	if ($pb_metabox.find('[name="use_page_builder"]').val()) {
-		$('#post').addClass('pagebuilder-active');
-		$pb_metabox.show().find('> .inside').show();
+				// コードエディターの下にページビルダーボタン追加
+				$select_button_parent.append($pb_select_button);
+			}, 20);
+		});
 
-		// 行内のカラムの高さを合わせる
-		fit_cell_height();
+		// エディター選択ボタンクリック
+		$('#editor').on('click', '.edit-post-more-menu__content button', function(){
 
-		// ツールバー追従
-		toolbar_scroll_on();
+			switch ($(this).text()) {
+				case pagebuilder_i18n.page_builder :
+				case 'Page Builder' :
+				case 'ページビルダー' :
+					if ($pb_metabox.find('[name="use_page_builder"]').val() == 1) {
+						gutenbergHidePageBuilder();
+					} else {
+						gutenbergShowPageBuilder();
+					}
+
+					// 手動でポップアップ閉じる
+					$('#editor .edit-post-more-menu button:first').trigger('click');
+
+					// エディター変更処理は行わないのでreturn false;
+					return false;
+					break;
+
+				case pagebuilder_i18n.visual_editor :
+				case 'Visual Editor' :
+				case 'ビジュアルエディター' :
+					// ページビルダーからエディター切替
+					if ($pb_metabox.find('[name="use_page_builder"]').val() == 1) {
+						gutenbergHidePageBuilder();
+					}
+
+					// 保存されているエディターと一致する場合にポップアップが閉じないので手動でポップアップ閉じる
+					if (current_editor == 'visual') {
+						$('#editor .edit-post-more-menu button:first').trigger('click');
+					}
+					break;
+
+				case pagebuilder_i18n.code_editor :
+				case 'Code Editor' :
+				case 'コードエディター' :
+					// ページビルダーからエディター切替
+					if ($pb_metabox.find('[name="use_page_builder"]').val() == 1) {
+						gutenbergHidePageBuilder();
+					}
+
+					// 保存されているエディターと一致する場合にポップアップが閉じないので手動でポップアップ閉じる
+					if (current_editor == 'text') {
+						$('#editor .edit-post-more-menu button:first').trigger('click');
+					}
+					break;
+			}
+		});
+
+		// ページビルダー表示処理
+		var gutenbergShowPageBuilder = function() {
+			$('#editor').addClass('pagebuilder-active');
+
+			// ページビルダーフラグをon
+			$pb_metabox.find('[name="use_page_builder"]').val(1);
+
+			// 行内のカラムの高さを合わせる
+			fit_cell_height();
+
+			// ツールバー追従
+			toolbar_scroll_on();
+		}
+
+		// ページビルダー非表示処理
+		var gutenbergHidePageBuilder = function() {
+			$('#editor').removeClass('pagebuilder-active');
+
+			// ページビルダーフラグをoff
+			$pb_metabox.find('[name="use_page_builder"]').val(0);
+
+			// ツールバー追従無効
+			toolbar_scroll_off();
+
+			// WPエディター用にresize実行
+			$(window).resize();
+		};
+
+		// 通常エディターに戻すクリック
+		$pb_metabox.find('.pb-switch-to-standard').on('click', function() {
+			gutenbergHidePageBuilder();
+			return false;
+		});
+
+		// Gutenberg editorの初期化を待つ必要あり
+		setTimeout(function(){
+			// ページビルダーフラグがonならページビルダー表示
+			if ($pb_metabox.find('[name="use_page_builder"]').val() == 1) {
+				gutenbergShowPageBuilder();
+			}
+		}, 1000);
+
+	// 旧エディター
+	} else {
+		// wp-editor-tabsにpage builder追加
+		$('#wp-content-wrap .wp-editor-tabs').append('<span id="content-pagebuilder" class="hide-if-no-js wp-switch-editor switch-pagebuilder">' + $pb_metabox.find('.hndle span').html() + '</span>');
+
+		// wp-editor-tabsのpage builderクリック
+		$('#wp-content-wrap .wp-editor-tabs #content-pagebuilder').on('click', function(){
+			$('#post').addClass('pagebuilder-active');
+			$pb_metabox.show().find('> .inside').show();
+
+			// ページビルダーフラグをon
+			$pb_metabox.find('[name="use_page_builder"]').val(1);
+
+			// 行内のカラムの高さを合わせる
+			fit_cell_height();
+
+			// ツールバー追従
+			toolbar_scroll_on();
+
+			return false;
+		});
+
+		// 通常エディターに戻す
+		$pb_metabox.find('.pb-switch-to-standard').on('click', function() {
+			$('#post').removeClass('pagebuilder-active');
+			$pb_metabox.hide();
+
+			// ページビルダーフラグをoff
+			$pb_metabox.find('[name="use_page_builder"]').val(0);
+
+			// ツールバー追従無効
+			toolbar_scroll_off();
+
+			// WPエディター用にresize実行
+			$(window).resize();
+
+			return false;
+		});
+
+		// メタボックスをエディターの後ろに移動
+		$pb_metabox.insertAfter('#wp-content-wrap').hide().addClass('attached-to-editor');
+
+		// ページビルダーフラグがonならページビルダー表示
+		if ($pb_metabox.find('[name="use_page_builder"]').val() == 1) {
+			$('#post').addClass('pagebuilder-active');
+			$pb_metabox.show().find('> .inside').show();
+
+			// 行内のカラムの高さを合わせる
+			fit_cell_height();
+
+			// ツールバー追従
+			toolbar_scroll_on();
+		}
 	}
 
 	// 行ソータブル
@@ -259,6 +504,7 @@ jQuery(document).ready(function($){
 		$('#pb-add-row-modal .pb-delete').hide();
 		setInputValueToAttr('#pb-add-row-modal');
 		$('#pb-add-row-modal select.cells').trigger('change');
+		window_scroll_disable();
 	});
 
 	// 行追加・編集モーダル カラムプレビュー
@@ -471,6 +717,7 @@ jQuery(document).ready(function($){
 		$pb_modal.find('.pb-delete').show();
 		setInputValueToAttr($pb_modal);
 		generateRowPreview($pb_modal, $pb_modal.find('.cells').val(), $pb_modal.find('.cells_width').val().split(','));
+		window_scroll_disable();
 	});
 
 	// 行編集モーダル 閉じるボタン キャンセル扱い
@@ -826,9 +1073,13 @@ jQuery(document).ready(function($){
 			over: function (e, ui) {
 				fit_cell_height();
 			},
+			start: function (e, ui) {
+				$(document).trigger('page-builder-widget-sortable-start', ui.item[0]);
+			},
 			stop: function (e, ui) {
 				fit_cell_height();
 				widget_sort_collections();
+				$(document).trigger('page-builder-widget-sortable-stop', ui.item[0]);
 			}
 		});
 	};
@@ -858,5 +1109,23 @@ jQuery(document).ready(function($){
 
 	};
 	widget_sort_collections();
+
+	// ウィジェット背景透明変更
+	$pb_metabox.on('change', '.pb-modal-edit-widget .use_widget_background_color:checkbox', function(){
+		if (this.checked) {
+			$(this).closest('.pb-modal-edit-widget').find('.form-field-widget_background_color').slideDown('fast');
+		} else {
+			$(this).closest('.pb-modal-edit-widget').find('.form-field-widget_background_color').slideUp('fast');
+		}
+	});
+	$pb_metabox.find('.pb-modal-edit-widget .use_widget_background_color:checkbox').trigger('change');
+
+	// モバイル用モーダルサイドバートグル
+	$pb_metabox.on('click', '.pb-modal.pb-has-right-sidebar .pb-toggle-rightbar', function(e){
+		$('body').toggleClass('pb-show-right-sidebar');
+	});
+	$pb_metabox.on('click', '.pb-modal.pb-has-right-sidebar .pb-content', function(e){
+		$('body.pb-show-right-sidebar').removeClass('pb-show-right-sidebar');
+	});
 
 });

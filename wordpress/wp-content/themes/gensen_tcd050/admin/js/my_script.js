@@ -60,6 +60,22 @@ jQuery(document).ready(function($){
     }
   });
 
+  // Googleマップ
+  $("#gmap_marker_type_button_type2").click(function () {
+    $("#gmap_marker_type2_area").show();
+  });
+  $("#gmap_marker_type_button_type1").click(function () {
+    $("#gmap_marker_type2_area").hide();
+  });
+  $("#gmap_custom_marker_type_button_type1").click(function () {
+    $("#gmap_custom_marker_type1_area").show();
+    $("#gmap_custom_marker_type2_area").hide();
+  });
+  $("#gmap_custom_marker_type_button_type2").click(function () {
+    $("#gmap_custom_marker_type1_area").hide();
+    $("#gmap_custom_marker_type2_area").show();
+  });
+
   // footer widget type
   $(".footer_widget_type-radios :radio").change(function(){
     if ($(this).val() == 'type1') {

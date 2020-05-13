@@ -62,8 +62,6 @@ function save_view_count_meta_box( $post_id ) {
   // save
   if (!empty($_POST['edit_view_count']) && isset($_POST['_view_count'])) {
     update_post_meta($post_id, '_view_count', intval($_POST['_view_count']));
-  } elseif (get_post_meta($post_id, '_view_count', true) === '') {
-    update_post_meta($post_id, '_view_count', 0);
   }
 
   return $post_id;
