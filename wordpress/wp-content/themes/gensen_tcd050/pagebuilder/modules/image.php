@@ -6,7 +6,7 @@
 add_page_builder_widget(array(
 	'id' => 'pb-widget-image',
 	'form' => 'form_page_builder_widget_image',
-	'form_rightbar' => 'form_rightbar_page_builder_widget_image',
+	'form_rightbar' => 'form_rightbar_page_builder_widget', // 標準右サイドバー
 	'display' => 'display_page_builder_widget_image',
 	'title' => __('Image', 'tcd-w'),
 	'priority' => 1
@@ -21,6 +21,7 @@ function form_page_builder_widget_image($values = array()) {
 		'widget_index' => '',
 		'image' => '',
 		'size' => 'full',
+		'circle_image' => '',
 		'link' => '',
 		'target_blank' => ''
 	), 'form');
@@ -61,6 +62,12 @@ function form_page_builder_widget_image($values = array()) {
 </div>
 
 <div class="form-field">
+	<h4><?php _e('Circle image', 'tcd-w'); ?></h4>
+	<input type="hidden" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][circle_image]" value="0" />
+	<label><input type="checkbox" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][circle_image]" value="1"<?php if ($values['circle_image']) echo ' checked="checked"'; ?> /> <?php _e('Display as Circle image', 'tcd-w'); ?></label>
+</div>
+
+<div class="form-field">
 	<h4><?php _e('Link URL for image', 'tcd-w'); ?></h4>
 	<input type="text" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][link]" value="<?php echo esc_attr($values['link']); ?>" />
 </div>
@@ -68,37 +75,7 @@ function form_page_builder_widget_image($values = array()) {
 <div class="form-field">
 	<h4><?php _e('Link target', 'tcd-w'); ?></h4>
 	<input type="hidden" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][target_blank]" value="0" />
-	<label><input type="checkbox" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][target_blank]" value="1"<?php if ($values['target_blank']) echo ' checked="checked"'; ?> /> <?php _e('Use target blank for this link', 'tcd-w') ?></label>
-</div>
-
-<?php
-}
-
-/**
- * フォーム 右サイドバー
- */
-function form_rightbar_page_builder_widget_image($values = array()) {
-	// デフォルト値
-	$default_values = apply_filters('page_builder_widget_image_default_values', array(
-		'widget_index' => '',
-		'margin_bottom' => 30,
-		'margin_bottom_mobile' => 30
-	), 'form_rightbar');
-
-	// デフォルト値に入力値をマージ
-	$values = array_merge($default_values, (array) $values);
-?>
-
-<h3><?php _e('Margin setting', 'tcd-w'); ?></h3>
-<div class="form-field">
-	<label><?php _e('Margin bottom', 'tcd-w'); ?></label>
-	<input type="text" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][margin_bottom]" value="<?php echo esc_attr($values['margin_bottom']); ?>" class="pb-input-narrow hankaku" /> px
-	<p class="pb-description"><?php _e('Space below the content.<br />Default is 30px.', 'tcd-w'); ?></p>
-</div>
-<div class="form-field">
-	<label><?php _e('Margin bottom for mobile', 'tcd-w'); ?></label>
-	<input type="text" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][margin_bottom_mobile]" value="<?php echo esc_attr($values['margin_bottom_mobile']); ?>" class="pb-input-narrow hankaku" /> px
-	<p class="pb-description"><?php _e('Space below the content.<br />Default is 30px.', 'tcd-w'); ?></p>
+	<label><input type="checkbox" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][target_blank]" value="1"<?php if ($values['target_blank']) echo ' checked="checked"'; ?> /> <?php _e('Use target blank for this link', 'tcd-w'); ?></label>
 </div>
 
 <?php
@@ -118,17 +95,56 @@ function display_page_builder_widget_image($values = array()) {
 	}
 	if (empty($image)) return;
 
-	if (!empty($values['link'])) {
-		echo '<a href="'.esc_attr($values['link']).'"';
-		if (!empty($values['target_blank'])) {
-			echo ' target="_blank"';
+	// circle image
+	if (!empty($values['circle_image'])) {
+		$image_src = wp_get_attachment_image_src($values['image'], $image_size);
+		if (empty($image_src[0])) return;
+
+		$circle_image_class = 'pb_circle_image';
+		$circle_image_css = '';
+
+		if (!empty($image_src[1]) && !empty($image_src[2])) {
+			// 縦長画像
+			if ($image_src[1] < $image_src[2]) {
+				$circle_image_class .= ' pb_circle_image-vertical';
+				$circle_image_style = 'max-width: '.esc_attr($image_src[1]).'px;';
+			} else {
+				$circle_image_class .= ' pb_circle_image-horizontal';
+				$circle_image_style = 'max-width: '.esc_attr($image_src[2]).'px;';
+			}
 		}
-		echo '>';
-	}
 
-	echo $image;
+		if (!empty($values['link'])) {
+			echo '<a class="'.$circle_image_class.'" href="'.esc_attr($values['link']).'"';
+			if (!empty($values['target_blank'])) {
+				echo ' target="_blank"';
+			}
+			echo ' style="'.$circle_image_style.'">';
+		} else {
+			echo '<div class="'.$circle_image_class.'" style="'.$circle_image_style.'">';
+		}
 
-	if (!empty($values['link'])) {
-		echo '</a>';
+		echo '<div class="pb_circle_image_inner"><img src="'.esc_attr($image_src[0]).'" alt=""></div>';
+
+		if (!empty($values['link'])) {
+			echo '</a>';
+		} else {
+			echo '</div>';
+		}
+
+	} else {
+		if (!empty($values['link'])) {
+			echo '<a href="'.esc_attr($values['link']).'"';
+			if (!empty($values['target_blank'])) {
+				echo ' target="_blank"';
+			}
+			echo '>';
+		}
+
+		echo $image;
+
+		if (!empty($values['link'])) {
+			echo '</a>';
+		}
 	}
 }

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: design-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-30 00:51+0900\n"
+"POT-Creation-Date: 2020-03-23 17:13+0900\n"
 "PO-Revision-Date: \n"
 "Last-Translator: atsuo okuda <okuda@design-plus.info>\n"
 "Language-Team: design plus\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: __;_e;esc_attr__\n"
+"X-Poedit-KeywordsList: __;_e;esc_attr__;esc_attr_e;esc_html_e;esc_html__\n"
 "X-Generator: Poedit 1.5.7\n"
 "X-Poedit-Basepath: ../\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -30,7 +30,7 @@ msgid "read more"
 msgstr "さらに記事を表示する"
 
 #: archive-introduce.php:195 archive-news.php:27 custom_search_results.php:213
-#: index.php:108 widget/styled_post_list1.php:105
+#: index.php:108 widget/styled_post_list1.php:106
 msgid "There is no registered post."
 msgstr "登録されている記事はございません。"
 
@@ -38,11 +38,11 @@ msgstr "登録されている記事はございません。"
 msgid "Home"
 msgstr "ホーム"
 
-#: breadcrumb.php:10 admin/theme-options.php:466 functions/seo.php:131
+#: breadcrumb.php:10 admin/theme-options.php:477 functions/seo.php:131
 msgid "Search Results"
 msgstr "検索結果"
 
-#: breadcrumb.php:57 comments.php:103 functions.php:892 index.php:24
+#: breadcrumb.php:57 comments.php:103 functions.php:897 index.php:24
 #: functions/seo.php:203 functions/seo.php:300
 msgid "F jS, Y"
 msgstr "Y年 F d日"
@@ -157,19 +157,19 @@ msgstr "古い順"
 msgid "Large number of views"
 msgstr "閲覧数順"
 
-#: footer.php:235
+#: footer.php:248
 msgid "Copyright "
 msgstr ""
 
-#: footer.php:242
+#: footer.php:255
 msgid "PAGE TOP"
 msgstr ""
 
-#: footer.php:384
+#: footer.php:397
 msgid "Loading post..."
 msgstr "記事をロード中・・・"
 
-#: footer.php:385
+#: footer.php:398
 msgid "No more post"
 msgstr "これ以上記事はございません"
 
@@ -286,92 +286,93 @@ msgstr "グローバルメニュー"
 msgid "Footer bottom menu"
 msgstr "フッターメニュー（ページ最下部に表示されます）"
 
-#: functions.php:601 functions.php:668
+#: functions.php:601 functions.php:670
 msgid "Search Category"
 msgstr "カテゴリーの検索"
 
-#: functions.php:602 functions.php:669
+#: functions.php:602 functions.php:671
 msgid "Popular Category"
 msgstr "人気のカテゴリー"
 
-#: functions.php:603 functions.php:670
+#: functions.php:603 functions.php:672
 msgid "All Category"
 msgstr "全てのカテゴリー"
 
-#: functions.php:604 functions.php:671
+#: functions.php:604 functions.php:673
 msgid "Parent Category"
 msgstr "親カテゴリー"
 
-#: functions.php:605 functions.php:672
+#: functions.php:605 functions.php:674
 msgid "Edit Category"
 msgstr "カテゴリーを編集する"
 
-#: functions.php:606 functions.php:673
+#: functions.php:606 functions.php:675
 msgid "Update Category"
 msgstr "カテゴリーを更新する"
 
-#: functions.php:607 functions.php:674
+#: functions.php:607 functions.php:676
 msgid "Add New Category"
 msgstr "新しいカテゴリーを追加する"
 
-#: functions.php:608 functions.php:675
+#: functions.php:608 functions.php:677
 msgid "Name Of New Category"
 msgstr "カテゴリーの名前"
 
-#: functions.php:635 functions.php:708
+#: functions.php:636 functions.php:712
 msgid "Add New"
 msgstr "新しく追加"
 
-#: functions.php:636 functions.php:709
+#: functions.php:637 functions.php:713
 msgid "Add New Item"
 msgstr "新しく追加"
 
-#: functions.php:637 functions.php:710
+#: functions.php:638 functions.php:714
 msgid "Edit"
 msgstr "編集"
 
-#: functions.php:638 functions.php:711 admin/theme-options.php:2250
-#: admin/theme-options.php:3254 functions/category.php:158
-#: pagebuilder/modules/tab.php:246 pagebuilder/modules/tab.php:281
-#: pagebuilder/modules/tab.php:292 pagebuilder/modules/tab.php:547
-#: pagebuilder/modules/tab.php:575 pagebuilder/modules/tab.php:817
-#: widget/icon_link_list.php:114
+#: functions.php:639 functions.php:715 admin/theme-options.php:2321
+#: admin/theme-options.php:3325 functions/category.php:158
+#: pagebuilder/modules/simple_table.php:93
+#: pagebuilder/modules/simple_table.php:155 pagebuilder/modules/tab.php:334
+#: pagebuilder/modules/tab.php:369 pagebuilder/modules/tab.php:380
+#: pagebuilder/modules/tab.php:645 pagebuilder/modules/tab.php:673
+#: pagebuilder/modules/tab.php:915 widget/icon_link_list.php:114
 msgid "New item"
 msgstr "新しいアイテム"
 
-#: functions.php:639 functions.php:712
+#: functions.php:640 functions.php:716
 msgid "View Item"
 msgstr "記事を見る"
 
-#: functions.php:640 functions.php:713
+#: functions.php:641 functions.php:717
 msgid "Search Items"
 msgstr "検索する"
 
-#: functions.php:641 functions.php:714
+#: functions.php:642 functions.php:718
 msgid "Not Found"
 msgstr "見つかりませんでした"
 
-#: functions.php:642 functions.php:715
+#: functions.php:643 functions.php:719
 msgid "Not found in trash"
 msgstr "ゴミ箱には見つかりませんでした"
 
-#: functions.php:899 functions.php:901 functions.php:904
+#: functions.php:904 functions.php:906 functions.php:909
 msgid "REPLY"
 msgstr "返信"
 
-#: functions.php:906
+#: functions.php:911
 msgid "QUOTE"
 msgstr "引用"
 
-#: functions.php:907
+#: functions.php:912
 msgid "EDIT"
 msgstr "編集"
 
-#: functions.php:913
+#: functions.php:918
 msgid "Your comment is awaiting moderation."
 msgstr "このコメントは管理者の承認を待っています。"
 
-#: header.php:47 admin/theme-options.php:458 admin/theme-options.php:809
+#: header.php:47 admin/theme-options.php:469 admin/theme-options.php:833
 #: widget/google_search.php:59
 msgid "Search"
 msgstr "検索"
@@ -431,7 +432,7 @@ msgid "Date"
 msgstr "日付"
 
 #: admin/contents_builder.php:27 admin/contents_builder.php:110
-#: admin/_contents_builder.php:27 widget/styled_post_list1.php:187
+#: admin/_contents_builder.php:27 widget/styled_post_list1.php:188
 msgid "Random"
 msgstr "ランダム"
 
@@ -470,29 +471,29 @@ msgstr "最新ブログ記事一覧"
 msgid "Blog list"
 msgstr "ブログ一覧"
 
-#: admin/contents_builder.php:103 admin/theme-options.php:289
-#: admin/theme-options.php:292 admin/theme-options.php:296
-#: admin/theme-options.php:377 admin/theme-options.php:382
-#: admin/theme-options.php:387 admin/theme-options.php:1603
-#: admin/theme-options.php:1607 admin/theme-options.php:1611
-#: admin/theme-options.php:1613 admin/theme-options.php:1615
-#: admin/theme-options.php:1619 admin/theme-options.php:1623
-#: admin/theme-options.php:1627 admin/theme-options.php:1629
-#: admin/theme-options.php:1631 admin/theme-options.php:1635
-#: admin/theme-options.php:1639 admin/theme-options.php:1699
-#: admin/theme-options.php:1700 admin/theme-options.php:1702
-#: admin/theme-options.php:1703 admin/theme-options.php:2310
-#: admin/theme-options.php:2311 admin/theme-options.php:2313
-#: admin/theme-options.php:2314 admin/theme-options.php:2495
-#: admin/theme-options.php:2529 admin/theme-options.php:2558
+#: admin/contents_builder.php:103 admin/theme-options.php:300
+#: admin/theme-options.php:303 admin/theme-options.php:307
+#: admin/theme-options.php:388 admin/theme-options.php:393
+#: admin/theme-options.php:398 admin/theme-options.php:1674
+#: admin/theme-options.php:1678 admin/theme-options.php:1682
+#: admin/theme-options.php:1684 admin/theme-options.php:1686
+#: admin/theme-options.php:1690 admin/theme-options.php:1694
+#: admin/theme-options.php:1698 admin/theme-options.php:1700
+#: admin/theme-options.php:1702 admin/theme-options.php:1706
+#: admin/theme-options.php:1710 admin/theme-options.php:1770
+#: admin/theme-options.php:1771 admin/theme-options.php:1773
+#: admin/theme-options.php:1774 admin/theme-options.php:2381
+#: admin/theme-options.php:2382 admin/theme-options.php:2384
+#: admin/theme-options.php:2385 admin/theme-options.php:2566
+#: admin/theme-options.php:2600 admin/theme-options.php:2629
 msgid "Category"
 msgstr "カテゴリー"
 
-#: admin/contents_builder.php:108 widget/styled_post_list1.php:185
+#: admin/contents_builder.php:108 widget/styled_post_list1.php:186
 msgid "Date (DESC)"
 msgstr "日付（新しい順）"
 
-#: admin/contents_builder.php:109 widget/styled_post_list1.php:186
+#: admin/contents_builder.php:109 widget/styled_post_list1.php:187
 msgid "Date (ASC)"
 msgstr "日付（古い順）"
 
@@ -525,60 +526,62 @@ msgstr "このアイテムを削除してもよろしいでしょうか？"
 
 #: admin/contents_builder.php:160 admin/contents_builder.php:189
 #: admin/_contents_builder.php:144 admin/_contents_builder.php:173
-#: pagebuilder/modules/slider.php:139 pagebuilder/modules/tab.php:288
-#: pagebuilder/modules/tab.php:571 pagebuilder/modules/tab.php:813
+#: pagebuilder/modules/simple_table.php:162 pagebuilder/modules/slider.php:255
+#: pagebuilder/modules/tab.php:376 pagebuilder/modules/tab.php:669
+#: pagebuilder/modules/tab.php:911
 msgid "Move"
 msgstr "移動する"
 
 #: admin/contents_builder.php:161 admin/contents_builder.php:190
 #: admin/_contents_builder.php:145 admin/_contents_builder.php:174
-#: pagebuilder/pagebuilder.php:381 pagebuilder/pagebuilder.php:449
-#: pagebuilder/pagebuilder.php:653 pagebuilder/modules/slider.php:140
-#: pagebuilder/modules/tab.php:289 pagebuilder/modules/tab.php:572
-#: pagebuilder/modules/tab.php:814
+#: pagebuilder/pagebuilder.php:392 pagebuilder/pagebuilder.php:480
+#: pagebuilder/pagebuilder.php:804 pagebuilder/modules/simple_table.php:163
+#: pagebuilder/modules/slider.php:256 pagebuilder/modules/tab.php:377
+#: pagebuilder/modules/tab.php:670 pagebuilder/modules/tab.php:912
 msgid "Delete"
 msgstr "削除する"
 
 #: admin/contents_builder.php:177 admin/_contents_builder.php:161
-#: pagebuilder/pagebuilder.php:149
+#: pagebuilder/pagebuilder.php:162
 msgid "Add content"
 msgstr "コンテンツを追加する"
 
 #: admin/contents_builder.php:179 admin/contents_builder.php:688
-#: admin/theme-options.php:837 admin/theme-options.php:856
-#: admin/theme-options.php:878 admin/theme-options.php:899
-#: admin/theme-options.php:925 admin/theme-options.php:949
-#: admin/theme-options.php:957 admin/theme-options.php:984
-#: admin/theme-options.php:995 admin/theme-options.php:1003
-#: admin/theme-options.php:1011 admin/theme-options.php:1032
-#: admin/theme-options.php:1040 admin/theme-options.php:1074
-#: admin/theme-options.php:1082 admin/theme-options.php:1122
-#: admin/theme-options.php:1155 admin/theme-options.php:1180
-#: admin/theme-options.php:1205 admin/theme-options.php:1230
-#: admin/theme-options.php:1257 admin/theme-options.php:1284
-#: admin/theme-options.php:1368 admin/theme-options.php:1386
-#: admin/theme-options.php:1459 admin/theme-options.php:1523
-#: admin/theme-options.php:1549 admin/theme-options.php:1575
-#: admin/theme-options.php:1594 admin/theme-options.php:1644
-#: admin/theme-options.php:1662 admin/theme-options.php:1677
-#: admin/theme-options.php:1731 admin/theme-options.php:1841
-#: admin/theme-options.php:1873 admin/theme-options.php:1902
-#: admin/theme-options.php:1937 admin/theme-options.php:1966
-#: admin/theme-options.php:2002 admin/theme-options.php:2031
-#: admin/theme-options.php:2066 admin/theme-options.php:2095
-#: admin/theme-options.php:2119 admin/theme-options.php:2190
-#: admin/theme-options.php:2288 admin/theme-options.php:2342
-#: admin/theme-options.php:2365 admin/theme-options.php:2386
-#: admin/theme-options.php:2394 admin/theme-options.php:2412
-#: admin/theme-options.php:2437 admin/theme-options.php:2477
-#: admin/theme-options.php:2719 admin/theme-options.php:2741
-#: admin/theme-options.php:2771 admin/theme-options.php:2792
-#: admin/theme-options.php:2812 admin/theme-options.php:2908
-#: admin/theme-options.php:2963 admin/theme-options.php:2992
-#: admin/theme-options.php:3017 admin/theme-options.php:3041
-#: admin/theme-options.php:3076 admin/theme-options.php:3111
-#: admin/theme-options.php:3116 admin/theme-options.php:3139
-#: admin/theme-options.php:3298 admin/theme-options.php:3338
+#: admin/theme-options.php:861 admin/theme-options.php:880
+#: admin/theme-options.php:902 admin/theme-options.php:923
+#: admin/theme-options.php:949 admin/theme-options.php:973
+#: admin/theme-options.php:981 admin/theme-options.php:1008
+#: admin/theme-options.php:1019 admin/theme-options.php:1027
+#: admin/theme-options.php:1035 admin/theme-options.php:1056
+#: admin/theme-options.php:1064 admin/theme-options.php:1098
+#: admin/theme-options.php:1137 admin/theme-options.php:1145
+#: admin/theme-options.php:1153 admin/theme-options.php:1193
+#: admin/theme-options.php:1226 admin/theme-options.php:1251
+#: admin/theme-options.php:1276 admin/theme-options.php:1301
+#: admin/theme-options.php:1328 admin/theme-options.php:1355
+#: admin/theme-options.php:1439 admin/theme-options.php:1457
+#: admin/theme-options.php:1530 admin/theme-options.php:1594
+#: admin/theme-options.php:1620 admin/theme-options.php:1646
+#: admin/theme-options.php:1665 admin/theme-options.php:1715
+#: admin/theme-options.php:1733 admin/theme-options.php:1748
+#: admin/theme-options.php:1802 admin/theme-options.php:1912
+#: admin/theme-options.php:1944 admin/theme-options.php:1973
+#: admin/theme-options.php:2008 admin/theme-options.php:2037
+#: admin/theme-options.php:2073 admin/theme-options.php:2102
+#: admin/theme-options.php:2137 admin/theme-options.php:2166
+#: admin/theme-options.php:2190 admin/theme-options.php:2261
+#: admin/theme-options.php:2359 admin/theme-options.php:2413
+#: admin/theme-options.php:2436 admin/theme-options.php:2457
+#: admin/theme-options.php:2465 admin/theme-options.php:2483
+#: admin/theme-options.php:2508 admin/theme-options.php:2548
+#: admin/theme-options.php:2790 admin/theme-options.php:2812
+#: admin/theme-options.php:2842 admin/theme-options.php:2863
+#: admin/theme-options.php:2883 admin/theme-options.php:2979
+#: admin/theme-options.php:3034 admin/theme-options.php:3063
+#: admin/theme-options.php:3088 admin/theme-options.php:3112
+#: admin/theme-options.php:3147 admin/theme-options.php:3182
+#: admin/theme-options.php:3187 admin/theme-options.php:3210
+#: admin/theme-options.php:3369 admin/theme-options.php:3409
 #: admin/_contents_builder.php:163 admin/_contents_builder.php:584
 msgid "Save Changes"
 msgstr "設定を保存"
@@ -593,15 +596,16 @@ msgstr "コンテンツを選択してください"
 #: admin/_contents_builder.php:244 admin/_contents_builder.php:293
 #: admin/_contents_builder.php:412 admin/_contents_builder.php:512
 #: admin/_contents_builder.php:565 admin/_contents_builder.php:578
-#: pagebuilder/modules/slider.php:143 pagebuilder/modules/tab.php:292
-#: pagebuilder/modules/tab.php:575 pagebuilder/modules/tab.php:817
+#: pagebuilder/modules/simple_table.php:166 pagebuilder/modules/slider.php:259
+#: pagebuilder/modules/tab.php:380 pagebuilder/modules/tab.php:673
+#: pagebuilder/modules/tab.php:915
 msgid "Open"
 msgstr "開く"
 
 #: admin/contents_builder.php:262 admin/contents_builder.php:311
 #: admin/contents_builder.php:431 admin/contents_builder.php:547
-#: admin/contents_builder.php:671 admin/theme-options.php:1529
-#: admin/theme-options.php:1555 admin/_contents_builder.php:246
+#: admin/contents_builder.php:671 admin/theme-options.php:1600
+#: admin/theme-options.php:1626 admin/_contents_builder.php:246
 #: admin/_contents_builder.php:295 admin/_contents_builder.php:414
 #: admin/_contents_builder.php:514 admin/_contents_builder.php:567
 msgid "Display this content at top page"
@@ -629,15 +633,16 @@ msgstr ""
 
 #: admin/contents_builder.php:269 admin/contents_builder.php:318
 #: admin/contents_builder.php:438 admin/contents_builder.php:554
-#: admin/theme-options.php:1100 admin/theme-options.php:1329
-#: admin/theme-options.php:1418 admin/theme-options.php:1482
-#: admin/theme-options.php:2229 admin/theme-options.php:2254
-#: admin/theme-options.php:2725 admin/_contents_builder.php:253
+#: admin/theme-options.php:1171 admin/theme-options.php:1400
+#: admin/theme-options.php:1489 admin/theme-options.php:1553
+#: admin/theme-options.php:2300 admin/theme-options.php:2325
+#: admin/theme-options.php:2796 admin/_contents_builder.php:253
 #: admin/_contents_builder.php:302 admin/_contents_builder.php:421
 #: admin/_contents_builder.php:521 functions/category.php:137
-#: functions/category.php:162 pagebuilder/modules/googlemap.php:184
-#: pagebuilder/modules/headline.php:11 pagebuilder/modules/headline.php:40
-#: pagebuilder/modules/tab.php:321 pagebuilder/modules/tab.php:587
+#: functions/category.php:162 pagebuilder/modules/googlemap.php:319
+#: pagebuilder/modules/headline.php:11 pagebuilder/modules/headline.php:48
+#: pagebuilder/modules/simple_table.php:169 pagebuilder/modules/tab.php:409
+#: pagebuilder/modules/tab.php:685
 msgid "Headline"
 msgstr "見出し"
 
@@ -645,18 +650,18 @@ msgstr "見出し"
 #: admin/contents_builder.php:324 admin/contents_builder.php:330
 #: admin/contents_builder.php:444 admin/contents_builder.php:450
 #: admin/contents_builder.php:560 admin/contents_builder.php:566
-#: admin/theme-options.php:1332 admin/theme-options.php:1343
-#: admin/theme-options.php:1421 admin/theme-options.php:1432
-#: admin/theme-options.php:1485 admin/theme-options.php:1496
-#: admin/theme-options.php:1653 admin/theme-options.php:1659
+#: admin/theme-options.php:1403 admin/theme-options.php:1414
+#: admin/theme-options.php:1492 admin/theme-options.php:1503
+#: admin/theme-options.php:1556 admin/theme-options.php:1567
+#: admin/theme-options.php:1724 admin/theme-options.php:1730
 #: admin/_contents_builder.php:259 admin/_contents_builder.php:265
 #: admin/_contents_builder.php:308 admin/_contents_builder.php:314
 #: admin/_contents_builder.php:427 admin/_contents_builder.php:433
 #: admin/_contents_builder.php:527 admin/_contents_builder.php:533
-#: functions/page_cf2.php:23 pagebuilder/modules/catchcopy.php:45
-#: pagebuilder/modules/googlemap.php:188 pagebuilder/modules/googlemap.php:239
-#: pagebuilder/modules/headline.php:45 pagebuilder/modules/tab.php:591
-#: pagebuilder/modules/tab.php:642
+#: functions/page_cf2.php:23 pagebuilder/modules/catchcopy.php:53
+#: pagebuilder/modules/googlemap.php:323 pagebuilder/modules/googlemap.php:374
+#: pagebuilder/modules/headline.php:53 pagebuilder/modules/tab.php:689
+#: pagebuilder/modules/tab.php:740
 msgid "Font size"
 msgstr "フォントサイズ"
 
@@ -664,27 +669,28 @@ msgstr "フォントサイズ"
 #: admin/contents_builder.php:325 admin/contents_builder.php:331
 #: admin/contents_builder.php:445 admin/contents_builder.php:451
 #: admin/contents_builder.php:561 admin/contents_builder.php:567
-#: admin/theme-options.php:1333 admin/theme-options.php:1344
-#: admin/theme-options.php:1422 admin/theme-options.php:1433
-#: admin/theme-options.php:1486 admin/theme-options.php:1497
-#: admin/theme-options.php:1654 admin/theme-options.php:1660
+#: admin/theme-options.php:1404 admin/theme-options.php:1415
+#: admin/theme-options.php:1493 admin/theme-options.php:1504
+#: admin/theme-options.php:1557 admin/theme-options.php:1568
+#: admin/theme-options.php:1725 admin/theme-options.php:1731
 #: admin/_contents_builder.php:260 admin/_contents_builder.php:266
 #: admin/_contents_builder.php:309 admin/_contents_builder.php:315
 #: admin/_contents_builder.php:428 admin/_contents_builder.php:434
 #: admin/_contents_builder.php:528 admin/_contents_builder.php:534
-#: pagebuilder/modules/catchcopy.php:50 pagebuilder/modules/googlemap.php:192
-#: pagebuilder/modules/googlemap.php:243 pagebuilder/modules/headline.php:50
-#: pagebuilder/modules/tab.php:595 pagebuilder/modules/tab.php:646
+#: pagebuilder/modules/catchcopy.php:58 pagebuilder/modules/googlemap.php:327
+#: pagebuilder/modules/googlemap.php:378 pagebuilder/modules/headline.php:58
+#: pagebuilder/modules/tab.php:693 pagebuilder/modules/tab.php:744
 msgid "Font size for mobile"
 msgstr "フォントサイズ（スマホ）"
 
 #: admin/contents_builder.php:278 admin/contents_builder.php:327
 #: admin/contents_builder.php:447 admin/contents_builder.php:563
-#: admin/theme-options.php:2233 admin/theme-options.php:2258
+#: admin/theme-options.php:2304 admin/theme-options.php:2329
 #: admin/_contents_builder.php:262 admin/_contents_builder.php:311
 #: admin/_contents_builder.php:430 admin/_contents_builder.php:530
 #: functions/category.php:141 functions/category.php:166
-#: pagebuilder/modules/googlemap.php:235 pagebuilder/modules/tab.php:638
+#: pagebuilder/modules/googlemap.php:145 pagebuilder/modules/googlemap.php:370
+#: pagebuilder/modules/tab.php:736
 msgid "Description"
 msgstr "説明文"
 
@@ -724,22 +730,27 @@ msgid "Categories to display"
 msgstr "表示するカテゴリー"
 
 #: admin/contents_builder.php:406 admin/contents_builder.php:644
-#: admin/theme-options.php:1532 admin/theme-options.php:1558
-#: admin/theme-options.php:2273 admin/theme-options.php:2352
-#: admin/theme-options.php:2424 admin/_contents_builder.php:389
+#: admin/theme-options.php:1603 admin/theme-options.php:1629
+#: admin/theme-options.php:2344 admin/theme-options.php:2423
+#: admin/theme-options.php:2495 admin/_contents_builder.php:389
 #: admin/_contents_builder.php:540
 msgid "Post number"
 msgstr "記事の数"
 
 #: admin/contents_builder.php:422 admin/contents_builder.php:534
-#: admin/theme-options.php:1359 admin/theme-options.php:1451
-#: admin/theme-options.php:1515 admin/theme-options.php:2694
-#: admin/theme-options.php:2712 admin/theme-options.php:2800
-#: admin/theme-options.php:2826 admin/theme-options.php:2914
-#: admin/theme-options.php:3166 admin/_contents_builder.php:405
-#: pagebuilder/pagebuilder.php:513 pagebuilder/modules/googlemap.php:306
-#: pagebuilder/modules/tab.php:165 pagebuilder/modules/tab.php:179
-#: pagebuilder/modules/tab.php:410 pagebuilder/modules/tab.php:424
+#: admin/theme-options.php:1136 admin/theme-options.php:1430
+#: admin/theme-options.php:1522 admin/theme-options.php:1586
+#: admin/theme-options.php:2765 admin/theme-options.php:2783
+#: admin/theme-options.php:2871 admin/theme-options.php:2897
+#: admin/theme-options.php:2985 admin/theme-options.php:3237
+#: admin/_contents_builder.php:405 pagebuilder/pagebuilder.php:578
+#: pagebuilder/pagebuilder.php:1978 pagebuilder/modules/googlemap.php:166
+#: pagebuilder/modules/googlemap.php:253 pagebuilder/modules/googlemap.php:441
+#: pagebuilder/modules/slider.php:82 pagebuilder/modules/tab.php:197
+#: pagebuilder/modules/tab.php:211 pagebuilder/modules/tab.php:225
+#: pagebuilder/modules/tab.php:239 pagebuilder/modules/tab.php:253
+#: pagebuilder/modules/tab.php:267 pagebuilder/modules/tab.php:508
+#: pagebuilder/modules/tab.php:522
 msgid "Background color"
 msgstr "背景色"
 
@@ -775,13 +786,13 @@ msgstr ""
 msgid "Color of category list items"
 msgstr "カテゴリーのカラー設定"
 
-#: admin/contents_builder.php:531 admin/theme-options.php:2798
+#: admin/contents_builder.php:531 admin/theme-options.php:2869
 msgid "Text color"
 msgstr "テキストカラーの設定"
 
-#: admin/contents_builder.php:537 admin/theme-options.php:1362
-#: admin/theme-options.php:1454 admin/theme-options.php:1518
-#: admin/theme-options.php:2703
+#: admin/contents_builder.php:537 admin/theme-options.php:1433
+#: admin/theme-options.php:1525 admin/theme-options.php:1589
+#: admin/theme-options.php:2774
 msgid "Background hover color"
 msgstr "ボタンにカーソルを合わせた時の背景色"
 
@@ -809,490 +820,517 @@ msgstr "フリースペース"
 msgid "Close"
 msgstr "閉じる"
 
-#: admin/theme-options.php:279 admin/theme-options.php:284
-#: admin/theme-options.php:426
+#: admin/theme-options.php:290 admin/theme-options.php:295
+#: admin/theme-options.php:437
 msgid "News archive"
 msgstr "お知らせ一覧"
 
-#: admin/theme-options.php:288 admin/theme-options.php:299
-#: admin/theme-options.php:806
+#: admin/theme-options.php:299 admin/theme-options.php:310
+#: admin/theme-options.php:830
 msgid "Blog"
 msgstr "ブログ"
 
-#: admin/theme-options.php:320 admin/theme-options.php:411
+#: admin/theme-options.php:331 admin/theme-options.php:422
 msgid "Related posts"
 msgstr "関連記事"
 
-#: admin/theme-options.php:372 admin/theme-options.php:373
-#: admin/theme-options.php:807
+#: admin/theme-options.php:383 admin/theme-options.php:384
+#: admin/theme-options.php:831
 msgid "Introduce"
 msgstr "紹介ページ"
 
-#: admin/theme-options.php:391 admin/theme-options.php:759
-#: admin/theme-options.php:2475
+#: admin/theme-options.php:402 admin/theme-options.php:783
+#: admin/theme-options.php:2546
 msgid "Tag"
 msgstr "タグ"
 
-#: admin/theme-options.php:414 admin/theme-options.php:415
-#: admin/theme-options.php:417 admin/theme-options.php:808
+#: admin/theme-options.php:425 admin/theme-options.php:426
+#: admin/theme-options.php:428 admin/theme-options.php:832
 msgid "News"
 msgstr "お知らせ"
 
-#: admin/theme-options.php:424
+#: admin/theme-options.php:435
 msgid "Recent news"
 msgstr "最近のお知らせ"
 
-#: admin/theme-options.php:431 admin/theme-options.php:445
+#: admin/theme-options.php:442 admin/theme-options.php:456
 msgid "Keyword"
 msgstr "キーワード"
 
-#: admin/theme-options.php:433 admin/theme-options.php:437
-#: admin/theme-options.php:441 admin/theme-options.php:447
-#: admin/theme-options.php:451 admin/theme-options.php:455
+#: admin/theme-options.php:444 admin/theme-options.php:448
+#: admin/theme-options.php:452 admin/theme-options.php:458
+#: admin/theme-options.php:462 admin/theme-options.php:466
 msgid "Select from %category_label%"
 msgstr "%category_label%から選ぶ"
 
-#: admin/theme-options.php:583
+#: admin/theme-options.php:594
 msgid "Theme Options"
 msgstr "テーマオプション"
 
-#: admin/theme-options.php:583 admin/theme-options.php:791
+#: admin/theme-options.php:594 admin/theme-options.php:815
 msgid "TCD Theme Options"
 msgstr "TCDテーマオプション"
 
-#: admin/theme-options.php:589
+#: admin/theme-options.php:600
 msgid "Zoom"
 msgstr "ズーム"
 
-#: admin/theme-options.php:590
+#: admin/theme-options.php:601
 msgid "Slide"
 msgstr "スライド"
 
-#: admin/theme-options.php:591
+#: admin/theme-options.php:602
 msgid "Fade"
 msgstr "フェード"
 
-#: admin/theme-options.php:595
+#: admin/theme-options.php:606
 msgid "Left to Right"
 msgstr "右方向"
 
-#: admin/theme-options.php:596
+#: admin/theme-options.php:607
 msgid "Right to Left"
 msgstr "左方向"
 
-#: admin/theme-options.php:603 admin/theme-options.php:609
-#: pagebuilder/modules/catchcopy.php:64 pagebuilder/modules/googlemap.php:82
-#: pagebuilder/modules/headline.php:64 pagebuilder/modules/tab.php:555
+#: admin/theme-options.php:614 admin/theme-options.php:620
+#: pagebuilder/modules/catchcopy.php:72 pagebuilder/modules/googlemap.php:99
+#: pagebuilder/modules/headline.php:72 pagebuilder/modules/tab.php:653
 msgid "Meiryo"
 msgstr "メイリオ"
 
-#: admin/theme-options.php:604 admin/theme-options.php:610
-#: pagebuilder/modules/catchcopy.php:65 pagebuilder/modules/googlemap.php:83
-#: pagebuilder/modules/headline.php:65 pagebuilder/modules/tab.php:556
+#: admin/theme-options.php:615 admin/theme-options.php:621
+#: pagebuilder/modules/catchcopy.php:73 pagebuilder/modules/googlemap.php:100
+#: pagebuilder/modules/headline.php:73 pagebuilder/modules/tab.php:654
 msgid "YuGothic"
 msgstr "游ゴシック"
 
-#: admin/theme-options.php:605 admin/theme-options.php:611
-#: pagebuilder/modules/catchcopy.php:66 pagebuilder/modules/googlemap.php:84
-#: pagebuilder/modules/headline.php:66 pagebuilder/modules/tab.php:557
+#: admin/theme-options.php:616 admin/theme-options.php:622
+#: pagebuilder/modules/catchcopy.php:74 pagebuilder/modules/googlemap.php:101
+#: pagebuilder/modules/headline.php:74 pagebuilder/modules/tab.php:655
 msgid "YuMincho"
 msgstr "游明朝"
 
-#: admin/theme-options.php:644
+#: admin/theme-options.php:655
 msgid "Normal header"
 msgstr "通常の表示位置"
 
-#: admin/theme-options.php:645
+#: admin/theme-options.php:656
 msgid "Fix at top after page scroll"
 msgstr "ページ上部に固定表示"
 
-#: admin/theme-options.php:653 admin/theme-options.php:662
+#: admin/theme-options.php:664 admin/theme-options.php:673
 msgid "style1"
 msgstr "ボタンタイプ1（左寄せ + color）"
 
-#: admin/theme-options.php:654 admin/theme-options.php:663
+#: admin/theme-options.php:665 admin/theme-options.php:674
 msgid "style2"
 msgstr "ボタンタイプ2（左寄せ + mono）"
 
-#: admin/theme-options.php:655 admin/theme-options.php:664
+#: admin/theme-options.php:666 admin/theme-options.php:675
 msgid "style3"
 msgstr "ボタンタイプ3（カラム幅 + color）"
 
-#: admin/theme-options.php:656 admin/theme-options.php:665
+#: admin/theme-options.php:667 admin/theme-options.php:676
 msgid "style4"
 msgstr "ボタンタイプ4（カラム幅 + mono）"
 
-#: admin/theme-options.php:657 admin/theme-options.php:666
+#: admin/theme-options.php:668 admin/theme-options.php:677
 msgid "style5"
 msgstr "ボタンタイプ5（公式ボタン）"
 
-#: admin/theme-options.php:673
+#: admin/theme-options.php:684
 msgid "Use responsive design"
 msgstr "レスポンシブデザインを利用する"
 
-#: admin/theme-options.php:674
+#: admin/theme-options.php:685
 msgid "Do not use responsive design"
 msgstr "レスポンシブデザインを利用しない"
 
-#: admin/theme-options.php:681
+#: admin/theme-options.php:692
 msgid "3 second"
 msgstr "3秒"
 
-#: admin/theme-options.php:682
+#: admin/theme-options.php:693
 msgid "4 second"
 msgstr "4秒"
 
-#: admin/theme-options.php:683 admin/theme-options.php:713
+#: admin/theme-options.php:694 admin/theme-options.php:737
 msgid "5 second"
 msgstr "5秒"
 
-#: admin/theme-options.php:684 admin/theme-options.php:714
+#: admin/theme-options.php:695 admin/theme-options.php:738
 msgid "6 second"
 msgstr "6秒"
 
-#: admin/theme-options.php:685 admin/theme-options.php:715
+#: admin/theme-options.php:696 admin/theme-options.php:739
 msgid "7 second"
 msgstr "7秒"
 
-#: admin/theme-options.php:686 admin/theme-options.php:716
+#: admin/theme-options.php:697 admin/theme-options.php:740
 msgid "8 second"
 msgstr "8秒"
 
-#: admin/theme-options.php:687 admin/theme-options.php:717
+#: admin/theme-options.php:698 admin/theme-options.php:741
 msgid "9 second"
 msgstr "9秒"
 
-#: admin/theme-options.php:688 admin/theme-options.php:718
+#: admin/theme-options.php:699 admin/theme-options.php:742
 msgid "10 second"
 msgstr "10秒"
 
-#: admin/theme-options.php:695
+#: admin/theme-options.php:706
 msgid "Circle"
 msgstr "サークル"
 
-#: admin/theme-options.php:696
+#: admin/theme-options.php:707
 msgid "Square"
 msgstr "スクエア"
 
-#: admin/theme-options.php:697
+#: admin/theme-options.php:708
 msgid "Dot"
 msgstr "ドット"
 
-#: admin/theme-options.php:704
+#: admin/theme-options.php:715 pagebuilder/modules/googlemap.php:114
+msgid "Use default marker"
+msgstr "デフォルトマーカーを使う"
+
+#: admin/theme-options.php:716 pagebuilder/modules/googlemap.php:115
+msgid "Use custom marker"
+msgstr "カスタムマーカーを使う"
+
+#: admin/theme-options.php:720 pagebuilder/modules/googlemap.php:220
+#: pagebuilder/modules/simple_table.php:176
+#: pagebuilder/modules/simple_table.php:191
+msgid "Text"
+msgstr "テキスト"
+
+#: admin/theme-options.php:721 functions/page_cf2.php:45
+#: functions/page_cf2.php:47 pagebuilder/modules/googlemap.php:221
+#: pagebuilder/modules/image.php:11 pagebuilder/modules/image.php:34
+#: pagebuilder/modules/slider.php:248 pagebuilder/modules/slider.php:262
+#: pagebuilder/modules/tab.php:676 pagebuilder/modules/tab.php:901
+#: pagebuilder/modules/tab.php:918
+msgid "Image"
+msgstr "画像"
+
+#: admin/theme-options.php:728
 msgid "Image slider"
 msgstr "画像スライダー"
 
-#: admin/theme-options.php:705
+#: admin/theme-options.php:729
 msgid "Video background"
 msgstr "動画を背景に表示する"
 
-#: admin/theme-options.php:706
+#: admin/theme-options.php:730
 msgid "Youtube background"
 msgstr "Youtubeの動画を背景に表示する"
 
-#: admin/theme-options.php:724 admin/theme-options.php:741
+#: admin/theme-options.php:748 admin/theme-options.php:765
 msgid "Hide"
 msgstr "非表示"
 
-#: admin/theme-options.php:725
+#: admin/theme-options.php:749
 msgid "One level display"
 msgstr "1階層"
 
-#: admin/theme-options.php:726
+#: admin/theme-options.php:750
 msgid "Two level display"
 msgstr "2階層"
 
-#: admin/theme-options.php:732
+#: admin/theme-options.php:756
 msgid "Display footer widget"
 msgstr "フッターウィジェットを表示する"
 
-#: admin/theme-options.php:733
+#: admin/theme-options.php:757
 msgid "Display footer content (Add + menux2 + bannerx2)"
 msgstr "独自フッターコンテンツを表示する（広告 + メニュー2列 + 横長バナー2点）"
 
-#: admin/theme-options.php:739
+#: admin/theme-options.php:763
 msgid "Fade In"
 msgstr "フェードイン"
 
-#: admin/theme-options.php:740
+#: admin/theme-options.php:764
 msgid "Slide In"
 msgstr "スライドイン"
 
-#: admin/theme-options.php:747 admin/theme-options.php:3187
+#: admin/theme-options.php:771 admin/theme-options.php:3258
 msgid "Default"
 msgstr "デフォルト"
 
-#: admin/theme-options.php:748 admin/theme-options.php:756
-#: admin/theme-options.php:3191
+#: admin/theme-options.php:772 admin/theme-options.php:780
+#: admin/theme-options.php:3262
 msgid "Share"
 msgstr "シェア"
 
-#: admin/theme-options.php:749 admin/theme-options.php:757
-#: admin/theme-options.php:3195
+#: admin/theme-options.php:773 admin/theme-options.php:781
+#: admin/theme-options.php:3266
 msgid "Telephone"
 msgstr "電話番号"
 
-#: admin/theme-options.php:755
+#: admin/theme-options.php:779
 msgid "Document"
 msgstr "書類"
 
-#: admin/theme-options.php:758
+#: admin/theme-options.php:782
 msgid "Envelope"
 msgstr "メール"
 
-#: admin/theme-options.php:760
+#: admin/theme-options.php:784
 msgid "Pencil"
 msgstr "鉛筆"
 
-#: admin/theme-options.php:766 pagebuilder/modules/catchcopy.php:83
-#: pagebuilder/modules/googlemap.php:89 pagebuilder/modules/headline.php:83
-#: pagebuilder/modules/tab.php:562
+#: admin/theme-options.php:790 pagebuilder/modules/catchcopy.php:41
+#: pagebuilder/modules/googlemap.php:106 pagebuilder/modules/headline.php:41
+#: pagebuilder/modules/tab.php:660
 msgid "Align left"
 msgstr "左寄せ"
 
-#: admin/theme-options.php:767 pagebuilder/modules/catchcopy.php:84
-#: pagebuilder/modules/googlemap.php:90 pagebuilder/modules/headline.php:84
-#: pagebuilder/modules/tab.php:563
+#: admin/theme-options.php:791 pagebuilder/modules/catchcopy.php:42
+#: pagebuilder/modules/googlemap.php:107 pagebuilder/modules/headline.php:42
+#: pagebuilder/modules/tab.php:661
 msgid "Align center"
 msgstr "中央寄せ"
 
-#: admin/theme-options.php:773
+#: admin/theme-options.php:797
 msgid "Use Refine search by tag without toggle"
 msgstr "表示する（折り畳みなし）"
 
-#: admin/theme-options.php:774
+#: admin/theme-options.php:798
 msgid "Use Refine search by tag with toggle (Defalut toggle: Open)"
 msgstr "表示する（折り畳みあり／デフォルト：開いた状態）"
 
-#: admin/theme-options.php:775
+#: admin/theme-options.php:799
 msgid "Use Refine search by tag with toggle (Defalut toggle: Close)"
 msgstr "表示する（折り畳みあり／デフォルト：閉じた状態）"
 
-#: admin/theme-options.php:776
+#: admin/theme-options.php:800
 msgid "Hide Refine search"
 msgstr "表示しない"
 
-#: admin/theme-options.php:796
+#: admin/theme-options.php:820
 msgid "Updated"
 msgstr "設定を更新しました"
 
-#: admin/theme-options.php:803
+#: admin/theme-options.php:827
 msgid "Basic"
 msgstr "基本設定"
 
-#: admin/theme-options.php:804
+#: admin/theme-options.php:828
 msgid "Logo"
 msgstr "ロゴの設定"
 
-#: admin/theme-options.php:805
+#: admin/theme-options.php:829
 msgid "Index"
 msgstr "トップページ"
 
-#: admin/theme-options.php:810
+#: admin/theme-options.php:834
 msgid "Header"
 msgstr "ヘッダー"
 
-#: admin/theme-options.php:811
+#: admin/theme-options.php:835
 msgid "Footer"
 msgstr "フッター"
 
-#: admin/theme-options.php:812
+#: admin/theme-options.php:836
 msgid "Password protected pages"
 msgstr "保護ページ"
 
-#: admin/theme-options.php:830 admin/theme-options.php:1356
-#: admin/theme-options.php:1448 admin/theme-options.php:1512
+#: admin/theme-options.php:854 admin/theme-options.php:1427
+#: admin/theme-options.php:1519 admin/theme-options.php:1583
 msgid "Color setting"
 msgstr "色の設定"
 
-#: admin/theme-options.php:831
+#: admin/theme-options.php:855
 msgid "Primary color setting"
 msgstr "メインカラーの設定"
 
-#: admin/theme-options.php:833
+#: admin/theme-options.php:857
 msgid "Secondary color setting"
 msgstr "第２カラーの設定"
 
-#: admin/theme-options.php:835
+#: admin/theme-options.php:859
 msgid "Link text color in the article"
 msgstr "記事本文内のリンク文字色"
 
-#: admin/theme-options.php:842
+#: admin/theme-options.php:866
 msgid "Favicon setup"
 msgstr "ファビコンの設定"
 
-#: admin/theme-options.php:843
+#: admin/theme-options.php:867
 msgid "Setting for the favicon displayed at browser address bar or tab."
 msgstr ""
 "ブラウザのアドレスバーやタブで表示されるファビコン（サイトアイコン）を設定し"
 "ます。"
 
-#: admin/theme-options.php:844
+#: admin/theme-options.php:868
 msgid "Favicon file"
 msgstr "ファビコン画像"
 
-#: admin/theme-options.php:844
+#: admin/theme-options.php:868
 msgid " (Recommended size: width:16px, height:16px)"
 msgstr "推奨サイズ：横幅16px、縦幅16px（正方形の画像をご用意ください）"
 
-#: admin/theme-options.php:845
+#: admin/theme-options.php:869
 msgid ""
 "You can use .ico, .png or .gif file, and we recommed you to use .ico file."
 msgstr ""
 ".ico、.png、.gif形式のファイルが利用できます。.icoファイルを利用されることを"
 "お勧めします。"
 
-#: admin/theme-options.php:851 admin/theme-options.php:979
-#: admin/theme-options.php:1095 admin/theme-options.php:1148
-#: admin/theme-options.php:1173 admin/theme-options.php:1198
-#: admin/theme-options.php:1223 admin/theme-options.php:1250
-#: admin/theme-options.php:1301 admin/theme-options.php:1315
-#: admin/theme-options.php:1410 admin/theme-options.php:1474
-#: admin/theme-options.php:1864 admin/theme-options.php:1893
-#: admin/theme-options.php:1928 admin/theme-options.php:1957
-#: admin/theme-options.php:1993 admin/theme-options.php:2022
-#: admin/theme-options.php:2057 admin/theme-options.php:2086
-#: admin/theme-options.php:2203 admin/theme-options.php:2954
-#: admin/theme-options.php:2983 admin/theme-options.php:3064
-#: admin/theme-options.php:3099 functions/category.php:18
-#: functions/category.php:41 functions/category.php:64
-#: functions/category.php:97 functions/introduce_cf.php:45
-#: functions/page_cf.php:122 widget/ad.php:96 widget/banner_list.php:137
+#: admin/theme-options.php:875 admin/theme-options.php:1003
+#: admin/theme-options.php:1128 admin/theme-options.php:1166
+#: admin/theme-options.php:1219 admin/theme-options.php:1244
+#: admin/theme-options.php:1269 admin/theme-options.php:1294
+#: admin/theme-options.php:1321 admin/theme-options.php:1372
+#: admin/theme-options.php:1386 admin/theme-options.php:1481
+#: admin/theme-options.php:1545 admin/theme-options.php:1935
+#: admin/theme-options.php:1964 admin/theme-options.php:1999
+#: admin/theme-options.php:2028 admin/theme-options.php:2064
+#: admin/theme-options.php:2093 admin/theme-options.php:2128
+#: admin/theme-options.php:2157 admin/theme-options.php:2274
+#: admin/theme-options.php:3025 admin/theme-options.php:3054
+#: admin/theme-options.php:3135 admin/theme-options.php:3170
+#: functions/category.php:18 functions/category.php:41
+#: functions/category.php:64 functions/category.php:97
+#: functions/introduce_cf.php:45 functions/page_cf.php:122
+#: pagebuilder/modules/includes/media_field.php:45 widget/ad.php:96
+#: widget/banner_list.php:137
 msgid "Select Image"
 msgstr "画像を選択する"
 
-#: admin/theme-options.php:852 admin/theme-options.php:980
-#: admin/theme-options.php:1096 admin/theme-options.php:1149
-#: admin/theme-options.php:1174 admin/theme-options.php:1199
-#: admin/theme-options.php:1224 admin/theme-options.php:1251
-#: admin/theme-options.php:1302 admin/theme-options.php:1316
-#: admin/theme-options.php:1411 admin/theme-options.php:1475
-#: admin/theme-options.php:1865 admin/theme-options.php:1894
-#: admin/theme-options.php:1929 admin/theme-options.php:1958
-#: admin/theme-options.php:1994 admin/theme-options.php:2023
-#: admin/theme-options.php:2058 admin/theme-options.php:2087
-#: admin/theme-options.php:2204 admin/theme-options.php:2955
-#: admin/theme-options.php:2984 admin/theme-options.php:3065
-#: admin/theme-options.php:3100 functions/category.php:19
-#: functions/category.php:42 functions/category.php:65
-#: functions/category.php:98 functions/introduce_cf.php:46
-#: functions/page_cf.php:123 widget/ad.php:97 widget/banner_list.php:138
+#: admin/theme-options.php:876 admin/theme-options.php:1004
+#: admin/theme-options.php:1129 admin/theme-options.php:1167
+#: admin/theme-options.php:1220 admin/theme-options.php:1245
+#: admin/theme-options.php:1270 admin/theme-options.php:1295
+#: admin/theme-options.php:1322 admin/theme-options.php:1373
+#: admin/theme-options.php:1387 admin/theme-options.php:1482
+#: admin/theme-options.php:1546 admin/theme-options.php:1936
+#: admin/theme-options.php:1965 admin/theme-options.php:2000
+#: admin/theme-options.php:2029 admin/theme-options.php:2065
+#: admin/theme-options.php:2094 admin/theme-options.php:2129
+#: admin/theme-options.php:2158 admin/theme-options.php:2275
+#: admin/theme-options.php:3026 admin/theme-options.php:3055
+#: admin/theme-options.php:3136 admin/theme-options.php:3171
+#: functions/category.php:19 functions/category.php:42
+#: functions/category.php:65 functions/category.php:98
+#: functions/introduce_cf.php:46 functions/page_cf.php:123
+#: pagebuilder/modules/includes/media_field.php:46 widget/ad.php:97
+#: widget/banner_list.php:138
 msgid "Remove Image"
 msgstr "画像を削除する"
 
-#: admin/theme-options.php:861
+#: admin/theme-options.php:885
 msgid "Font type"
 msgstr "フォントタイプ"
 
-#: admin/theme-options.php:862
+#: admin/theme-options.php:886
 msgid "Please set the font type of all text except for headline."
 msgstr ""
 "見出し以外のすべてのテキスト要素で使用するベースフォントを3種類から選択できま"
 "す。<br>※フォントがインストールされていない環境では近い書体が自動的に適用され"
 "ます。"
 
-#: admin/theme-options.php:883
+#: admin/theme-options.php:907
 msgid "Font type of headline"
 msgstr "大見出しのフォントタイプ"
 
-#: admin/theme-options.php:904
+#: admin/theme-options.php:928
 msgid "Hover effect"
 msgstr "サムネイルのホバーエフェクト"
 
-#: admin/theme-options.php:905
+#: admin/theme-options.php:929
 msgid "Hover effect type"
 msgstr "ホバーエフェクトのタイプ"
 
-#: admin/theme-options.php:906
+#: admin/theme-options.php:930
 msgid "Please set the hover effect for thumbnail images."
 msgstr ""
 "サムネイルのホバーエフェクトを3タイプから選択できます。<br />なお、アフィリエ"
 "イトASPなどの規約に抵触する可能性がある為、広告スペースに入力したサムネイルに"
 "はホバーエフェクトは付きません。"
 
-#: admin/theme-options.php:922
+#: admin/theme-options.php:946
 msgid "Settings for Zoom effect"
 msgstr "ズームの設定"
 
-#: admin/theme-options.php:923
+#: admin/theme-options.php:947
 msgid "Please set the rate of magnification."
 msgstr "拡大率を設定してください。（初期値：1.2）"
 
-#: admin/theme-options.php:928
+#: admin/theme-options.php:952
 msgid "Settings for Slide effect"
 msgstr "スライドの設定"
 
-#: admin/theme-options.php:929
+#: admin/theme-options.php:953
 msgid "Please set the direction of slide."
 msgstr "スライドする方向を設定してください。"
 
-#: admin/theme-options.php:945 admin/theme-options.php:953
-#: admin/theme-options.php:2212 functions/category.php:117
+#: admin/theme-options.php:969 admin/theme-options.php:977
+#: admin/theme-options.php:2283 functions/category.php:117
 msgid "Please set the opacity. (0 - 1.0, e.g. 0.7)"
 msgstr ""
 "※透明度の数値を0（完全に透明）～1.0（完全に不透明）の範囲で設定してください。"
 "（初期値：0.5）"
 
-#: admin/theme-options.php:947 admin/theme-options.php:955
-#: admin/theme-options.php:2210
+#: admin/theme-options.php:971 admin/theme-options.php:979
+#: admin/theme-options.php:2281
 msgid "Please set the background color."
 msgstr "背景色を設定してください。"
 
-#: admin/theme-options.php:952
+#: admin/theme-options.php:976
 msgid "Settings for Fade effect"
 msgstr "フェードの設定"
 
-#: admin/theme-options.php:965
+#: admin/theme-options.php:989
 msgid "Facebook OGP setting"
 msgstr "Facebook OGPの設定"
 
-#: admin/theme-options.php:967
+#: admin/theme-options.php:991
 msgid "Use OGP"
 msgstr "OGPを利用する"
 
-#: admin/theme-options.php:968
+#: admin/theme-options.php:992
 msgid "Your app ID"
 msgstr "あなたのapp ID"
 
-#: admin/theme-options.php:969
+#: admin/theme-options.php:993
 msgid "In order to use Facebook Insights please set your app ID."
 msgstr "Facebookページインサイトを利用するにはapp IDを入力してください。"
 
-#: admin/theme-options.php:971
+#: admin/theme-options.php:995
 msgid "OGP image"
 msgstr "OGP用画像"
 
-#: admin/theme-options.php:972
+#: admin/theme-options.php:996
 msgid "This image is displayed for OGP if the page does not have a thumbnail."
 msgstr ""
 "ここで登録した画像はアイキャッチのない投稿記事やアーカイブページなどでOGP用画"
 "像として利用されます。"
 
-#: admin/theme-options.php:973
+#: admin/theme-options.php:997
 msgid "Recommend image size. Width:1200px, Height:630px"
 msgstr "推奨画像サイズ：横幅1200px、縦幅630px"
 
-#: admin/theme-options.php:989
+#: admin/theme-options.php:1013
 msgid "Twitter Cards setting"
 msgstr "Twitter Cardsの設定"
 
-#: admin/theme-options.php:991
+#: admin/theme-options.php:1015
 msgid "Use Twitter Cards"
 msgstr "Twitter Cardsを利用する"
 
-#: admin/theme-options.php:992
+#: admin/theme-options.php:1016
 msgid "Your Twitter account name (exclude @ mark)"
 msgstr "あなたのtwitterアカウント名（@マークは不要）"
 
-#: admin/theme-options.php:993
+#: admin/theme-options.php:1017
 msgid "Information about Twitter Cards."
 msgstr "Twitter Cardsとは"
 
-#: admin/theme-options.php:1000
+#: admin/theme-options.php:1024
 msgid "Emoji setup"
 msgstr "絵文字の設定"
 
-#: admin/theme-options.php:1001
+#: admin/theme-options.php:1025
 msgid ""
 "We recommend to checkoff this option if you dont use any Emoji in your post "
 "content."
@@ -1301,34 +1339,34 @@ msgstr ""
 "をお勧めします。<br />チェックが外された場合、絵文字関連のjavascript等を読み"
 "込まないため、ページの表示速度が改善されます。"
 
-#: admin/theme-options.php:1002
+#: admin/theme-options.php:1026
 msgid "Use emoji"
 msgstr "絵文字を使う"
 
-#: admin/theme-options.php:1008
+#: admin/theme-options.php:1032
 msgid "Quicktags settings"
 msgstr "クイックタグの設定"
 
-#: admin/theme-options.php:1009
+#: admin/theme-options.php:1033
 msgid ""
 "If you don't want to use quicktags included in the theme, please uncheck the "
 "box below."
 msgstr ""
 "テーマに同梱されたクイックタグを使用しない場合はチェックを外してください。"
 
-#: admin/theme-options.php:1010
+#: admin/theme-options.php:1034
 msgid "Use quicktags"
 msgstr "クイックタグを利用する"
 
-#: admin/theme-options.php:1016
+#: admin/theme-options.php:1040
 msgid "Responsive design setting"
 msgstr "レスポンシブデザインの設定"
 
-#: admin/theme-options.php:1037
+#: admin/theme-options.php:1061
 msgid "Sidebar"
 msgstr "サイドバー"
 
-#: admin/theme-options.php:1038
+#: admin/theme-options.php:1062
 msgid ""
 "This theme will display the sidebar to right column, but put the check "
 "bellow if you want to display to left."
@@ -1336,27 +1374,27 @@ msgstr ""
 "このテーマはデフォルトではサイドバーを右カラムに表示します。<br>サイドバーを"
 "左カラムに表示したい場合は下のチェックボックスにチェックを入れてください。"
 
-#: admin/theme-options.php:1039
+#: admin/theme-options.php:1063
 msgid "Display the sidebar to left column"
 msgstr "サイドバーを左カラムに表示する"
 
-#: admin/theme-options.php:1045
+#: admin/theme-options.php:1069
 msgid "Loading screen setting"
 msgstr "ロード画面の設定"
 
-#: admin/theme-options.php:1046
+#: admin/theme-options.php:1070
 msgid "Use load icon."
 msgstr "ロード画面を表示する"
 
-#: admin/theme-options.php:1047
+#: admin/theme-options.php:1071
 msgid "Type of loader"
 msgstr "ロードアイコンのタイプ"
 
-#: admin/theme-options.php:1060
+#: admin/theme-options.php:1084
 msgid "Maximum display time"
 msgstr "最大表示時間"
 
-#: admin/theme-options.php:1061
+#: admin/theme-options.php:1085
 msgid ""
 "Please set the maximum display time of the loading screen.<br />Even if all "
 "the content is not loaded, loading screen will disappear automatically after "
@@ -1367,11 +1405,61 @@ msgstr ""
 "えます。<br />以下で設定する時間は、コンテンツが全て読み込まれていない状態で"
 "もロード画面を強制的に消すために使う時間です。"
 
-#: admin/theme-options.php:1079
+#: admin/theme-options.php:1103
+msgid "Google Maps settings"
+msgstr "Googleマップ設定"
+
+#: admin/theme-options.php:1104
+msgid "API key"
+msgstr "APIキー"
+
+#: admin/theme-options.php:1106 pagebuilder/modules/googlemap.php:201
+msgid "Marker type"
+msgstr "マーカータイプ"
+
+#: admin/theme-options.php:1111 pagebuilder/modules/googlemap.php:217
+msgid "Custom marker type"
+msgstr "カスタムマーカータイプ"
+
+#: admin/theme-options.php:1116 pagebuilder/modules/googlemap.php:236
+msgid "Custom marker text"
+msgstr "カスタムマーカーテキスト"
+
+#: admin/theme-options.php:1118 admin/theme-options.php:1405
+#: admin/theme-options.php:1416 admin/theme-options.php:1429
+#: admin/theme-options.php:1494 admin/theme-options.php:1505
+#: admin/theme-options.php:1521 admin/theme-options.php:1558
+#: admin/theme-options.php:1569 admin/theme-options.php:1585
+#: admin/theme-options.php:3245 functions/page_cf2.php:27
+#: pagebuilder/modules/catchcopy.php:63 pagebuilder/modules/googlemap.php:170
+#: pagebuilder/modules/googlemap.php:238 pagebuilder/modules/googlemap.php:331
+#: pagebuilder/modules/googlemap.php:382 pagebuilder/modules/googlemap.php:437
+#: pagebuilder/modules/headline.php:63 pagebuilder/modules/tab.php:193
+#: pagebuilder/modules/tab.php:207 pagebuilder/modules/tab.php:221
+#: pagebuilder/modules/tab.php:235 pagebuilder/modules/tab.php:249
+#: pagebuilder/modules/tab.php:263 pagebuilder/modules/tab.php:504
+#: pagebuilder/modules/tab.php:518 pagebuilder/modules/tab.php:697
+#: pagebuilder/modules/tab.php:748
+msgid "Font color"
+msgstr "フォントの色"
+
+#: admin/theme-options.php:1121 pagebuilder/modules/googlemap.php:242
+msgid "Custom marker image"
+msgstr "カスタムマーカー画像"
+
+#: admin/theme-options.php:1122 pagebuilder/modules/googlemap.php:243
+msgid "Recommended size: width:60px, height:20px"
+msgstr "推奨サイズ：横幅60px、縦幅20px"
+
+#: admin/theme-options.php:1135 pagebuilder/modules/googlemap.php:252
+msgid "Marker style"
+msgstr "マーカースタイル"
+
+#: admin/theme-options.php:1142
 msgid "Free input area for user definition CSS."
 msgstr "カスタムCSS（&lt;head&gt;タグ内に挿入されます）"
 
-#: admin/theme-options.php:1080
+#: admin/theme-options.php:1143
 msgid "Code example:<br /><strong>.example { font-size:12px; }</strong>"
 msgstr ""
 "デザインやレイアウトを調整したい場合にご使用ください。<br />こちらに任意のCSS"
@@ -1381,116 +1469,128 @@ msgstr ""
 "す。<br />記入例：.example { font-size:12px; }<br />&lt;style&gt;タグは不要で"
 "す。"
 
-#: admin/theme-options.php:1087
+#: admin/theme-options.php:1150
+msgid "Free input area for user definition scripts."
+msgstr "カスタムスクリプト（&lt;head&gt;タグ内に挿入されます）"
+
+#: admin/theme-options.php:1151
+msgid ""
+"Custom Script will output the end of the <head> tag. Please insert scripts "
+"(i.e. Google Analytics script), including <script>tag."
+msgstr ""
+"&lt;head&gt;タグ内の最後に出力されます。&lt;script&gt;タグを含めて"
+"GoogleAnalyticsのスクリプトなどを入力してください。"
+
+#: admin/theme-options.php:1158
 msgid "Settings for 404 page"
 msgstr "404ページ用の設定"
 
-#: admin/theme-options.php:1088
+#: admin/theme-options.php:1159
 msgid "Header image"
 msgstr "ヘッダーの画像"
 
-#: admin/theme-options.php:1089 admin/theme-options.php:1295
-#: admin/theme-options.php:1404 admin/theme-options.php:1468
+#: admin/theme-options.php:1160 admin/theme-options.php:1366
+#: admin/theme-options.php:1475 admin/theme-options.php:1539
 msgid "Recommend image size. Width:1450px, Height:700px"
 msgstr "推奨サイズ：横幅1450px、縦幅700px"
 
-#: admin/theme-options.php:1102
+#: admin/theme-options.php:1173
 msgid "Font size of headline"
 msgstr "見出しのフォントサイズ"
 
-#: admin/theme-options.php:1104
+#: admin/theme-options.php:1175
 msgid "Font size of headline for mobile device"
 msgstr "見出しのフォントサイズ（スマホ）"
 
-#: admin/theme-options.php:1106
+#: admin/theme-options.php:1177
 msgid "Font color of headline"
 msgstr "見出しのフォントの色"
 
-#: admin/theme-options.php:1108
+#: admin/theme-options.php:1179
 msgid "Dropshadow of headline"
 msgstr "見出しのドロップシャドウ"
 
-#: admin/theme-options.php:1109
+#: admin/theme-options.php:1180
 msgid "Enter \"0\" if you don't want to use dropshadow."
 msgstr "ドロップシャドウを使用しない場合は \"0\"を入力して下さい。"
 
-#: admin/theme-options.php:1111 admin/theme-options.php:1335
-#: admin/theme-options.php:1346 admin/theme-options.php:1424
-#: admin/theme-options.php:1435 admin/theme-options.php:1488
-#: admin/theme-options.php:1499 admin/theme-options.php:3071
-#: admin/theme-options.php:3106 functions/page_cf2.php:31
+#: admin/theme-options.php:1182 admin/theme-options.php:1406
+#: admin/theme-options.php:1417 admin/theme-options.php:1495
+#: admin/theme-options.php:1506 admin/theme-options.php:1559
+#: admin/theme-options.php:1570 admin/theme-options.php:3142
+#: admin/theme-options.php:3177 functions/page_cf2.php:31
 #: widget/banner_list.php:146
 msgid "Dropshadow position (left)"
 msgstr "ドロップシャドウの位置（横）"
 
-#: admin/theme-options.php:1112 admin/theme-options.php:1336
-#: admin/theme-options.php:1347 admin/theme-options.php:1425
-#: admin/theme-options.php:1436 admin/theme-options.php:1489
-#: admin/theme-options.php:1500 admin/theme-options.php:3072
-#: admin/theme-options.php:3107 functions/page_cf2.php:33
+#: admin/theme-options.php:1183 admin/theme-options.php:1407
+#: admin/theme-options.php:1418 admin/theme-options.php:1496
+#: admin/theme-options.php:1507 admin/theme-options.php:1560
+#: admin/theme-options.php:1571 admin/theme-options.php:3143
+#: admin/theme-options.php:3178 functions/page_cf2.php:33
 #: widget/banner_list.php:150
 msgid "Dropshadow position (top)"
 msgstr "ドロップシャドウの位置（縦）"
 
-#: admin/theme-options.php:1113 admin/theme-options.php:1337
-#: admin/theme-options.php:1348 admin/theme-options.php:1426
-#: admin/theme-options.php:1437 admin/theme-options.php:1490
-#: admin/theme-options.php:1501 admin/theme-options.php:3073
-#: admin/theme-options.php:3108 functions/page_cf2.php:35
+#: admin/theme-options.php:1184 admin/theme-options.php:1408
+#: admin/theme-options.php:1419 admin/theme-options.php:1497
+#: admin/theme-options.php:1508 admin/theme-options.php:1561
+#: admin/theme-options.php:1572 admin/theme-options.php:3144
+#: admin/theme-options.php:3179 functions/page_cf2.php:35
 #: widget/banner_list.php:154
 msgid "Dropshadow size"
 msgstr "ぼかし具合"
 
-#: admin/theme-options.php:1114 admin/theme-options.php:1338
-#: admin/theme-options.php:1349 admin/theme-options.php:1427
-#: admin/theme-options.php:1438 admin/theme-options.php:1491
-#: admin/theme-options.php:1502 admin/theme-options.php:3074
-#: admin/theme-options.php:3109 functions/page_cf2.php:37
+#: admin/theme-options.php:1185 admin/theme-options.php:1409
+#: admin/theme-options.php:1420 admin/theme-options.php:1498
+#: admin/theme-options.php:1509 admin/theme-options.php:1562
+#: admin/theme-options.php:1573 admin/theme-options.php:3145
+#: admin/theme-options.php:3180 functions/page_cf2.php:37
 #: widget/banner_list.php:158
 msgid "Dropshadow color"
 msgstr "ドロップシャドウのカラー"
 
-#: admin/theme-options.php:1116
+#: admin/theme-options.php:1187
 msgid "Sub title"
 msgstr "サブタイトル"
 
-#: admin/theme-options.php:1118
+#: admin/theme-options.php:1189
 msgid "Font size of sub title"
 msgstr "サブタイトルのフォントサイズ"
 
-#: admin/theme-options.php:1120
+#: admin/theme-options.php:1191
 msgid "Font size of sub title for mobile device"
 msgstr "サブタイトルのフォントサイズ（スマホ）"
 
-#: admin/theme-options.php:1135
+#: admin/theme-options.php:1206
 msgid "Header logo"
 msgstr "ヘッダーのロゴ"
 
-#: admin/theme-options.php:1137 admin/theme-options.php:1162
-#: admin/theme-options.php:1187 admin/theme-options.php:1212
-#: admin/theme-options.php:1237
+#: admin/theme-options.php:1208 admin/theme-options.php:1233
+#: admin/theme-options.php:1258 admin/theme-options.php:1283
+#: admin/theme-options.php:1308
 msgid "Font size for text logo"
 msgstr "ロゴのフォントサイズ"
 
-#: admin/theme-options.php:1140 admin/theme-options.php:1165
-#: admin/theme-options.php:1190 admin/theme-options.php:1215
-#: admin/theme-options.php:1242
+#: admin/theme-options.php:1211 admin/theme-options.php:1236
+#: admin/theme-options.php:1261 admin/theme-options.php:1286
+#: admin/theme-options.php:1313
 msgid "Image for logo"
 msgstr "ロゴの画像"
 
-#: admin/theme-options.php:1141 admin/theme-options.php:1166
-#: admin/theme-options.php:1191 admin/theme-options.php:1216
-#: admin/theme-options.php:1243
+#: admin/theme-options.php:1212 admin/theme-options.php:1237
+#: admin/theme-options.php:1262 admin/theme-options.php:1287
+#: admin/theme-options.php:1314
 msgid "If the image is not registered, text will be displayed instead."
 msgstr "画像が登録されていない場合は、テキストが代わりに表示されます。"
 
-#: admin/theme-options.php:1142
+#: admin/theme-options.php:1213
 msgid "Recommended size, Width:125px Height:30px (maximum height:60px)"
 msgstr "推奨サイズ：横幅125px、縦幅30px（最大縦幅60px）"
 
-#: admin/theme-options.php:1153 admin/theme-options.php:1178
-#: admin/theme-options.php:1203 admin/theme-options.php:1228
-#: admin/theme-options.php:1255
+#: admin/theme-options.php:1224 admin/theme-options.php:1249
+#: admin/theme-options.php:1274 admin/theme-options.php:1299
+#: admin/theme-options.php:1326
 msgid ""
 "If you upload a logo image for retina display, please check the following "
 "check boxes"
@@ -1498,190 +1598,180 @@ msgstr ""
 "レティナディスプレイ用のロゴ画像をアップロードした場合は、以下のチェックボッ"
 "クスにチェックを入れてください"
 
-#: admin/theme-options.php:1154 admin/theme-options.php:1179
-#: admin/theme-options.php:1204 admin/theme-options.php:1229
-#: admin/theme-options.php:1256
+#: admin/theme-options.php:1225 admin/theme-options.php:1250
+#: admin/theme-options.php:1275 admin/theme-options.php:1300
+#: admin/theme-options.php:1327
 msgid "Use retina display logo image"
 msgstr "レティナディスプレイ用のロゴ画像を利用する"
 
-#: admin/theme-options.php:1160
+#: admin/theme-options.php:1231
 msgid "Header logo for fixed header"
 msgstr "ヘッダーのロゴ（固定ヘッダー用）"
 
-#: admin/theme-options.php:1167
+#: admin/theme-options.php:1238
 msgid ""
 "Recommended size, Width:125px Height:30px (maximum height:60px), and we "
 "recommend you to use the background transparent PNG image."
 msgstr "推奨サイズ：横幅125px、縦幅30px（最大縦幅60px）※背景透過PNG画像推奨"
 
-#: admin/theme-options.php:1185
+#: admin/theme-options.php:1256
 msgid "Header logo for mobile device"
 msgstr "ヘッダーのロゴ（スマホ用）"
 
-#: admin/theme-options.php:1192 admin/theme-options.php:1217
+#: admin/theme-options.php:1263 admin/theme-options.php:1288
 msgid "Recommended size, Width:125px Height:30px (maximum height:50px)"
 msgstr "推奨サイズ：横幅125px、縦幅30px（最大縦幅50px）"
 
-#: admin/theme-options.php:1210
+#: admin/theme-options.php:1281
 msgid "Header logo for fixed header for mobile device"
 msgstr "ヘッダーのロゴ（スマホ固定ヘッダー用）"
 
-#: admin/theme-options.php:1235
+#: admin/theme-options.php:1306
 msgid "Footer logo"
 msgstr "フッターのロゴ"
 
-#: admin/theme-options.php:1239
+#: admin/theme-options.php:1310
 msgid "Font size for text logo for mobile device"
 msgstr "サイトタイトルのフォントサイズ（スマホ）"
 
-#: admin/theme-options.php:1244
+#: admin/theme-options.php:1315
 msgid ""
 "Recommended size, Width:125px Height:30px, and we recommend you to use the "
 "background transparent PNG image."
 msgstr "推奨サイズ：横幅125px、縦幅30px　※背景透過PNG画像推奨"
 
-#: admin/theme-options.php:1270
+#: admin/theme-options.php:1341
 msgid "Header content setting"
 msgstr "ヘッダーコンテンツの設定"
 
-#: admin/theme-options.php:1271
+#: admin/theme-options.php:1342
 msgid "Header content type"
 msgstr "ヘッダーコンテンツのタイプ"
 
-#: admin/theme-options.php:1288
+#: admin/theme-options.php:1359
 msgid "Image slider setting"
 msgstr "画像スライダーの設定"
 
-#: admin/theme-options.php:1289
+#: admin/theme-options.php:1360
 msgid "You can register 5 images."
 msgstr "最大5つまで登録することができます。"
 
-#: admin/theme-options.php:1292 functions/introduce_cf.php:36
+#: admin/theme-options.php:1363 functions/introduce_cf.php:36
 #, php-format
 msgid "Slider%s setting"
 msgstr "スライダー%sの設定"
 
-#: admin/theme-options.php:1294 functions/introduce_cf.php:38
+#: admin/theme-options.php:1365 functions/introduce_cf.php:38
 msgid "Slider image"
 msgstr "スライダーの画像"
 
-#: admin/theme-options.php:1307
+#: admin/theme-options.php:1378
 msgid "Slider image for mobile"
 msgstr "スライダー画像（スマホ用）"
 
-#: admin/theme-options.php:1308
+#: admin/theme-options.php:1379
 msgid "Recommend image size. Width:1450, Height:700px"
 msgstr "推奨サイズ：横幅1450px、縦幅700px"
 
-#: admin/theme-options.php:1309
+#: admin/theme-options.php:1380
 msgid "Notice: This image is cropped on smartphones."
 msgstr ""
 "注意：この画像はスマートフォンでは左右がトリミングされることがあります。トリ"
 "ミングされることを考慮した画像をご利用頂くことをお勧めします。"
 
-#: admin/theme-options.php:1321 admin/theme-options.php:1445
-#: admin/theme-options.php:1509 admin/theme-options.php:3227
-#: admin/theme-options.php:3273 pagebuilder/modules/googlemap.php:294
+#: admin/theme-options.php:1392 admin/theme-options.php:1516
+#: admin/theme-options.php:1580 admin/theme-options.php:3298
+#: admin/theme-options.php:3344 pagebuilder/modules/googlemap.php:162
+#: pagebuilder/modules/googlemap.php:429
 msgid "Link URL"
 msgstr "リンク先のURL"
 
-#: admin/theme-options.php:1322
+#: admin/theme-options.php:1393
 msgid "Leave this field blank if you don't want to use link at image."
 msgstr "画像にリンクを付けたくない場合は空欄にしてください。"
 
-#: admin/theme-options.php:1324 admin/theme-options.php:1447
-#: admin/theme-options.php:1511 admin/theme-options.php:3055
-#: admin/theme-options.php:3090 admin/theme-options.php:3331
-#: pagebuilder/modules/googlemap.php:299 widget/banner_list.php:129
+#: admin/theme-options.php:1395 admin/theme-options.php:1518
+#: admin/theme-options.php:1582 admin/theme-options.php:3126
+#: admin/theme-options.php:3161 admin/theme-options.php:3402
+#: pagebuilder/modules/googlemap.php:434 widget/banner_list.php:129
 msgid "Open link in new window"
 msgstr "リンク先のURLを新しいウィンドウで表示する"
 
-#: admin/theme-options.php:1326 admin/theme-options.php:1415
-#: admin/theme-options.php:1479
+#: admin/theme-options.php:1397 admin/theme-options.php:1486
+#: admin/theme-options.php:1550
 msgid "Caption setting"
-msgstr "キャッチフレーズの設定"
+msgstr "キャプションの設定"
 
-#: admin/theme-options.php:1327 admin/theme-options.php:1416
-#: admin/theme-options.php:1480
+#: admin/theme-options.php:1398 admin/theme-options.php:1487
+#: admin/theme-options.php:1551
 msgid "Display caption."
-msgstr "キャッチフレーズを表示する"
+msgstr "キャプションを表示する"
 
-#: admin/theme-options.php:1334 admin/theme-options.php:1345
-#: admin/theme-options.php:1358 admin/theme-options.php:1423
-#: admin/theme-options.php:1434 admin/theme-options.php:1450
-#: admin/theme-options.php:1487 admin/theme-options.php:1498
-#: admin/theme-options.php:1514 admin/theme-options.php:3174
-#: functions/page_cf2.php:27 pagebuilder/modules/catchcopy.php:55
-#: pagebuilder/modules/googlemap.php:196 pagebuilder/modules/googlemap.php:247
-#: pagebuilder/modules/googlemap.php:302 pagebuilder/modules/headline.php:55
-#: pagebuilder/modules/tab.php:161 pagebuilder/modules/tab.php:175
-#: pagebuilder/modules/tab.php:406 pagebuilder/modules/tab.php:420
-#: pagebuilder/modules/tab.php:599 pagebuilder/modules/tab.php:650
-msgid "Font color"
-msgstr "フォントの色"
-
-#: admin/theme-options.php:1340 admin/theme-options.php:1429
-#: admin/theme-options.php:1493 functions/page_cf2.php:19
-#: pagebuilder/modules/catchcopy.php:11 pagebuilder/modules/catchcopy.php:40
+#: admin/theme-options.php:1411 admin/theme-options.php:1500
+#: admin/theme-options.php:1564 functions/page_cf2.php:19
+#: pagebuilder/modules/catchcopy.php:11 pagebuilder/modules/catchcopy.php:48
 msgid "Catchphrase"
 msgstr "キャッチフレーズ"
 
-#: admin/theme-options.php:1351 admin/theme-options.php:1440
-#: admin/theme-options.php:1504
+#: admin/theme-options.php:1422 admin/theme-options.php:1511
+#: admin/theme-options.php:1575
 msgid "Button setting"
 msgstr "ボタンの設定"
 
-#: admin/theme-options.php:1352 admin/theme-options.php:1441
-#: admin/theme-options.php:1505
+#: admin/theme-options.php:1423 admin/theme-options.php:1512
+#: admin/theme-options.php:1576
 msgid "Display button."
 msgstr "ボタンを表示する"
 
-#: admin/theme-options.php:1354 admin/theme-options.php:1443
-#: admin/theme-options.php:1507
+#: admin/theme-options.php:1425 admin/theme-options.php:1514
+#: admin/theme-options.php:1578
 msgid "Label of button"
 msgstr "ボタンに表示する文字"
 
-#: admin/theme-options.php:1360 admin/theme-options.php:1452
-#: admin/theme-options.php:1516 admin/theme-options.php:3170
-#: pagebuilder/modules/googlemap.php:314
+#: admin/theme-options.php:1431 admin/theme-options.php:1523
+#: admin/theme-options.php:1587 admin/theme-options.php:3241
+#: pagebuilder/pagebuilder.php:639 pagebuilder/pagebuilder.php:2039
+#: pagebuilder/modules/googlemap.php:174 pagebuilder/modules/googlemap.php:449
 msgid "Border color"
 msgstr "枠線の色"
 
-#: admin/theme-options.php:1361 admin/theme-options.php:1453
-#: admin/theme-options.php:1517
+#: admin/theme-options.php:1432 admin/theme-options.php:1524
+#: admin/theme-options.php:1588
 msgid "Font hover color"
 msgstr "ボタンにカーソルを合わせた時のフォントの色"
 
-#: admin/theme-options.php:1363 admin/theme-options.php:1455
-#: admin/theme-options.php:1519
+#: admin/theme-options.php:1434 admin/theme-options.php:1526
+#: admin/theme-options.php:1590
 msgid "Border hover color"
 msgstr "ボタンにカーソルを合わせた時の枠線の色"
 
-#: admin/theme-options.php:1373 functions/introduce_cf.php:58
+#: admin/theme-options.php:1444 functions/introduce_cf.php:58
 msgid "Slider speed setting"
 msgstr "スライダーが切り替わるスピードの設定"
 
-#: admin/theme-options.php:1390
+#: admin/theme-options.php:1461
 msgid "Video background setting"
 msgstr "動画の設定"
 
-#: admin/theme-options.php:1391
+#: admin/theme-options.php:1462
 msgid "Video file"
 msgstr "動画ファイル（MP4形式の動画ファイルをアップロードしてください。）"
 
-#: admin/theme-options.php:1397
+#: admin/theme-options.php:1468
+#: pagebuilder/modules/includes/media_field.php:34
 msgid "Select Video"
 msgstr "動画ファイルを選択する"
 
-#: admin/theme-options.php:1398
+#: admin/theme-options.php:1469
+#: pagebuilder/modules/includes/media_field.php:35
 msgid "Remove Video"
 msgstr "動画ファイルを削除する"
 
-#: admin/theme-options.php:1402 admin/theme-options.php:1466
+#: admin/theme-options.php:1473 admin/theme-options.php:1537
 msgid "Substitute image"
 msgstr "代替画像"
 
-#: admin/theme-options.php:1403
+#: admin/theme-options.php:1474
 msgid ""
 "This image will be displayed instead of video in smartphone.<br /> Also this "
 "image will be displayed in the browser which video is not supported."
@@ -1690,101 +1780,101 @@ msgstr ""
 "像を表示します。<br />また、MP4形式の動画がサポートされていないPCのブラウザで"
 "も、動画の代わりに表示されます。"
 
-#: admin/theme-options.php:1463
+#: admin/theme-options.php:1534
 msgid "Youtube background setting"
 msgstr "Youtubeの設定"
 
-#: admin/theme-options.php:1464
+#: admin/theme-options.php:1535
 msgid "Youtube url"
 msgstr "表示したいYoutubeの動画のURLを入力してください。"
 
-#: admin/theme-options.php:1467
+#: admin/theme-options.php:1538
 msgid "This image will be displayed instead of Youtube video in smartphone."
 msgstr ""
 "スマートフォンでは動画を背景に表示する事が出来ないため、代わりに以下の代替画"
 "像を表示します。"
 
-#: admin/theme-options.php:1528
+#: admin/theme-options.php:1599
 msgid "News content (News ticker)"
 msgstr "お知らせコンテンツ（ニュースティッカー）"
 
-#: admin/theme-options.php:1530 admin/theme-options.php:1556
+#: admin/theme-options.php:1601 admin/theme-options.php:1627
 msgid "News date"
 msgstr "表示設定"
 
-#: admin/theme-options.php:1531 admin/theme-options.php:1557
-#: admin/theme-options.php:1719 admin/theme-options.php:2335
-#: admin/theme-options.php:2403 widget/styled_post_list1.php:192
+#: admin/theme-options.php:1602 admin/theme-options.php:1628
+#: admin/theme-options.php:1790 admin/theme-options.php:2406
+#: admin/theme-options.php:2474 widget/styled_post_list1.php:193
 msgid "Display date"
 msgstr "日付を表示する"
 
-#: admin/theme-options.php:1545 admin/theme-options.php:1571
+#: admin/theme-options.php:1616 admin/theme-options.php:1642
 msgid "Link for news archive page"
 msgstr "お知らせアーカイブページボタン"
 
-#: admin/theme-options.php:1546 admin/theme-options.php:1572
+#: admin/theme-options.php:1617 admin/theme-options.php:1643
 msgid "Display link for news archive page"
 msgstr "ボタンを表示する"
 
-#: admin/theme-options.php:1547 admin/theme-options.php:1573
+#: admin/theme-options.php:1618 admin/theme-options.php:1644
 msgid "Label for this Link"
 msgstr "ボタンに表示する文字"
 
-#: admin/theme-options.php:1554
+#: admin/theme-options.php:1625
 msgid "News content for mobile"
 msgstr "お知らせコンテンツ（スマホ）"
 
-#: admin/theme-options.php:1591
+#: admin/theme-options.php:1662
 msgid "Blog setting"
 msgstr "ブログページの設定"
 
-#: admin/theme-options.php:1592 admin/theme-options.php:2114
-#: admin/theme-options.php:2381
+#: admin/theme-options.php:1663 admin/theme-options.php:2185
+#: admin/theme-options.php:2452
 msgid "Breadcrumb label"
 msgstr "パンくずリンクに表示するテキスト"
 
-#: admin/theme-options.php:1599 admin/theme-options.php:1600
+#: admin/theme-options.php:1670 admin/theme-options.php:1671
 msgid "Category setting"
 msgstr "カテゴリーの設定"
 
-#: admin/theme-options.php:1603 admin/theme-options.php:1615
-#: admin/theme-options.php:1631 admin/theme-options.php:2130
-#: admin/theme-options.php:2147 admin/theme-options.php:2164
-#: admin/theme-options.php:2181
+#: admin/theme-options.php:1674 admin/theme-options.php:1686
+#: admin/theme-options.php:1702 admin/theme-options.php:2201
+#: admin/theme-options.php:2218 admin/theme-options.php:2235
+#: admin/theme-options.php:2252
 #, php-format
 msgid "%s label"
 msgstr "%sのラベル"
 
-#: admin/theme-options.php:1607 admin/theme-options.php:1623
-#: admin/theme-options.php:1639 admin/theme-options.php:2138
-#: admin/theme-options.php:2155 admin/theme-options.php:2172
+#: admin/theme-options.php:1678 admin/theme-options.php:1694
+#: admin/theme-options.php:1710 admin/theme-options.php:2209
+#: admin/theme-options.php:2226 admin/theme-options.php:2243
 #, php-format
 msgid "%s color"
 msgstr "%sのアイコン色"
 
-#: admin/theme-options.php:1611 admin/theme-options.php:1627
-#: admin/theme-options.php:2124 admin/theme-options.php:2125
-#: admin/theme-options.php:2142 admin/theme-options.php:2159
-#: admin/theme-options.php:2177
+#: admin/theme-options.php:1682 admin/theme-options.php:1698
+#: admin/theme-options.php:2195 admin/theme-options.php:2196
+#: admin/theme-options.php:2213 admin/theme-options.php:2230
+#: admin/theme-options.php:2248
 #, php-format
 msgid "%s setting"
 msgstr "%sの設定"
 
-#: admin/theme-options.php:1613 admin/theme-options.php:1629
-#: admin/theme-options.php:2127 admin/theme-options.php:2144
-#: admin/theme-options.php:2161 admin/theme-options.php:2179
+#: admin/theme-options.php:1684 admin/theme-options.php:1700
+#: admin/theme-options.php:2198 admin/theme-options.php:2215
+#: admin/theme-options.php:2232 admin/theme-options.php:2250
 #, php-format
 msgid "use %s"
 msgstr "%sを使用する"
 
-#: admin/theme-options.php:1619 admin/theme-options.php:1635
-#: admin/theme-options.php:2134 admin/theme-options.php:2151
-#: admin/theme-options.php:2168 admin/theme-options.php:2185
+#: admin/theme-options.php:1690 admin/theme-options.php:1706
+#: admin/theme-options.php:2205 admin/theme-options.php:2222
+#: admin/theme-options.php:2239 admin/theme-options.php:2256
 #, php-format
 msgid "%s slug"
 msgstr "%sのスラッグ"
 
-#: admin/theme-options.php:1643 admin/theme-options.php:2189
+#: admin/theme-options.php:1714 admin/theme-options.php:2260
 msgid "Existing categories will not be visible if you change the slug."
 msgstr ""
 "※スラッグを変更した場合、変更前に作成されたカテゴリーはサイト上 / 管理画面上"
@@ -1792,246 +1882,246 @@ msgstr ""
 "に消失するわけではなく、データベースには残っている状態のため、スラッグを元に"
 "戻すことで復元されます。"
 
-#: admin/theme-options.php:1649 admin/theme-options.php:2195
-#: admin/theme-options.php:2391
+#: admin/theme-options.php:1720 admin/theme-options.php:2266
+#: admin/theme-options.php:2462
 msgid "Archive page setting"
 msgstr "アーカイブページの設定"
 
-#: admin/theme-options.php:1650 admin/theme-options.php:2392
+#: admin/theme-options.php:1721 admin/theme-options.php:2463
 msgid "Archive page headline"
 msgstr "アーカイブページの見出しタイトル"
 
-#: admin/theme-options.php:1656
+#: admin/theme-options.php:1727
 msgid "Archive page description"
 msgstr "アーカイブページの説明文"
 
-#: admin/theme-options.php:1667
+#: admin/theme-options.php:1738
 msgid "Font size for post page"
 msgstr "記事詳細ページのフォントサイズの設定"
 
-#: admin/theme-options.php:1668
+#: admin/theme-options.php:1739
 msgid "Settings for font size of text in post page"
 msgstr "記事詳細ページのフォントサイズを設定します。"
 
-#: admin/theme-options.php:1669
+#: admin/theme-options.php:1740
 msgid "Font size of post title"
 msgstr "記事タイトルのフォントサイズ"
 
-#: admin/theme-options.php:1671
+#: admin/theme-options.php:1742
 msgid "Font size of post contents"
 msgstr "記事本文のフォントサイズ"
 
-#: admin/theme-options.php:1673
+#: admin/theme-options.php:1744
 msgid "Font size of post title for mobie"
 msgstr "記事タイトルのフォントサイズ（スマホ）"
 
-#: admin/theme-options.php:1675
+#: admin/theme-options.php:1746
 msgid "Font size of post contents for mobile"
 msgstr "記事本文のフォントサイズ（スマホ）"
 
-#: admin/theme-options.php:1682 admin/theme-options.php:2293
-#: admin/theme-options.php:2399 pagebuilder/modules/tab.php:878
+#: admin/theme-options.php:1753 admin/theme-options.php:2364
+#: admin/theme-options.php:2470 pagebuilder/modules/tab.php:960
 msgid "Display setting"
 msgstr "表示設定"
 
-#: admin/theme-options.php:1683 admin/theme-options.php:2294
-#: admin/theme-options.php:2400
+#: admin/theme-options.php:1754 admin/theme-options.php:2365
+#: admin/theme-options.php:2471
 msgid "Settings for miscs"
 msgstr "各項目の表示/非表示を設定します。"
 
-#: admin/theme-options.php:1684 admin/theme-options.php:2295
-#: admin/theme-options.php:2401
+#: admin/theme-options.php:1755 admin/theme-options.php:2366
+#: admin/theme-options.php:2472
 msgid "Settings for front page, archive page and post page"
 msgstr "トップページ・アーカイブページ・記事詳細ページ共通の設定"
 
-#: admin/theme-options.php:1687
+#: admin/theme-options.php:1758
 msgid "Display categories"
 msgstr "カテゴリーを表示する"
 
-#: admin/theme-options.php:1689 admin/theme-options.php:2300
-#: admin/theme-options.php:2497 admin/theme-options.php:2531
-#: admin/theme-options.php:2560 admin/theme-options.php:2599
-#: admin/theme-options.php:2633 admin/theme-options.php:2662
+#: admin/theme-options.php:1760 admin/theme-options.php:2371
+#: admin/theme-options.php:2568 admin/theme-options.php:2602
+#: admin/theme-options.php:2631 admin/theme-options.php:2670
+#: admin/theme-options.php:2704 admin/theme-options.php:2733
 msgid "Not display"
 msgstr "表示しない"
 
-#: admin/theme-options.php:1721 admin/theme-options.php:2331
-#: admin/theme-options.php:2405
+#: admin/theme-options.php:1792 admin/theme-options.php:2402
+#: admin/theme-options.php:2476
 msgid "Settings for post page"
 msgstr "記事詳細ページ用の設定"
 
-#: admin/theme-options.php:1723 admin/theme-options.php:2336
+#: admin/theme-options.php:1794 admin/theme-options.php:2407
 msgid "Display tags"
 msgstr "タグを表示する"
 
-#: admin/theme-options.php:1724
+#: admin/theme-options.php:1795
 msgid "Display author"
 msgstr "投稿者名を表示する"
 
-#: admin/theme-options.php:1725 admin/theme-options.php:2407
+#: admin/theme-options.php:1796 admin/theme-options.php:2478
 msgid "Display thumbnail"
 msgstr "サムネイルを表示する"
 
-#: admin/theme-options.php:1726 admin/theme-options.php:2339
-#: admin/theme-options.php:2410
+#: admin/theme-options.php:1797 admin/theme-options.php:2410
+#: admin/theme-options.php:2481
 msgid "Display next previous post link"
 msgstr "次の記事、前の記事リンクを表示する"
 
-#: admin/theme-options.php:1727
+#: admin/theme-options.php:1798
 msgid "Display comment"
 msgstr "コメントを表示する"
 
-#: admin/theme-options.php:1728
+#: admin/theme-options.php:1799
 msgid "Display trackbacks"
 msgstr "トラックバックを表示する"
 
-#: admin/theme-options.php:1729
+#: admin/theme-options.php:1800
 msgid "Display last modified date"
 msgstr "最終更新日を表示する"
 
-#: admin/theme-options.php:1736
+#: admin/theme-options.php:1807
 msgid "Related posts setting"
 msgstr "関連記事一覧の設定"
 
-#: admin/theme-options.php:1737
+#: admin/theme-options.php:1808
 msgid "Related posts will be displayed at the bottom of post page."
 msgstr "詳細記事ページ下部に表示される関連記事一覧の設定を行います。"
 
-#: admin/theme-options.php:1738
+#: admin/theme-options.php:1809
 msgid "Display related post"
 msgstr "関連記事を表示する"
 
-#: admin/theme-options.php:1739
+#: admin/theme-options.php:1810
 msgid "Headline of related posts"
 msgstr "関連記事一覧の見出し"
 
-#: admin/theme-options.php:1741
+#: admin/theme-options.php:1812
 msgid "Number of related posts"
 msgstr "表示する関連記事の数"
 
-#: admin/theme-options.php:1758
+#: admin/theme-options.php:1829
 msgid "Social button Setup"
 msgstr "ソーシャルボタンの表示設定"
 
-#: admin/theme-options.php:1759
+#: admin/theme-options.php:1830
 msgid "Settings for social buttons displayed at post page"
 msgstr "記事詳細ページに表示するソーシャルボタンの設定を行います。"
 
-#: admin/theme-options.php:1761
+#: admin/theme-options.php:1832
 msgid "Set of articles top buttons"
 msgstr "記事上ソーシャルボタンの設定"
 
-#: admin/theme-options.php:1762
+#: admin/theme-options.php:1833
 msgid "Buttons to the article top"
 msgstr "記事上にソーシャルボタンを表示する。"
 
-#: admin/theme-options.php:1763
+#: admin/theme-options.php:1834
 msgid "Type of button on article top"
 msgstr "記事上に表示するボタンタイプ"
 
-#: admin/theme-options.php:1785
+#: admin/theme-options.php:1856
 msgid "Select the social button to show on article top"
 msgstr "記事上に表示するボタン"
 
-#: admin/theme-options.php:1787 admin/theme-options.php:1827
+#: admin/theme-options.php:1858 admin/theme-options.php:1898
 msgid "Display twitter button"
 msgstr "Twitter"
 
-#: admin/theme-options.php:1788
+#: admin/theme-options.php:1859
 msgid "Display facebook like button -Button type 5 (Default button) only"
 msgstr "Facebookいいね ※ボタンタイプ5（公式ボタン）選択時のみ表示します。"
 
-#: admin/theme-options.php:1789 admin/theme-options.php:1829
+#: admin/theme-options.php:1860 admin/theme-options.php:1900
 msgid "Display facebook share button"
 msgstr "Facebookシェア"
 
-#: admin/theme-options.php:1790 admin/theme-options.php:1830
+#: admin/theme-options.php:1861 admin/theme-options.php:1901
 msgid "Display google+ button"
 msgstr "Google+"
 
-#: admin/theme-options.php:1791 admin/theme-options.php:1831
+#: admin/theme-options.php:1862 admin/theme-options.php:1902
 msgid "Display hatena button"
 msgstr "はてなブックマーク"
 
-#: admin/theme-options.php:1792 admin/theme-options.php:1832
+#: admin/theme-options.php:1863 admin/theme-options.php:1903
 msgid "Display pocket button"
 msgstr "Pocket"
 
-#: admin/theme-options.php:1793 admin/theme-options.php:1833
+#: admin/theme-options.php:1864 admin/theme-options.php:1904
 msgid "Display feedly button"
 msgstr "Feedly"
 
-#: admin/theme-options.php:1794 admin/theme-options.php:1834
+#: admin/theme-options.php:1865 admin/theme-options.php:1905
 msgid "Display rss button"
 msgstr "RSS"
 
-#: admin/theme-options.php:1795 admin/theme-options.php:1835
+#: admin/theme-options.php:1866 admin/theme-options.php:1906
 msgid "Display pinterest button"
 msgstr "Pinterest"
 
-#: admin/theme-options.php:1800
+#: admin/theme-options.php:1871
 msgid "Set of articles bottom buttons"
 msgstr "記事下ソーシャルボタンの設定"
 
-#: admin/theme-options.php:1801
+#: admin/theme-options.php:1872
 msgid "Buttons to the article bottom"
 msgstr "記事下にソーシャルボタンを表示する。"
 
-#: admin/theme-options.php:1802
+#: admin/theme-options.php:1873
 msgid "Type of button on article bottom"
 msgstr "記事下に表示するボタンタイプ"
 
-#: admin/theme-options.php:1825
+#: admin/theme-options.php:1896
 msgid "Select the social button to show on article bottom"
 msgstr "記事下に表示するボタン"
 
-#: admin/theme-options.php:1828
+#: admin/theme-options.php:1899
 msgid "Display facebook like button-Button type 5 (Default button) only"
 msgstr "Facebookいいね ※ボタンタイプ5（公式ボタン）選択時のみ表示します。"
 
-#: admin/theme-options.php:1837
+#: admin/theme-options.php:1908
 msgid "Setting for the twitter button"
 msgstr "Twitterボタンの設定"
 
-#: admin/theme-options.php:1838
+#: admin/theme-options.php:1909
 msgid "Set of twitter account. (ex.designplus)"
 msgstr ""
 "※Tweetボタンを表示する場合、Twitterアカウント名(@なし)を設定してください。"
 "（例：designplus）"
 
-#: admin/theme-options.php:1846 admin/theme-options.php:1910
-#: admin/theme-options.php:1974
+#: admin/theme-options.php:1917 admin/theme-options.php:1981
+#: admin/theme-options.php:2045
 msgid "Single page banner setup"
 msgstr "記事詳細ページの広告設定"
 
-#: admin/theme-options.php:1847
+#: admin/theme-options.php:1918
 msgid "This banner will be displayed next to the title of the page."
 msgstr "この広告は記事タイトルの下に表示されます。"
 
-#: admin/theme-options.php:1849 admin/theme-options.php:1913
-#: admin/theme-options.php:1978
+#: admin/theme-options.php:1920 admin/theme-options.php:1984
+#: admin/theme-options.php:2049
 msgid "Left banner"
 msgstr "左側"
 
-#: admin/theme-options.php:1852 admin/theme-options.php:1881
-#: admin/theme-options.php:1916 admin/theme-options.php:1945
-#: admin/theme-options.php:1981 admin/theme-options.php:2010
-#: admin/theme-options.php:2045 admin/theme-options.php:2074
+#: admin/theme-options.php:1923 admin/theme-options.php:1952
+#: admin/theme-options.php:1987 admin/theme-options.php:2016
+#: admin/theme-options.php:2052 admin/theme-options.php:2081
+#: admin/theme-options.php:2116 admin/theme-options.php:2145
 msgid "Banner code"
 msgstr "広告バナーのコードを登録する"
 
-#: admin/theme-options.php:1853 admin/theme-options.php:1882
-#: admin/theme-options.php:1917 admin/theme-options.php:1946
-#: admin/theme-options.php:1982 admin/theme-options.php:2011
-#: admin/theme-options.php:2046 admin/theme-options.php:2075
-#: admin/theme-options.php:2943 admin/theme-options.php:2972
+#: admin/theme-options.php:1924 admin/theme-options.php:1953
+#: admin/theme-options.php:1988 admin/theme-options.php:2017
+#: admin/theme-options.php:2053 admin/theme-options.php:2082
+#: admin/theme-options.php:2117 admin/theme-options.php:2146
+#: admin/theme-options.php:3014 admin/theme-options.php:3043
 msgid "If you are using google adsense, enter all code below."
 msgstr "HTMLコードをご利用の場合は、そのまま以下に登録してください。"
 
-#: admin/theme-options.php:1856 admin/theme-options.php:1885
-#: admin/theme-options.php:1920 admin/theme-options.php:1949
-#: admin/theme-options.php:1985 admin/theme-options.php:2014
-#: admin/theme-options.php:2049 admin/theme-options.php:2078
+#: admin/theme-options.php:1927 admin/theme-options.php:1956
+#: admin/theme-options.php:1991 admin/theme-options.php:2020
+#: admin/theme-options.php:2056 admin/theme-options.php:2085
+#: admin/theme-options.php:2120 admin/theme-options.php:2149
 msgid ""
 "If you are not using google adsense, you can register your banner image and "
 "affiliate code individually."
@@ -2039,77 +2129,77 @@ msgstr ""
 "以下の項目を利用する事により、バナー画像とリンク先URLを個別に登録する事もでき"
 "ます。"
 
-#: admin/theme-options.php:1858 admin/theme-options.php:1887
-#: admin/theme-options.php:1922 admin/theme-options.php:1951
-#: admin/theme-options.php:1987 admin/theme-options.php:2016
-#: admin/theme-options.php:2051 admin/theme-options.php:2080
+#: admin/theme-options.php:1929 admin/theme-options.php:1958
+#: admin/theme-options.php:1993 admin/theme-options.php:2022
+#: admin/theme-options.php:2058 admin/theme-options.php:2087
+#: admin/theme-options.php:2122 admin/theme-options.php:2151
 msgid "Register banner image."
 msgstr "画像を登録する"
 
-#: admin/theme-options.php:1858 admin/theme-options.php:1887
-#: admin/theme-options.php:1922 admin/theme-options.php:1951
-#: admin/theme-options.php:1987 admin/theme-options.php:2016
-#: admin/theme-options.php:2948 admin/theme-options.php:2977
+#: admin/theme-options.php:1929 admin/theme-options.php:1958
+#: admin/theme-options.php:1993 admin/theme-options.php:2022
+#: admin/theme-options.php:2058 admin/theme-options.php:2087
+#: admin/theme-options.php:3019 admin/theme-options.php:3048
 msgid "Recommend size. Width:300px Height:250px"
 msgstr "（推奨サイズ：横幅300px、縦幅250px）"
 
-#: admin/theme-options.php:1871 admin/theme-options.php:1900
-#: admin/theme-options.php:1935 admin/theme-options.php:1964
-#: admin/theme-options.php:2000 admin/theme-options.php:2029
-#: admin/theme-options.php:2064 admin/theme-options.php:2093
+#: admin/theme-options.php:1942 admin/theme-options.php:1971
+#: admin/theme-options.php:2006 admin/theme-options.php:2035
+#: admin/theme-options.php:2071 admin/theme-options.php:2100
+#: admin/theme-options.php:2135 admin/theme-options.php:2164
 msgid "Register affiliate code"
 msgstr "リンク先URLを登録する"
 
-#: admin/theme-options.php:1878 admin/theme-options.php:1942
-#: admin/theme-options.php:2007
+#: admin/theme-options.php:1949 admin/theme-options.php:2013
+#: admin/theme-options.php:2078
 msgid "Right banner"
 msgstr "右側"
 
-#: admin/theme-options.php:1911
+#: admin/theme-options.php:1982
 msgid "This banner will be displayed under contents."
 msgstr "この広告は記事本文の下に表示されます。"
 
-#: admin/theme-options.php:1975
+#: admin/theme-options.php:2046
 msgid ""
 "Please copy and paste the short code inside the content to show this banner."
 msgstr ""
 "記事本文中の任意の位置に広告を表示できます。<br />投稿画面で、下のショート"
 "コードを記事本文の中にコピーアンドペーストしてください。"
 
-#: admin/theme-options.php:1976
+#: admin/theme-options.php:2047
 msgid "Short code"
 msgstr "ショートコード"
 
-#: admin/theme-options.php:2039
+#: admin/theme-options.php:2110
 msgid "Mobile device banner setup"
 msgstr "スマホ用の広告設定"
 
-#: admin/theme-options.php:2040
+#: admin/theme-options.php:2111
 msgid "This banner will be displayed on mobile device."
 msgstr "この広告はスマホで閲覧したときに表示されます。"
 
-#: admin/theme-options.php:2042
+#: admin/theme-options.php:2113
 msgid "Top banner"
 msgstr "上部"
 
-#: admin/theme-options.php:2071
+#: admin/theme-options.php:2142
 msgid "Bottom banner"
 msgstr "下部"
 
-#: admin/theme-options.php:2111
+#: admin/theme-options.php:2182
 msgid "Introduce setting"
 msgstr "紹介ページの設定"
 
-#: admin/theme-options.php:2112 admin/theme-options.php:2379
-#: admin/theme-options.php:3319 admin/theme-options.php:3329
+#: admin/theme-options.php:2183 admin/theme-options.php:2450
+#: admin/theme-options.php:3390 admin/theme-options.php:3400
 msgid "Label"
 msgstr "ラベル"
 
-#: admin/theme-options.php:2116 admin/theme-options.php:2383
+#: admin/theme-options.php:2187 admin/theme-options.php:2454
 msgid "Slug"
 msgstr "スラッグ"
 
-#: admin/theme-options.php:2118 admin/theme-options.php:2385
+#: admin/theme-options.php:2189 admin/theme-options.php:2456
 msgid "Existing posts will not be visible if you change the slug."
 msgstr ""
 "※スラッグを変更した場合、変更前に作成された投稿はサイト上 / 管理画面上の両方"
@@ -2117,47 +2207,47 @@ msgstr ""
 "ではなく、データベースには残っている状態のため、スラッグを元に戻すことで復元"
 "されます。"
 
-#: admin/theme-options.php:2124 admin/theme-options.php:2125
-#: admin/theme-options.php:2127 admin/theme-options.php:2130
-#: admin/theme-options.php:2134 admin/theme-options.php:2138
-#: admin/theme-options.php:2142 admin/theme-options.php:2144
-#: admin/theme-options.php:2147 admin/theme-options.php:2151
-#: admin/theme-options.php:2155 admin/theme-options.php:2159
-#: admin/theme-options.php:2161 admin/theme-options.php:2164
-#: admin/theme-options.php:2168 admin/theme-options.php:2172
-#: admin/theme-options.php:2597 admin/theme-options.php:2631
-#: admin/theme-options.php:2660
+#: admin/theme-options.php:2195 admin/theme-options.php:2196
+#: admin/theme-options.php:2198 admin/theme-options.php:2201
+#: admin/theme-options.php:2205 admin/theme-options.php:2209
+#: admin/theme-options.php:2213 admin/theme-options.php:2215
+#: admin/theme-options.php:2218 admin/theme-options.php:2222
+#: admin/theme-options.php:2226 admin/theme-options.php:2230
+#: admin/theme-options.php:2232 admin/theme-options.php:2235
+#: admin/theme-options.php:2239 admin/theme-options.php:2243
+#: admin/theme-options.php:2668 admin/theme-options.php:2702
+#: admin/theme-options.php:2731
 msgid "Introduce category"
 msgstr "紹介ページカテゴリー"
 
-#: admin/theme-options.php:2128 admin/theme-options.php:2145
-#: admin/theme-options.php:2162
+#: admin/theme-options.php:2199 admin/theme-options.php:2216
+#: admin/theme-options.php:2233
 msgid "Create a designed special page"
 msgstr "デザインされた特集ページ（カテゴリー一覧ページ）を作成する"
 
-#: admin/theme-options.php:2177 admin/theme-options.php:2179
-#: admin/theme-options.php:2181 admin/theme-options.php:2185
+#: admin/theme-options.php:2248 admin/theme-options.php:2250
+#: admin/theme-options.php:2252 admin/theme-options.php:2256
 msgid "Introduce tag"
 msgstr "紹介ページのタグ"
 
-#: admin/theme-options.php:2196
+#: admin/theme-options.php:2267
 msgid "Archive page image"
 msgstr "アーカイブページのヘッダー画像"
 
-#: admin/theme-options.php:2197
+#: admin/theme-options.php:2268
 msgid "Recommended size, Width:1450px Height:440px."
 msgstr "推奨サイズ：横幅1450px、縦幅440px"
 
-#: admin/theme-options.php:2208 functions/category.php:71
+#: admin/theme-options.php:2279 functions/category.php:71
 #: functions/category.php:105
 msgid "Catchcopy"
 msgstr "キャッチコピー"
 
-#: admin/theme-options.php:2214 functions/category.php:121
+#: admin/theme-options.php:2285 functions/category.php:121
 msgid "Archive page text"
 msgstr "アーカイブページのテキストコンテンツの設定"
 
-#: admin/theme-options.php:2215 functions/category.php:178
+#: admin/theme-options.php:2286 functions/category.php:178
 msgid ""
 "Please click \"Add new item\" and set display contents. You can change the "
 "order by dragging the added items."
@@ -2165,205 +2255,206 @@ msgstr ""
 "「新しいアイテムを追加する」をクリックして表示内容を設定して下さい。追加した"
 "アイテムはドラッグして順番を変更することが出来ます。"
 
-#: admin/theme-options.php:2217 admin/theme-options.php:3201
+#: admin/theme-options.php:2288 admin/theme-options.php:3272
 #: functions/category.php:125 widget/icon_link_list.php:105
 msgid "Delete?"
 msgstr "削除しますか？"
 
-#: admin/theme-options.php:2237 admin/theme-options.php:2262
-#: admin/theme-options.php:3243 admin/theme-options.php:3289
+#: admin/theme-options.php:2308 admin/theme-options.php:2333
+#: admin/theme-options.php:3314 admin/theme-options.php:3360
 #: functions/category.php:145 functions/category.php:170
 #: widget/icon_link_list.php:171
 msgid "Delete item"
 msgstr "項目削除"
 
-#: admin/theme-options.php:2269 admin/theme-options.php:3296
-#: functions/category.php:177 pagebuilder/modules/slider.php:84
-#: pagebuilder/modules/tab.php:233 pagebuilder/modules/tab.php:514
-#: pagebuilder/modules/tab.php:772 widget/icon_link_list.php:117
+#: admin/theme-options.php:2340 admin/theme-options.php:3367
+#: functions/category.php:177 pagebuilder/modules/simple_table.php:80
+#: pagebuilder/modules/slider.php:199 pagebuilder/modules/tab.php:321
+#: pagebuilder/modules/tab.php:612 pagebuilder/modules/tab.php:870
+#: widget/icon_link_list.php:117
 msgid "Add item"
 msgstr "新しいアイテムを追加する"
 
-#: admin/theme-options.php:2271
+#: admin/theme-options.php:2342
 msgid "Breadcrumb"
 msgstr "パンくずリンクの表示設定"
 
-#: admin/theme-options.php:2272
+#: admin/theme-options.php:2343
 msgid "Display breadcrumb"
 msgstr "パンくずリンクを表示する"
 
-#: admin/theme-options.php:2286
+#: admin/theme-options.php:2357
 msgid "Infinite scroll setting"
 msgstr "無限スクロールの設定"
 
-#: admin/theme-options.php:2287
+#: admin/theme-options.php:2358
 msgid "Use infinite scroll"
 msgstr "記事一覧の読み込みに無限スクロールを使用する"
 
-#: admin/theme-options.php:2298
+#: admin/theme-options.php:2369
 msgid "Display introduce categories"
 msgstr "表示する紹介ページカテゴリー"
 
-#: admin/theme-options.php:2333
+#: admin/theme-options.php:2404
 msgid "Display shoulder copy"
 msgstr "アイキャッチ画像上端にショルダーコピーを表示する"
 
-#: admin/theme-options.php:2334
+#: admin/theme-options.php:2405
 msgid "Display thumbnail/slider"
 msgstr "アイキャッチ画像（または紹介ページスライダー）を表示する"
 
-#: admin/theme-options.php:2337 admin/theme-options.php:2408
+#: admin/theme-options.php:2408 admin/theme-options.php:2479
 msgid "Display share button under post title"
 msgstr "ソーシャルボタンを記事タイトルの下に表示する"
 
-#: admin/theme-options.php:2338 admin/theme-options.php:2409
+#: admin/theme-options.php:2409 admin/theme-options.php:2480
 msgid "Display share button under post content"
 msgstr "ソーシャルボタンを記事本文の下に表示する"
 
-#: admin/theme-options.php:2340
+#: admin/theme-options.php:2411
 msgid "Display archive banner"
 msgstr "記事下にアーカイブページリンクバナーを表示する"
 
-#: admin/theme-options.php:2347
+#: admin/theme-options.php:2418
 msgid "Related introduce setting"
 msgstr "関連紹介記事一覧の設定"
 
-#: admin/theme-options.php:2348
+#: admin/theme-options.php:2419
 msgid ""
 "Recent introduce will be displayed at the bottom of introduce post page."
 msgstr "紹介記事詳細ページの下部に表示される関連紹介記事一覧の設定を行います。"
 
-#: admin/theme-options.php:2349
+#: admin/theme-options.php:2420
 msgid "Display related introduce"
 msgstr "関連紹介記事一覧を表示する"
 
-#: admin/theme-options.php:2350
+#: admin/theme-options.php:2421
 msgid "Headline for related introduce"
 msgstr "関連紹介記事一覧の見出し"
 
-#: admin/theme-options.php:2378
+#: admin/theme-options.php:2449
 msgid "News setting"
 msgstr "お知らせページの設定"
 
-#: admin/theme-options.php:2417
+#: admin/theme-options.php:2488
 msgid "Recent news setting"
 msgstr "最近のお知らせ一覧の設定"
 
-#: admin/theme-options.php:2418
+#: admin/theme-options.php:2489
 msgid "Recent news will be displayed at the bottom of news post page."
 msgstr "お知らせ詳細ページの下部に表示されます。"
 
-#: admin/theme-options.php:2419
+#: admin/theme-options.php:2490
 msgid "Display reccent news list"
 msgstr "最新のお知らせ一覧を表示する"
 
-#: admin/theme-options.php:2420
+#: admin/theme-options.php:2491
 msgid "Headline for Recent news"
 msgstr "最近のお知らせ一覧の見出し"
 
-#: admin/theme-options.php:2422
+#: admin/theme-options.php:2493
 msgid "Archive link text"
 msgstr "アーカイブページのリンクテキスト"
 
-#: admin/theme-options.php:2450
+#: admin/theme-options.php:2521
 msgid "Search settings"
 msgstr "検索設定"
 
-#: admin/theme-options.php:2451
+#: admin/theme-options.php:2522
 msgid "Post type to search for"
 msgstr "検索対象とする投稿タイプ"
 
-#: admin/theme-options.php:2471
+#: admin/theme-options.php:2542
 msgid "Keyword search target"
 msgstr "キーワード検索の検索対象"
 
-#: admin/theme-options.php:2473
+#: admin/theme-options.php:2544
 msgid "Title"
 msgstr "記事タイトル"
 
-#: admin/theme-options.php:2474 admin/theme-options.php:3323
+#: admin/theme-options.php:2545 admin/theme-options.php:3394
 #: functions/password_form.php:43
 msgid "Content"
 msgstr "コンテンツ"
 
-#: admin/theme-options.php:2482
+#: admin/theme-options.php:2553
 msgid "Search form setting"
 msgstr "検索フォーム設定"
 
-#: admin/theme-options.php:2484 admin/theme-options.php:2586
+#: admin/theme-options.php:2555 admin/theme-options.php:2657
 msgid "Keyword search setting"
 msgstr "キーワード検索の設定"
 
-#: admin/theme-options.php:2486 admin/theme-options.php:2588
+#: admin/theme-options.php:2557 admin/theme-options.php:2659
 msgid "Display keywords input"
 msgstr "キーワード検索を表示する"
 
-#: admin/theme-options.php:2488 admin/theme-options.php:2516
-#: admin/theme-options.php:2545 admin/theme-options.php:2574
-#: admin/theme-options.php:2590 admin/theme-options.php:2618
-#: admin/theme-options.php:2647 admin/theme-options.php:2676
+#: admin/theme-options.php:2559 admin/theme-options.php:2587
+#: admin/theme-options.php:2616 admin/theme-options.php:2645
+#: admin/theme-options.php:2661 admin/theme-options.php:2689
+#: admin/theme-options.php:2718 admin/theme-options.php:2747
 msgid "Placeholder"
 msgstr "検索窓にあらかじめ表示する文字列"
 
-#: admin/theme-options.php:2492 admin/theme-options.php:2526
-#: admin/theme-options.php:2555 admin/theme-options.php:2594
-#: admin/theme-options.php:2628 admin/theme-options.php:2657
+#: admin/theme-options.php:2563 admin/theme-options.php:2597
+#: admin/theme-options.php:2626 admin/theme-options.php:2665
+#: admin/theme-options.php:2699 admin/theme-options.php:2728
 msgid "Category drop down search setting"
 msgstr "カテゴリードロップダウン検索の設定"
 
-#: admin/theme-options.php:2520 admin/theme-options.php:2549
-#: admin/theme-options.php:2578 admin/theme-options.php:2622
-#: admin/theme-options.php:2651 admin/theme-options.php:2680
+#: admin/theme-options.php:2591 admin/theme-options.php:2620
+#: admin/theme-options.php:2649 admin/theme-options.php:2693
+#: admin/theme-options.php:2722 admin/theme-options.php:2751
 msgid "Exclude categories"
 msgstr "除外するカテゴリー"
 
-#: admin/theme-options.php:2522 admin/theme-options.php:2551
-#: admin/theme-options.php:2580 admin/theme-options.php:2624
-#: admin/theme-options.php:2653 admin/theme-options.php:2682
+#: admin/theme-options.php:2593 admin/theme-options.php:2622
+#: admin/theme-options.php:2651 admin/theme-options.php:2695
+#: admin/theme-options.php:2724 admin/theme-options.php:2753
 msgid "Enter a comma-seperated list of category ID numbers, example 2,4,10"
 msgstr ""
 "除外したいカテゴリーのIDをカンマを入れて入力してください。例：2,4,10<br />"
 "（注意：最後の数字にはカンマを入力しないでください）"
 
-#: admin/theme-options.php:2524 admin/theme-options.php:2553
-#: admin/theme-options.php:2582 admin/theme-options.php:2626
-#: admin/theme-options.php:2655 admin/theme-options.php:2684
+#: admin/theme-options.php:2595 admin/theme-options.php:2624
+#: admin/theme-options.php:2653 admin/theme-options.php:2697
+#: admin/theme-options.php:2726 admin/theme-options.php:2755
 msgid "Exclude categories from the search results"
 msgstr "検索結果からもこのカテゴリーを除外する"
 
-#: admin/theme-options.php:2687
+#: admin/theme-options.php:2758
 msgid "Search Button setting"
 msgstr "検索ボタンの設定"
 
-#: admin/theme-options.php:2690 pagebuilder/modules/googlemap.php:290
+#: admin/theme-options.php:2761 pagebuilder/modules/googlemap.php:425
 msgid "Button text"
 msgstr "ボタンラベル"
 
-#: admin/theme-options.php:2698 admin/theme-options.php:3178
+#: admin/theme-options.php:2769 admin/theme-options.php:3249
 msgid "Opacity of background"
 msgstr "背景色の透明度"
 
-#: admin/theme-options.php:2701
+#: admin/theme-options.php:2772
 msgid "Please enter the number 0 - 1.0. (e.g. 0)"
 msgstr ""
 "※透明度の数値を0（完全に透明）～1.0（完全に不透明）の範囲で設定してください。"
 "（初期値：0）"
 
-#: admin/theme-options.php:2707
+#: admin/theme-options.php:2778
 msgid "Opacity of background hover"
 msgstr "ボタンにカーソルを合わせた時の背景色の透明度"
 
-#: admin/theme-options.php:2710
+#: admin/theme-options.php:2781
 msgid "Please enter the number 0 - 1.0. (e.g. 1.0)"
 msgstr ""
 "※透明度の数値を0（完全に透明）～1.0（完全に不透明）の範囲で設定してください。"
 "（初期値：1.0）"
 
-#: admin/theme-options.php:2714 admin/theme-options.php:2802
+#: admin/theme-options.php:2785
 msgid "Opacity of background over header content"
 msgstr "検索バー背景色の透明度"
 
-#: admin/theme-options.php:2715
+#: admin/theme-options.php:2786
 msgid ""
 "When you set the header content display setting on the top page, you can set "
 "the search bar background transparency displayed on the header content."
@@ -2373,35 +2464,39 @@ msgstr ""
 "ツ上に表示される検索バー背景色の透明度を設定できます。<br>透明度の値を0（完全"
 "に透明）から1.0（完全に不透明）の範囲で設定してください。初期値は0.6です。"
 
-#: admin/theme-options.php:2717
+#: admin/theme-options.php:2788
 msgid "Display bar other than the top page"
 msgstr "検索バーを表示するページの設定"
 
-#: admin/theme-options.php:2718
+#: admin/theme-options.php:2789
 msgid "Display the search bar outside the top page"
 msgstr "下層ページでも検索バーを表示する"
 
-#: admin/theme-options.php:2724
+#: admin/theme-options.php:2795
 msgid "Setting the search result page"
 msgstr "検索結果ページの設定"
 
-#: admin/theme-options.php:2727
+#: admin/theme-options.php:2798
 msgid "Refine search"
 msgstr "タグによる絞り込み検索"
 
-#: admin/theme-options.php:2755
+#: admin/theme-options.php:2826
 msgid "Header position"
 msgstr "ヘッダーバーの表示位置"
 
-#: admin/theme-options.php:2776
+#: admin/theme-options.php:2847
 msgid "Header position for mobile device"
 msgstr "ヘッダーバーの表示位置（スマホ）"
 
-#: admin/theme-options.php:2797
+#: admin/theme-options.php:2868
 msgid "Color of header"
 msgstr "ヘッダーバーの色の設定"
 
-#: admin/theme-options.php:2803
+#: admin/theme-options.php:2873
+msgid "Opacity of background of header bar"
+msgstr "ヘッダーバーの背景色の透明度"
+
+#: admin/theme-options.php:2874
 msgid ""
 "If you set the header content display setting on the top page, you can set "
 "the header bar background transparency displayed on the header content."
@@ -2412,19 +2507,19 @@ msgstr ""
 "（完全に透明）から1.0（完全に不透明）の範囲で設定してください。初期値は0で"
 "す。"
 
-#: admin/theme-options.php:2805
+#: admin/theme-options.php:2876
 msgid "Text color for fixed header"
 msgstr "テキストカラー（ヘッダーバー固定表示時）"
 
-#: admin/theme-options.php:2807
+#: admin/theme-options.php:2878
 msgid "Background color for fixed header"
 msgstr "背景色（ヘッダーバー固定表示時）"
 
-#: admin/theme-options.php:2809
+#: admin/theme-options.php:2880
 msgid "Opacity of background for fixed header"
 msgstr "背景色の透明度（ヘッダーバー固定表示時）"
 
-#: admin/theme-options.php:2810
+#: admin/theme-options.php:2881
 msgid ""
 "Please set it only when fixed header display is set. Please enter the number "
 "0 - 1.0. (e.g. 0.8)"
@@ -2433,50 +2528,50 @@ msgstr ""
 "ル時のヘッダー透明度を設定できます。<br />透明度の数値を0（完全に透明）～1.0"
 "（完全に不透明）の範囲で設定してください。（初期値：0.8）"
 
-#: admin/theme-options.php:2825
+#: admin/theme-options.php:2896
 msgid "Category menu display setting"
 msgstr "カテゴリーメニューの表示設定"
 
-#: admin/theme-options.php:2828
+#: admin/theme-options.php:2899
 msgid "Display setting of Menu1"
 msgstr "カテゴリーメニュー1の表示設定"
 
-#: admin/theme-options.php:2844
+#: admin/theme-options.php:2915
 msgid "Category to be displayed on menu1"
 msgstr "カテゴリーメニュー1に表示するカテゴリー"
 
-#: admin/theme-options.php:2868
+#: admin/theme-options.php:2939
 msgid "Display setting of Menu2"
 msgstr "カテゴリーメニュー2の表示設定"
 
-#: admin/theme-options.php:2884
+#: admin/theme-options.php:2955
 msgid "Category to be displayed on menu2"
 msgstr "カテゴリーメニュー2に表示するカテゴリー"
 
-#: admin/theme-options.php:2913
+#: admin/theme-options.php:2984
 msgid "Setting footer area contents"
 msgstr "フッターエリアコンテンツの設定"
 
-#: admin/theme-options.php:2916
+#: admin/theme-options.php:2987
 msgid "Setting for contents"
 msgstr "コンテンツの設定"
 
-#: admin/theme-options.php:2934
+#: admin/theme-options.php:3005
 #, php-format
 msgid "Please set footer widget from <a href=\"%s\"> widget setting </a>."
 msgstr ""
 "<a href=\"%s\">ウィジェット設定</a>からフッターウィジェットを設定してくださ"
 "い。"
 
-#: admin/theme-options.php:2939
+#: admin/theme-options.php:3010
 msgid "Footer AdSense"
 msgstr "フッター広告"
 
-#: admin/theme-options.php:2942 admin/theme-options.php:2971
+#: admin/theme-options.php:3013 admin/theme-options.php:3042
 msgid "AdSense code"
 msgstr "広告バナーのコードを登録する"
 
-#: admin/theme-options.php:2946 admin/theme-options.php:2975
+#: admin/theme-options.php:3017 admin/theme-options.php:3046
 msgid ""
 "If you are not using google adsense, you can register your image and url "
 "individually."
@@ -2484,64 +2579,64 @@ msgstr ""
 "画像とアフィリエイトコードを別々に登録したい場合は、上の入力欄を空欄にして下"
 "の入力欄をご利用ください。"
 
-#: admin/theme-options.php:2948 admin/theme-options.php:2977
+#: admin/theme-options.php:3019 admin/theme-options.php:3048
 msgid "AdSense image."
 msgstr "画像を登録する"
 
-#: admin/theme-options.php:2961 admin/theme-options.php:2990
+#: admin/theme-options.php:3032 admin/theme-options.php:3061
 msgid "AdSense url"
 msgstr ""
 "登録した画像に対するアフィリエイトコードもしくはリンクURLを登録してください"
 
-#: admin/theme-options.php:2968
+#: admin/theme-options.php:3039
 msgid "Footer AdSense for mobile"
 msgstr "フッター広告（スマホ用）"
 
-#: admin/theme-options.php:2997
+#: admin/theme-options.php:3068
 msgid "Footer menu1"
 msgstr "フッターメニュー1"
 
-#: admin/theme-options.php:3000 admin/theme-options.php:3025
+#: admin/theme-options.php:3071 admin/theme-options.php:3096
 msgid "Select menu"
 msgstr "表示するカスタムメニューを選択"
 
-#: admin/theme-options.php:3002 admin/theme-options.php:3027
+#: admin/theme-options.php:3073 admin/theme-options.php:3098
 msgid "Select a Menu"
 msgstr "メニューを選択"
 
-#: admin/theme-options.php:3022
+#: admin/theme-options.php:3093
 msgid "Footer menu2"
 msgstr "フッターメニュー2"
 
-#: admin/theme-options.php:3046 admin/theme-options.php:3081
+#: admin/theme-options.php:3117 admin/theme-options.php:3152
 msgid "Footer image banner"
 msgstr "フッターバナー"
 
-#: admin/theme-options.php:3049 admin/theme-options.php:3084
+#: admin/theme-options.php:3120 admin/theme-options.php:3155
 msgid "Banner title"
 msgstr "バナーのタイトル"
 
-#: admin/theme-options.php:3053 admin/theme-options.php:3088
+#: admin/theme-options.php:3124 admin/theme-options.php:3159
 msgid "Banner url"
 msgstr "バナーのリンク先URL"
 
-#: admin/theme-options.php:3058 admin/theme-options.php:3093
+#: admin/theme-options.php:3129 admin/theme-options.php:3164
 msgid "Banner image."
 msgstr "バナーの背景画像"
 
-#: admin/theme-options.php:3058 admin/theme-options.php:3093
+#: admin/theme-options.php:3129 admin/theme-options.php:3164
 msgid "Recommend size. Width:368px Height:110px"
 msgstr "（推奨サイズ：横幅300px、縦幅250px）"
 
-#: admin/theme-options.php:3069 admin/theme-options.php:3104
+#: admin/theme-options.php:3140 admin/theme-options.php:3175
 msgid "Doropshadow setting"
 msgstr "タイトルのドロップシャドウの設定"
 
-#: admin/theme-options.php:3121
+#: admin/theme-options.php:3192
 msgid "SNS button setting"
 msgstr "SNSボタンの設定"
 
-#: admin/theme-options.php:3122
+#: admin/theme-options.php:3193
 msgid ""
 "Enter url of your twitter, facebook and instagram page. If it is blank SNS "
 "button will not be shown."
@@ -2549,50 +2644,50 @@ msgstr ""
 "フッター最下部にSNSボタンを表示できます。<br />ボタンを表示したいSNSのページ"
 "URLを入力してください。<br />空欄の場合、そのボタンは表示されません。"
 
-#: admin/theme-options.php:3125
+#: admin/theme-options.php:3196
 msgid "your twitter URL"
 msgstr "あなたのtwitter URL"
 
-#: admin/theme-options.php:3129
+#: admin/theme-options.php:3200
 msgid "your facebook URL"
 msgstr "あなたのfacebook URL"
 
-#: admin/theme-options.php:3133
+#: admin/theme-options.php:3204
 msgid "your instagram URL"
 msgstr "あなたのInstagramページのURL"
 
-#: admin/theme-options.php:3138
+#: admin/theme-options.php:3209
 msgid "Display RSS button"
 msgstr "RSSボタンを表示する"
 
-#: admin/theme-options.php:3144
+#: admin/theme-options.php:3215
 msgid "Setting of the footer bar for smart phone"
 msgstr "スマホ用固定フッターバーの設定"
 
-#: admin/theme-options.php:3145
+#: admin/theme-options.php:3216
 msgid "Please set the footer bar which is displayed with smart phone."
 msgstr ""
 "スマホ表示時のみ、フッター部に固定表示されるフッターバーの設定を行います。"
 
-#: admin/theme-options.php:3147
+#: admin/theme-options.php:3218
 msgid "Display type of the footer bar"
 msgstr "フッターバーの表示方法"
 
-#: admin/theme-options.php:3164
+#: admin/theme-options.php:3235
 msgid "Settings for the appearance of the footer bar"
 msgstr "フッターバーの外観の設定"
 
-#: admin/theme-options.php:3180
+#: admin/theme-options.php:3251
 msgid "Please enter the number 0 - 1.0. (e.g. 0.8)"
 msgstr ""
 "透明度の数値を0（完全に透明）～1.0（完全に不透明）の範囲で設定してください。"
 "（初期値：0.8）"
 
-#: admin/theme-options.php:3183
+#: admin/theme-options.php:3254
 msgid "Settings for the contents of the footer bar"
 msgstr "フッターバーの内容の設定"
 
-#: admin/theme-options.php:3184
+#: admin/theme-options.php:3255
 msgid ""
 "You can display the button with icon in footer bar. (We recommend you to set "
 "max 4 buttons.)"
@@ -2600,29 +2695,29 @@ msgstr ""
 "フッターバーには任意のアイコン付きボタンを表示できます。（ボタン数は最大で4つ"
 "までを推奨いたします）"
 
-#: admin/theme-options.php:3184
+#: admin/theme-options.php:3255
 msgid "You can select button types below."
 msgstr "表示できるボタンのタイプは以下の通りです。"
 
-#: admin/theme-options.php:3188
+#: admin/theme-options.php:3259
 msgid "You can set link URL."
 msgstr ""
 "任意のリンク先URLを指定できます。例：「新着情報」（ニュースアーカイブページの"
 "URLを設定）「お問い合わせ」（お問い合わせページのURLを設定）など"
 
-#: admin/theme-options.php:3192
+#: admin/theme-options.php:3263
 msgid "Share buttons are displayed if you tap this button."
 msgstr ""
 "このボタンをタップでTwitter、Facebook、LINE、はてなブックマークのシェアボタン"
 "がポップアップ表示されます。"
 
-#: admin/theme-options.php:3196
+#: admin/theme-options.php:3267
 msgid "You can call this number."
 msgstr ""
 "このボタンをタップでダイヤル画面に遷移し、設定された電話番号に電話がかけられ"
 "ます。"
 
-#: admin/theme-options.php:3199
+#: admin/theme-options.php:3270
 msgid ""
 "Click \"Add item\", and set the button for footer bar. You can drag the item "
 "to change their order."
@@ -2630,65 +2725,65 @@ msgstr ""
 "「新しいアイテムを追加する」から項目を追加し、表示内容を設定して下さい。追加"
 "したボタンは、各項目をドラッグして順番を変更することが出来ます。"
 
-#: admin/theme-options.php:3209 admin/theme-options.php:3256
+#: admin/theme-options.php:3280 admin/theme-options.php:3327
 msgid "Open with new window"
 msgstr "リンク先のURLを新しいウィンドウで表示する"
 
-#: admin/theme-options.php:3212 admin/theme-options.php:3259
+#: admin/theme-options.php:3283 admin/theme-options.php:3330
 msgid "Button type"
 msgstr "ボタンのタイプ"
 
-#: admin/theme-options.php:3223 admin/theme-options.php:3269
+#: admin/theme-options.php:3294 admin/theme-options.php:3340
 msgid "Button label"
 msgstr "ボタンに表示する文字"
 
-#: admin/theme-options.php:3231 admin/theme-options.php:3277
+#: admin/theme-options.php:3302 admin/theme-options.php:3348
 msgid "Phone number"
 msgstr "電話番号"
 
-#: admin/theme-options.php:3235 admin/theme-options.php:3281
+#: admin/theme-options.php:3306 admin/theme-options.php:3352
 msgid "Button icon"
 msgstr "ボタンのアイコン"
 
-#: admin/theme-options.php:3311
+#: admin/theme-options.php:3382
 msgid "Password protected pages settings"
 msgstr "保護ページの設定"
 
-#: admin/theme-options.php:3312
+#: admin/theme-options.php:3383
 msgid "Password field and button align settings"
 msgstr "パスワード欄の表示位置"
 
-#: admin/theme-options.php:3318
+#: admin/theme-options.php:3389
 msgid "Password field settings"
 msgstr "パスワード欄の設定"
 
-#: admin/theme-options.php:3320 functions/password_form.php:26
+#: admin/theme-options.php:3391 functions/password_form.php:26
 msgid "Contents to encourage member registration"
 msgstr "会員登録への誘導コンテンツ"
 
-#: admin/theme-options.php:3325
+#: admin/theme-options.php:3396
 msgid "Name of contents"
 msgstr "コンテンツ名"
 
-#: admin/theme-options.php:3326
+#: admin/theme-options.php:3397
 msgid "\"Name of contents\" is used in edit post page."
 msgstr ""
 "※設定したコンテンツ名は投稿編集画面下部「会員登録への誘導コンテンツ」の選択項"
 "目名としてのみ使用されます。"
 
-#: admin/theme-options.php:3327
+#: admin/theme-options.php:3398
 msgid "Button settings"
 msgstr "ボタンの設定"
 
-#: admin/theme-options.php:3328 pagebuilder/modules/googlemap.php:287
+#: admin/theme-options.php:3399 pagebuilder/modules/googlemap.php:422
 msgid "Display button"
 msgstr "ボタンを表示する"
 
-#: admin/theme-options.php:3332
+#: admin/theme-options.php:3403
 msgid "Sentences to encourage member registration"
 msgstr "会員登録への誘導文"
 
-#: admin/theme-options.php:3333
+#: admin/theme-options.php:3404
 msgid ""
 "\"Sentences to encourage member registration\" is displayed under excerpts."
 msgstr ""
@@ -2792,7 +2887,7 @@ msgstr ""
 msgid "Recommend image size. Width:860px, Height:550px"
 msgstr "推奨サイズ：横幅860px、縦幅550px"
 
-#: functions/introduce_cf.php:50 pagebuilder/modules/tab.php:829
+#: functions/introduce_cf.php:50 pagebuilder/modules/tab.php:927
 msgid "Image caption"
 msgstr "画像の説明文（キャプション）"
 
@@ -2842,14 +2937,6 @@ msgstr "ヘッダー画像の設定"
 #: functions/page_cf2.php:35
 msgid "If you want enter 0, please leave the field blank."
 msgstr "0pxにしたい場合は、入力欄を空欄にしてください。"
-
-#: functions/page_cf2.php:45 functions/page_cf2.php:47
-#: pagebuilder/modules/image.php:11 pagebuilder/modules/image.php:33
-#: pagebuilder/modules/slider.php:132 pagebuilder/modules/slider.php:146
-#: pagebuilder/modules/tab.php:578 pagebuilder/modules/tab.php:803
-#: pagebuilder/modules/tab.php:820
-msgid "Image"
-msgstr "画像"
 
 #: functions/page_cf2.php:46
 msgid ""
@@ -2939,40 +3026,48 @@ msgstr "%sに関する記事一覧"
 msgid "Archive for %s"
 msgstr "%sの記事一覧"
 
-#: pagebuilder/pagebuilder.php:89
+#: pagebuilder/pagebuilder.php:73 pagebuilder/pagebuilder.php:98
 msgid "Page Builder"
 msgstr "ページビルダー"
 
-#: pagebuilder/pagebuilder.php:148
+#: pagebuilder/pagebuilder.php:74
+msgid "Visual Editor"
+msgstr ""
+
+#: pagebuilder/pagebuilder.php:75
+msgid "Code Editor"
+msgstr ""
+
+#: pagebuilder/pagebuilder.php:161
 msgid "Revert to Editor"
 msgstr "通常のエディタに戻る"
 
-#: pagebuilder/pagebuilder.php:149 pagebuilder/pagebuilder.php:155
+#: pagebuilder/pagebuilder.php:162 pagebuilder/pagebuilder.php:168
 msgid "Please click Add row button to start page builder."
 msgstr "「行の追加」をクリックして行を追加してください。"
 
-#: pagebuilder/pagebuilder.php:150 pagebuilder/pagebuilder.php:181
+#: pagebuilder/pagebuilder.php:163 pagebuilder/pagebuilder.php:193
 msgid "Add row"
 msgstr "行を追加する"
 
-#: pagebuilder/pagebuilder.php:182
+#: pagebuilder/pagebuilder.php:194
 msgid "Add"
 msgstr "追加"
 
-#: pagebuilder/pagebuilder.php:183 pagebuilder/pagebuilder.php:411
+#: pagebuilder/pagebuilder.php:195 pagebuilder/pagebuilder.php:422
 msgid "Row setting"
 msgstr "行の設定"
 
-#: pagebuilder/pagebuilder.php:183 pagebuilder/pagebuilder.php:412
-#: pagebuilder/pagebuilder.php:615
+#: pagebuilder/pagebuilder.php:195 pagebuilder/pagebuilder.php:423
+#: pagebuilder/pagebuilder.php:763
 msgid "Done"
 msgstr "完了"
 
-#: pagebuilder/pagebuilder.php:232
+#: pagebuilder/pagebuilder.php:244
 msgid "Edit row"
 msgstr "行を編集する"
 
-#: pagebuilder/pagebuilder.php:233 pagebuilder/pagebuilder.php:449
+#: pagebuilder/pagebuilder.php:245 pagebuilder/pagebuilder.php:480
 msgid ""
 "Do you want to delete this row?\n"
 "If you delete this row, registered contents will also be deleted."
@@ -2980,55 +3075,55 @@ msgstr ""
 "この行を削除しますか？\n"
 "コンテンツが含まれる場合はコンテンツも削除されます。"
 
-#: pagebuilder/pagebuilder.php:233
+#: pagebuilder/pagebuilder.php:245
 msgid "Delete row"
 msgstr "行を削除する"
 
-#: pagebuilder/pagebuilder.php:380 pagebuilder/pagebuilder.php:654
+#: pagebuilder/pagebuilder.php:391 pagebuilder/pagebuilder.php:805
 msgid "Clone"
 msgstr "複製する"
 
-#: pagebuilder/pagebuilder.php:381 pagebuilder/pagebuilder.php:653
+#: pagebuilder/pagebuilder.php:392 pagebuilder/pagebuilder.php:804
 msgid "Do you want to delete this content?"
 msgstr "このコンテンツを削除してもよろしいでしょうか？"
 
-#: pagebuilder/pagebuilder.php:458
+#: pagebuilder/pagebuilder.php:489
 msgid "Number of column"
 msgstr "カラムの数"
 
-#: pagebuilder/pagebuilder.php:486
+#: pagebuilder/pagebuilder.php:517
 msgid "Layout setting"
 msgstr "レイアウトの設定"
 
-#: pagebuilder/pagebuilder.php:489
+#: pagebuilder/pagebuilder.php:520
 msgid "Margin bottom of the row"
 msgstr "行の下のスペース"
 
-#: pagebuilder/pagebuilder.php:491 pagebuilder/pagebuilder.php:497
+#: pagebuilder/pagebuilder.php:522 pagebuilder/pagebuilder.php:528
 msgid "Space below the row.<br />Default is 30px."
 msgstr "行の下に空けるスペース。<br />初期設定では30pxです。"
 
-#: pagebuilder/pagebuilder.php:495
+#: pagebuilder/pagebuilder.php:526
 msgid "Margin bottom of the row for mobile"
 msgstr "カラム間のスペース（スマホ用）"
 
-#: pagebuilder/pagebuilder.php:501
+#: pagebuilder/pagebuilder.php:532
 msgid "Gutter"
 msgstr "カラム間のスペース"
 
-#: pagebuilder/pagebuilder.php:503 pagebuilder/pagebuilder.php:509
+#: pagebuilder/pagebuilder.php:534 pagebuilder/pagebuilder.php:540
 msgid "Amount of space between columns.<br />Default is 30px."
 msgstr "カラムとカラムの間に空けるスペース。<br />初期設定では30pxです。"
 
-#: pagebuilder/pagebuilder.php:507
-msgid "Gutter  for mobile"
-msgstr "カラム間のスペース（スマホ用）"
+#: pagebuilder/pagebuilder.php:538
+msgid "Gutter for mobile"
+msgstr "カラム間のスペース（スマートフォン用）"
 
-#: pagebuilder/pagebuilder.php:518
+#: pagebuilder/pagebuilder.php:544
 msgid "Row width"
 msgstr "行の横幅"
 
-#: pagebuilder/pagebuilder.php:520
+#: pagebuilder/pagebuilder.php:546
 msgid ""
 "Please register the <strong>px</strong> of width if you want to change the "
 "width of this row.<br /><br />If you registered the width, the row will be "
@@ -3037,211 +3132,413 @@ msgstr ""
 "任意の数字を指定することによって行の横幅を変更することが出来ます。<br /><br /"
 ">横幅を指定した場合、行の配置は中央に配置されます。"
 
-#: pagebuilder/pagebuilder.php:524
+#: pagebuilder/pagebuilder.php:550
 msgid "Layout of column at mobile device."
 msgstr "スマートフォンでの表示方法"
 
-#: pagebuilder/pagebuilder.php:528
+#: pagebuilder/pagebuilder.php:554
 msgid "Display vertically"
 msgstr "横並びの状態を解除する"
 
-#: pagebuilder/pagebuilder.php:529
+#: pagebuilder/pagebuilder.php:555
 msgid "Keep in horizontal"
 msgstr "横並びの状態を保つ"
 
-#: pagebuilder/pagebuilder.php:543
+#: pagebuilder/pagebuilder.php:569
 msgid "Splitting contents"
 msgstr "ページ分割の設定"
 
-#: pagebuilder/pagebuilder.php:545
+#: pagebuilder/pagebuilder.php:571
 msgid "Display this row at next page."
 msgstr "この行のコンテンツを次のページに表示する"
 
-#: pagebuilder/pagebuilder.php:561
+#: pagebuilder/pagebuilder.php:575 pagebuilder/pagebuilder.php:1969
+msgid "Background setting"
+msgstr "背景色の設定"
+
+#: pagebuilder/pagebuilder.php:583 pagebuilder/pagebuilder.php:1983
+msgid "Border setting"
+msgstr "枠線の設定"
+
+#: pagebuilder/pagebuilder.php:590 pagebuilder/pagebuilder.php:1990
+msgid "Display top border"
+msgstr "上ボーダーを表示する"
+
+#: pagebuilder/pagebuilder.php:596 pagebuilder/pagebuilder.php:1996
+msgid "Display bottom border"
+msgstr "下ボーダーを表示する"
+
+#: pagebuilder/pagebuilder.php:602 pagebuilder/pagebuilder.php:2002
+msgid "Display left border"
+msgstr "左ボーダーを表示する"
+
+#: pagebuilder/pagebuilder.php:608 pagebuilder/pagebuilder.php:2008
+msgid "Display right border"
+msgstr "右ボーダーを表示する"
+
+#: pagebuilder/pagebuilder.php:614 pagebuilder/pagebuilder.php:2014
+msgid "Display top border for mobile"
+msgstr "上ボーダーを表示する（スマホ用）"
+
+#: pagebuilder/pagebuilder.php:620 pagebuilder/pagebuilder.php:2020
+msgid "Display bottom border for mobile"
+msgstr "下ボーダーを表示する（スマホ用）"
+
+#: pagebuilder/pagebuilder.php:626 pagebuilder/pagebuilder.php:2026
+msgid "Display left border for mobile"
+msgstr "左ボーダーを表示する（スマホ用）"
+
+#: pagebuilder/pagebuilder.php:632 pagebuilder/pagebuilder.php:2032
+msgid "Display right border for mobile"
+msgstr "右ボーダーを表示する（スマホ用）"
+
+#: pagebuilder/pagebuilder.php:644 pagebuilder/pagebuilder.php:2044
+msgid "Border width"
+msgstr "枠線の太さ"
+
+#: pagebuilder/pagebuilder.php:648 pagebuilder/pagebuilder.php:2049
+msgid "Border width for mobile"
+msgstr "枠線の太さ（スマホ用）"
+
+#: pagebuilder/pagebuilder.php:653 pagebuilder/pagebuilder.php:2054
+msgid "Padding setting"
+msgstr "内側のスペースの設定"
+
+#: pagebuilder/pagebuilder.php:656 pagebuilder/pagebuilder.php:2057
+msgid "Top padding width"
+msgstr "内側のスペース（上）"
+
+#: pagebuilder/pagebuilder.php:661 pagebuilder/pagebuilder.php:2062
+msgid "Bottom padding width"
+msgstr "内側のスペース（下）"
+
+#: pagebuilder/pagebuilder.php:666 pagebuilder/pagebuilder.php:2067
+msgid "Left padding width"
+msgstr "内側のスペース（左）"
+
+#: pagebuilder/pagebuilder.php:671 pagebuilder/pagebuilder.php:2072
+msgid "Right padding width"
+msgstr "内側のスペース（右）"
+
+#: pagebuilder/pagebuilder.php:676 pagebuilder/pagebuilder.php:2077
+msgid "Top padding width for mobile"
+msgstr "内側のスペース（上・スマホ用）"
+
+#: pagebuilder/pagebuilder.php:681 pagebuilder/pagebuilder.php:2082
+msgid "Bottom padding width for mobile"
+msgstr "内側のスペース（下・スマホ用）"
+
+#: pagebuilder/pagebuilder.php:686 pagebuilder/pagebuilder.php:2087
+msgid "Left padding width for mobile"
+msgstr "内側のスペース（左・スマホ用）"
+
+#: pagebuilder/pagebuilder.php:691 pagebuilder/pagebuilder.php:2092
+msgid "Right padding width for mobile"
+msgstr "内側のスペース（右・スマホ用）"
+
+#: pagebuilder/pagebuilder.php:709
 msgid "Select the content"
 msgstr "コンテンツを選択してください"
 
-#: pagebuilder/pagebuilder.php:611
+#: pagebuilder/pagebuilder.php:759
 msgid " setting"
 msgstr "の設定"
 
-#: pagebuilder/modules/catchcopy.php:60 pagebuilder/modules/googlemap.php:200
-#: pagebuilder/modules/googlemap.php:251 pagebuilder/modules/headline.php:60
-#: pagebuilder/modules/tab.php:603 pagebuilder/modules/tab.php:654
-msgid "Font family"
-msgstr "フォントタイプ"
-
-#: pagebuilder/modules/catchcopy.php:80 pagebuilder/modules/googlemap.php:216
-#: pagebuilder/modules/googlemap.php:267 pagebuilder/modules/headline.php:80
-#: pagebuilder/modules/tab.php:619 pagebuilder/modules/tab.php:670
-msgid "Text align"
-msgstr "テキストの整列"
-
-#: pagebuilder/modules/catchcopy.php:85 pagebuilder/modules/googlemap.php:91
-#: pagebuilder/modules/headline.php:85 pagebuilder/modules/tab.php:564
-msgid "Align right"
-msgstr "右寄せ"
-
-#: pagebuilder/modules/catchcopy.php:117 pagebuilder/modules/editor.php:68
-#: pagebuilder/modules/googlemap.php:353 pagebuilder/modules/headline.php:117
-#: pagebuilder/modules/image.php:92 pagebuilder/modules/slider.php:186
-#: pagebuilder/modules/tab.php:867
+#: pagebuilder/pagebuilder.php:1954
 msgid "Margin setting"
 msgstr "スペースの設定"
 
-#: pagebuilder/modules/catchcopy.php:119 pagebuilder/modules/editor.php:70
-#: pagebuilder/modules/googlemap.php:355 pagebuilder/modules/headline.php:119
-#: pagebuilder/modules/image.php:94 pagebuilder/modules/slider.php:188
-#: pagebuilder/modules/tab.php:869
+#: pagebuilder/pagebuilder.php:1957
 msgid "Margin bottom"
 msgstr "下のスペース"
 
-#: pagebuilder/modules/catchcopy.php:121 pagebuilder/modules/catchcopy.php:126
-#: pagebuilder/modules/editor.php:72 pagebuilder/modules/editor.php:77
-#: pagebuilder/modules/googlemap.php:357 pagebuilder/modules/googlemap.php:362
-#: pagebuilder/modules/headline.php:121 pagebuilder/modules/headline.php:126
-#: pagebuilder/modules/image.php:96 pagebuilder/modules/image.php:101
-#: pagebuilder/modules/slider.php:190 pagebuilder/modules/slider.php:195
-#: pagebuilder/modules/tab.php:871 pagebuilder/modules/tab.php:876
+#: pagebuilder/pagebuilder.php:1959 pagebuilder/pagebuilder.php:1965
 msgid "Space below the content.<br />Default is 30px."
 msgstr "コンテンツの下に空けるスペース。<br />初期設定では30pxです。"
 
-#: pagebuilder/modules/catchcopy.php:124 pagebuilder/modules/editor.php:75
-#: pagebuilder/modules/googlemap.php:360 pagebuilder/modules/headline.php:124
-#: pagebuilder/modules/image.php:99 pagebuilder/modules/slider.php:193
-#: pagebuilder/modules/tab.php:874
+#: pagebuilder/pagebuilder.php:1963
 msgid "Margin bottom for mobile"
 msgstr "下のスペース（スマートフォン用）"
 
-#: pagebuilder/modules/editor.php:11 pagebuilder/modules/tab.php:326
+#: pagebuilder/pagebuilder.php:1974
+msgid "Set the background color"
+msgstr "背景色を設定してください。"
+
+#: pagebuilder/modules/catchcopy.php:43 pagebuilder/modules/googlemap.php:108
+#: pagebuilder/modules/headline.php:43 pagebuilder/modules/tab.php:662
+msgid "Align right"
+msgstr "右寄せ"
+
+#: pagebuilder/modules/catchcopy.php:68 pagebuilder/modules/googlemap.php:335
+#: pagebuilder/modules/googlemap.php:386 pagebuilder/modules/headline.php:68
+#: pagebuilder/modules/tab.php:701 pagebuilder/modules/tab.php:752
+msgid "Font family"
+msgstr "フォントタイプ"
+
+#: pagebuilder/modules/catchcopy.php:88 pagebuilder/modules/googlemap.php:351
+#: pagebuilder/modules/googlemap.php:402 pagebuilder/modules/headline.php:88
+#: pagebuilder/modules/tab.php:717 pagebuilder/modules/tab.php:768
+msgid "Text align"
+msgstr "テキストの整列"
+
+#: pagebuilder/modules/catchcopy.php:103 pagebuilder/modules/headline.php:103
+msgid "Text align for mobile"
+msgstr "フォントの整列（スマホ用）"
+
+#: pagebuilder/modules/editor.php:11 pagebuilder/modules/tab.php:414
 msgid "Sentence"
 msgstr "文章"
 
-#: pagebuilder/modules/googlemap.php:11
+#: pagebuilder/modules/googlemap.php:10
 msgid "Google Map"
 msgstr "Googleマップ"
 
-#: pagebuilder/modules/googlemap.php:96
-msgid "Google Maps type"
-msgstr "Googleマップのタイプ"
+#: pagebuilder/modules/googlemap.php:35 pagebuilder/modules/googlemap.php:36
+msgid "View in Google Maps"
+msgstr "大きな地図で見る"
 
-#: pagebuilder/modules/googlemap.php:99
-msgid "Use Google map iframe code"
-msgstr "Googleマップのiframeコードを使う"
+#: pagebuilder/modules/googlemap.php:113
+msgid "Use settings in Theme Options"
+msgstr "テーマオプションの設定を使用する"
 
-#: pagebuilder/modules/googlemap.php:100 pagebuilder/modules/googlemap.php:120
-msgid "Use TCD Google Maps plugin"
-msgstr "TCD Google Mapsプラグインを使う"
+#: pagebuilder/modules/googlemap.php:130
+msgid "Map address"
+msgstr "地図の住所"
 
-#: pagebuilder/modules/googlemap.php:115
-msgid "Google map iframe code"
-msgstr "Googleマップのiframeコード"
+#: pagebuilder/modules/googlemap.php:135
+msgid "Logo image"
+msgstr "ロゴ画像"
 
-#: pagebuilder/modules/googlemap.php:125
+#: pagebuilder/modules/googlemap.php:136
+msgid "The logo image is displayed after the map."
+msgstr "マップの下に表示されます。"
+
+#: pagebuilder/modules/googlemap.php:146
+msgid "The description is displayed after the map."
+msgstr "マップの下に表示されます。"
+
+#: pagebuilder/modules/googlemap.php:151
+msgid "\"View in Google Maps\" settings"
+msgstr "「大きな地図で見る」ボタン設定"
+
+#: pagebuilder/modules/googlemap.php:154
+msgid "Link label"
+msgstr "リンクのラベル"
+
+#: pagebuilder/modules/googlemap.php:158
+msgid "Link label for mobile"
+msgstr "リンクのラベル（スマホ用）"
+
+#: pagebuilder/modules/googlemap.php:178 pagebuilder/modules/slider.php:94
+msgid "Background color on hover"
+msgstr "カーソルを合わせた時の背景色"
+
+#: pagebuilder/modules/googlemap.php:182
+msgid "Font color on hover"
+msgstr "カーソルを合わせた時のフォントの色"
+
+#: pagebuilder/modules/googlemap.php:186
+msgid "Border color on hover"
+msgstr "カーソルを合わせた時の枠線の色"
+
+#: pagebuilder/modules/googlemap.php:193
+msgid "Saturation"
+msgstr "彩度"
+
+#: pagebuilder/modules/googlemap.php:194
+msgid ""
+"Please set the saturation of the map. If you set it to -100 the output map "
+"is monochrome."
+msgstr ""
+"地図の彩度を設定してください。モノクロにするには彩度を -100 にしてください。"
+
+#: pagebuilder/modules/googlemap.php:196
+msgid "Current value: "
+msgstr "現在の値："
+
+#: pagebuilder/modules/googlemap.php:258
 msgid "Overlay text setting"
 msgstr "地図に重ねて表示するオーバーレイテキストの設定"
 
-#: pagebuilder/modules/googlemap.php:126
+#: pagebuilder/modules/googlemap.php:259
 msgid "You can display the background color and text overlaid on the map."
 msgstr "地図と一緒に住所や電話番号等のテキスト情報を表示することができます。"
 
-#: pagebuilder/modules/googlemap.php:128
+#: pagebuilder/modules/googlemap.php:262
 msgid "Display overlay text"
 msgstr "オーバーレイテキストを表示する"
 
-#: pagebuilder/modules/googlemap.php:132
+#: pagebuilder/modules/googlemap.php:267
 msgid "Overlay text layout"
 msgstr "レイアウト"
 
-#: pagebuilder/modules/googlemap.php:135
+#: pagebuilder/modules/googlemap.php:270
 msgid "Type1 (display text contents on the left side)"
 msgstr "タイプ1（テキスト：左）"
 
-#: pagebuilder/modules/googlemap.php:136
+#: pagebuilder/modules/googlemap.php:271
 msgid "Type2 (display text contents on the right side)"
 msgstr "タイプ2（テキスト：右）"
 
-#: pagebuilder/modules/googlemap.php:151
+#: pagebuilder/modules/googlemap.php:286
 msgid "Google map layout"
 msgstr "地図の表示幅"
 
-#: pagebuilder/modules/googlemap.php:154 widget/icon_link_list.php:153
+#: pagebuilder/modules/googlemap.php:289 widget/icon_link_list.php:153
 msgid "Full width"
 msgstr "フル幅"
 
-#: pagebuilder/modules/googlemap.php:155 widget/icon_link_list.php:155
+#: pagebuilder/modules/googlemap.php:290 widget/icon_link_list.php:155
 msgid "Half width"
 msgstr "1/2幅"
 
-#: pagebuilder/modules/googlemap.php:170
+#: pagebuilder/modules/googlemap.php:305
 msgid "Overlay background color"
 msgstr "テキストの背景色"
 
-#: pagebuilder/modules/googlemap.php:174
+#: pagebuilder/modules/googlemap.php:309
 msgid "Transparency"
 msgstr "背景色の透明度"
 
-#: pagebuilder/modules/googlemap.php:177
+#: pagebuilder/modules/googlemap.php:312
 msgid "Please enter the number 0 - 1.0. (e.g. 0.5)"
 msgstr ""
 "透明度の数値を0（完全に透明）～1.0（完全に不透明）の範囲で設定してください。"
 "（初期値：0.5）"
 
-#: pagebuilder/modules/googlemap.php:286
+#: pagebuilder/modules/googlemap.php:421
 msgid "Button Settings"
 msgstr "ボタンの設定"
 
-#: pagebuilder/modules/googlemap.php:310
+#: pagebuilder/modules/googlemap.php:445
 msgid "Background color transparency"
 msgstr "背景色の透明度"
 
-#: pagebuilder/modules/googlemap.php:318
+#: pagebuilder/modules/googlemap.php:453
 msgid "Font color (hover)"
 msgstr "ボタンにカーソルを合わせた時のフォントの色"
 
-#: pagebuilder/modules/googlemap.php:322
+#: pagebuilder/modules/googlemap.php:457
 msgid "Background color (hover)"
 msgstr "ボタンにカーソルを合わせた時の背景色"
 
-#: pagebuilder/modules/googlemap.php:326
+#: pagebuilder/modules/googlemap.php:461
 msgid "Background color transparency (hover)"
 msgstr "ボタンにカーソルを合わせた時の背景色の透明度"
 
-#: pagebuilder/modules/googlemap.php:330
+#: pagebuilder/modules/googlemap.php:465
 msgid "Border color (hover)"
 msgstr "ボタンにカーソルを合わせた時の枠線の色"
 
-#: pagebuilder/modules/image.php:42
+#: pagebuilder/modules/image.php:43
 msgid "Image size"
 msgstr "画像サイズ"
 
-#: pagebuilder/modules/image.php:47
+#: pagebuilder/modules/image.php:48
 msgid "Thumbnail size"
 msgstr "サムネイルサイズ"
 
-#: pagebuilder/modules/image.php:48
+#: pagebuilder/modules/image.php:49
 msgid "Medium size"
 msgstr "中サイズ"
 
-#: pagebuilder/modules/image.php:49
+#: pagebuilder/modules/image.php:50
 msgid "Large size"
 msgstr "大サイズ"
 
-#: pagebuilder/modules/image.php:50
+#: pagebuilder/modules/image.php:51
 msgid "Full size"
 msgstr "フルサイズ"
 
-#: pagebuilder/modules/image.php:64 pagebuilder/modules/slider.php:155
+#: pagebuilder/modules/image.php:65
+msgid "Circle image"
+msgstr "円形画像"
+
+#: pagebuilder/modules/image.php:67
+msgid "Display as Circle image"
+msgstr "画像を円形で表示する"
+
+#: pagebuilder/modules/image.php:71 pagebuilder/modules/slider.php:271
 msgid "Link URL for image"
 msgstr "リンク先のURL"
 
-#: pagebuilder/modules/image.php:69 pagebuilder/modules/slider.php:160
+#: pagebuilder/modules/image.php:76 pagebuilder/modules/slider.php:276
 msgid "Link target"
 msgstr "リンク先のURLを新しいウィンドウで表示する"
 
-#: pagebuilder/modules/image.php:71 pagebuilder/modules/slider.php:162
+#: pagebuilder/modules/image.php:78 pagebuilder/modules/slider.php:278
 msgid "Use target blank for this link"
 msgstr "リンク先のURLを新しいウィンドウで表示する"
+
+#: pagebuilder/modules/simple_table.php:12
+msgid "Sipmle table"
+msgstr "シンプルテーブル"
+
+#: pagebuilder/modules/simple_table.php:13
+msgid "You can display two columns table."
+msgstr "2列の表コンテンツを表示することができます。"
+
+#: pagebuilder/modules/simple_table.php:101
+msgid "Color for headline"
+msgstr "フォントの色"
+
+#: pagebuilder/modules/simple_table.php:106
+msgid "Background color for headline"
+msgstr "背景色"
+
+#: pagebuilder/modules/simple_table.php:163 pagebuilder/modules/slider.php:256
+#: pagebuilder/modules/tab.php:377 pagebuilder/modules/tab.php:670
+#: pagebuilder/modules/tab.php:912
+msgid "Are you sure you want to delete this item?"
+msgstr "このアイテムを削除してもよろしいでしょうか？"
+
+#: pagebuilder/modules/simple_table.php:173
+msgid "Content type"
+msgstr "コンテンツタイプ"
+
+#: pagebuilder/modules/simple_table.php:177
+msgid "SNS icon"
+msgstr "SNSアイコン"
+
+#: pagebuilder/modules/simple_table.php:196
+msgid "Website URL"
+msgstr "あなたのサイトURL"
+
+#: pagebuilder/modules/simple_table.php:200
+msgid "Facebook URL"
+msgstr "あなたのFacebook URL"
+
+#: pagebuilder/modules/simple_table.php:204
+msgid "Twitter URL"
+msgstr "あなたのTwitter URL"
+
+#: pagebuilder/modules/simple_table.php:208
+msgid "Instagram URL"
+msgstr "あなたの Instagram URL"
+
+#: pagebuilder/modules/simple_table.php:212
+msgid "Pinterest URL"
+msgstr "あなたの Pinterest URL"
+
+#: pagebuilder/modules/simple_table.php:216
+msgid "Flickr URL"
+msgstr "あなたのFlickr URL"
+
+#: pagebuilder/modules/simple_table.php:220
+msgid "Tumblr URL"
+msgstr "あなたのTumblr URL"
+
+#: pagebuilder/modules/simple_table.php:224
+msgid "Youtube URL"
+msgstr "あなたのYoutube URL"
+
+#: pagebuilder/modules/simple_table.php:228
+msgid "Contact page URL (You can use mailto:)"
+msgstr "お問い合わせページのURL（mailto:も利用可）"
+
+#: pagebuilder/modules/simple_table.php:232
+msgid "RSS URL"
+msgstr "RSSのURL"
 
 #: pagebuilder/modules/slider.php:18
 msgid "Slider"
@@ -3251,10 +3548,77 @@ msgstr "スライダー"
 msgid "You can display gallery slider."
 msgstr "画像スライダーを表示する事ができます。"
 
-#: pagebuilder/modules/slider.php:140 pagebuilder/modules/tab.php:289
-#: pagebuilder/modules/tab.php:572 pagebuilder/modules/tab.php:814
-msgid "Are you sure you want to delete this item?"
-msgstr "このアイテムを削除してもよろしいでしょうか？"
+#: pagebuilder/modules/slider.php:70
+msgid "Slide speed"
+msgstr "スライダーが切り替わるスピード"
+
+#: pagebuilder/modules/slider.php:71
+msgid "seconds"
+msgstr "秒"
+
+#: pagebuilder/modules/slider.php:75
+msgid "Arrow setting"
+msgstr "矢印ボタンの設定"
+
+#: pagebuilder/modules/slider.php:78
+msgid "Arrow color"
+msgstr "アローの色"
+
+#: pagebuilder/modules/slider.php:86
+msgid "Opacity"
+msgstr "透明度"
+
+#: pagebuilder/modules/slider.php:90
+msgid "Arrow color on hover"
+msgstr "カーソルを合わせた時の矢印の色"
+
+#: pagebuilder/modules/slider.php:98
+msgid "Opacity on hover"
+msgstr "カーソルを合わせた時の背景色の透明度"
+
+#: pagebuilder/modules/slider.php:105
+msgid "Slider footer"
+msgstr "スライダー下に表示するコンテンツ"
+
+#: pagebuilder/modules/slider.php:108
+msgid "Display thumbnail navigation"
+msgstr "サムネイルナビゲーションを表示する"
+
+#: pagebuilder/modules/slider.php:109
+msgid "Display caption"
+msgstr "キャプションを表示する"
+
+#: pagebuilder/modules/slider.php:110
+msgid "None"
+msgstr "なし"
+
+#: pagebuilder/modules/slider.php:125
+msgid "Caption border setting"
+msgstr "キャプションの枠線の設定"
+
+#: pagebuilder/modules/slider.php:129
+msgid "Display caption border"
+msgstr "キャプションを枠線で囲む"
+
+#: pagebuilder/modules/slider.php:134
+msgid "Caption padding setting"
+msgstr "キャプションの内側のスペースの設定"
+
+#: pagebuilder/modules/slider.php:137
+msgid "Padding width"
+msgstr "内側のスペース（上）"
+
+#: pagebuilder/modules/slider.php:141
+msgid "Padding width for mobile"
+msgstr "内側のスペース（スマホ用）"
+
+#: pagebuilder/modules/slider.php:148
+msgid "Slide setting"
+msgstr "スライダーの設定"
+
+#: pagebuilder/modules/slider.php:282
+msgid "Caption"
+msgstr "キャプション"
 
 #: pagebuilder/modules/tab.php:12
 msgid "Tab"
@@ -3264,74 +3628,92 @@ msgstr "タブ"
 msgid "You can display content using tab."
 msgstr "タブを使ったコンテンツを表示する事ができます。"
 
-#: pagebuilder/modules/tab.php:139
+#: pagebuilder/modules/tab.php:170
 msgid "Tab design"
 msgstr "タブのデザインを選択"
 
-#: pagebuilder/modules/tab.php:142
+#: pagebuilder/modules/tab.php:173
 msgid ""
 "Type 1 (Background color: White fixed, Border: Yes, Arrangement of tab: Left)"
 msgstr "タイプ1（背景色：白固定、枠線：あり、タブの配置：左寄せ）"
 
-#: pagebuilder/modules/tab.php:143
+#: pagebuilder/modules/tab.php:174
 msgid ""
 "Type 2 (background color: any color, border line: none, arrangement of tabs: "
 "even)"
 msgstr "タイプ2（背景色：任意の色、枠線：なし、タブの配置：均等）"
 
-#: pagebuilder/modules/tab.php:158
+#: pagebuilder/modules/tab.php:175
+msgid ""
+"Type 3 (background color: any color, border line: Yes, arrangement of tabs: "
+"even)"
+msgstr "タイプ3（背景色：任意の色、枠線：あり、タブの配置：均等）"
+
+#: pagebuilder/modules/tab.php:190 pagebuilder/modules/tab.php:232
 msgid "Tab color"
 msgstr "タブの色"
 
-#: pagebuilder/modules/tab.php:172
+#: pagebuilder/modules/tab.php:204 pagebuilder/modules/tab.php:246
 msgid "Active tab color"
 msgstr "選択中のタブの色の設定"
 
-#: pagebuilder/modules/tab.php:295
+#: pagebuilder/modules/tab.php:218 pagebuilder/modules/tab.php:260
+msgid "Tab hover color"
+msgstr "カーソルを合わせた時のタブの色"
+
+#: pagebuilder/modules/tab.php:383
 msgid "Name"
 msgstr "名前"
 
-#: pagebuilder/modules/tab.php:300
+#: pagebuilder/modules/tab.php:388
 msgid "Content Type"
 msgstr "コンテンツタイプ"
 
-#: pagebuilder/modules/tab.php:303
+#: pagebuilder/modules/tab.php:391
 msgid "Text only"
 msgstr "テキストのみ"
 
-#: pagebuilder/modules/tab.php:304
+#: pagebuilder/modules/tab.php:392
 msgid "Image + text (you can add items)"
 msgstr "画像+テキスト（項目追加仕様）"
 
-#: pagebuilder/modules/tab.php:305
+#: pagebuilder/modules/tab.php:393
 msgid "Image gallery (you can add items)"
 msgstr "画像ギャラリー（項目追加仕様）"
 
-#: pagebuilder/modules/tab.php:306
+#: pagebuilder/modules/tab.php:394
 msgid "Video / Youtube"
 msgstr "動画 / Youtube"
 
-#: pagebuilder/modules/tab.php:355
+#: pagebuilder/modules/tab.php:428
+msgid "Padding"
+msgstr "タブの内側のスペース"
+
+#: pagebuilder/modules/tab.php:433
+msgid "Padding for mobile"
+msgstr "タブの内側のスペース（スマホ用）"
+
+#: pagebuilder/modules/tab.php:453
 msgid "Video type"
 msgstr "表示する動画の種類"
 
-#: pagebuilder/modules/tab.php:358 pagebuilder/modules/tab.php:375
+#: pagebuilder/modules/tab.php:456 pagebuilder/modules/tab.php:473
 msgid "Video upload"
 msgstr "動画ファイル（MP4形式の動画ファイル）"
 
-#: pagebuilder/modules/tab.php:359
+#: pagebuilder/modules/tab.php:457
 msgid "Youtube / oEmbed"
 msgstr "Youtube動画のURL"
 
-#: pagebuilder/modules/tab.php:360 pagebuilder/modules/tab.php:397
+#: pagebuilder/modules/tab.php:458 pagebuilder/modules/tab.php:495
 msgid "Embed code"
 msgstr "その他の埋め込みコード（Googleマップのiframeコードにも対応しています）"
 
-#: pagebuilder/modules/tab.php:384
+#: pagebuilder/modules/tab.php:482
 msgid "oEmbed url"
 msgstr "Youtube動画ページのURL"
 
-#: pagebuilder/modules/tab.php:392
+#: pagebuilder/modules/tab.php:490
 #, php-format
 msgid ""
 "Please enter the media URL of<a href=\"%s\" target=\"_blank\">oEmbed-"
@@ -3340,23 +3722,23 @@ msgstr ""
 "Youtube等のWordPressがサポートしている<a href=\"%s\">oEmbed 対応サイト</a>の"
 "動画ページのURLを入力してください"
 
-#: pagebuilder/modules/tab.php:403
+#: pagebuilder/modules/tab.php:501
 msgid "Navigation color"
 msgstr "ナビゲーションボタンの色"
 
-#: pagebuilder/modules/tab.php:417
+#: pagebuilder/modules/tab.php:515
 msgid "Active navigation color"
 msgstr "選択中のナビゲーションボタンの色"
 
-#: pagebuilder/modules/tab.php:431
+#: pagebuilder/modules/tab.php:529
 msgid "Tab caption"
 msgstr "タブキャプション"
 
-#: pagebuilder/modules/tab.php:689
+#: pagebuilder/modules/tab.php:787
 msgid "Background Color"
 msgstr "背景色"
 
-#: pagebuilder/modules/tab.php:880
+#: pagebuilder/modules/tab.php:963
 msgid "Open first tab for mobile"
 msgstr "最初のタブを開く（スマホ用）"
 
@@ -3419,14 +3801,13 @@ msgstr "アーカイブ"
 msgid "Banner list (tcd ver)"
 msgstr "バナー一覧 （tcd バージョン）"
 
-#: widget/banner_list.php:13 widget/icon_link_list.php:42
-#: widget/ranking_list.php:13
+#: widget/banner_list.php:13 widget/ranking_list.php:13
 msgid "Displays banner list."
 msgstr "バナー一覧を表示します。"
 
 #: widget/banner_list.php:112 widget/google_search.php:64
 #: widget/icon_link_list.php:100 widget/ranking_list.php:143
-#: widget/styled_post_list1.php:163
+#: widget/styled_post_list1.php:164
 msgid "Title:"
 msgstr "タイトル："
 
@@ -3465,11 +3846,11 @@ msgstr "Google カスタム検索を利用する"
 #: widget/google_search.php:62
 msgid ""
 "If you wan't to use google custom search for your wordpress, enter your "
-"google custom search ID.<br /><a href=\"http://www.google.com/cse/\" target="
+"google custom search ID.<br /><a href=\"https://www.google.com/cse/\" target="
 "\"_blank\">Read more about Google custom search page.</a>"
 msgstr ""
 "もし、Googleカスタム検索をサイト内検索として利用したい場合は、Googleカスタム"
-"検索IDを入力してください。<br /><a href=\"http://www.google.com/cse/\" "
+"検索IDを入力してください。<br /><a href=\"https://www.google.com/cse/\" "
 "target=\"_blank\">Googleカスタム検索についてはこちらをご参照ください。</a>"
 
 #: widget/google_search.php:68
@@ -3479,6 +3860,10 @@ msgstr "Googleカスタム検索ID"
 #: widget/icon_link_list.php:39
 msgid "Icon menu list (tcd ver)"
 msgstr "アイコン付きメニュー （tcd バージョン）"
+
+#: widget/icon_link_list.php:42
+msgid "Displays link list with icon."
+msgstr "アイコン付きリンクメニューを表示します。"
 
 #: widget/icon_link_list.php:144
 msgid "Link label:"
@@ -3494,7 +3879,7 @@ msgstr "表示横幅"
 
 #: widget/icon_link_list.php:159
 msgid "Link icon:"
-msgstr ""
+msgstr "リンクアイコン："
 
 #: widget/ranking_list.php:10
 msgid "Ranking list (tcd ver)"
@@ -3526,18 +3911,27 @@ msgstr "デザインされた記事一覧 （tcd バージョン）"
 msgid "Displays styled post list."
 msgstr "デザインされた記事一覧を表示します。"
 
-#: widget/styled_post_list1.php:160
+#: widget/styled_post_list1.php:161
 #, php-format
 msgid "%sを表示する"
 msgstr ""
 
-#: widget/styled_post_list1.php:168
+#: widget/styled_post_list1.php:169
 msgid "Number of post:"
 msgstr "表示する記事の数："
 
-#: widget/styled_post_list1.php:183
+#: widget/styled_post_list1.php:184
 msgid "Post order:"
 msgstr "記事の表示順："
+
+#~ msgid "Default color"
+#~ msgstr "初期色"
+
+#~ msgid "Use Google map iframe code"
+#~ msgstr "Googleマップのiframeコードを使う"
+
+#~ msgid "Google map iframe code"
+#~ msgstr "Googleマップのiframeコード"
 
 #~ msgid ""
 #~ "<a href=\"http://design-plus1.com/tcd-w/2016/07/facebook-3.html\" target="
@@ -3662,17 +4056,11 @@ msgstr "記事の表示順："
 #~ msgid "Recent campaign"
 #~ msgstr "最近のキャンペーン"
 
-#~ msgid "Display image"
-#~ msgstr "静止画"
-
 #~ msgid "Display video"
 #~ msgstr "動画"
 
 #~ msgid "Display youtube"
 #~ msgstr "Youtube動画"
-
-#~ msgid "Default color"
-#~ msgstr "初期色"
 
 #~ msgid "Thirdly color setting"
 #~ msgstr "第３カラーの設定"
@@ -3841,9 +4229,6 @@ msgstr "記事の表示順："
 #~ msgid "Shop name"
 #~ msgstr "店舗名"
 
-#~ msgid "Address"
-#~ msgstr "住所"
-
 #~ msgid "You uploaded %s but allowed file format is PNG, GIF and JPG."
 #~ msgstr ""
 #~ "あなたは%sをアップロードしました。<br />アップロードできるファイル形式は、"
@@ -3901,15 +4286,6 @@ msgstr "記事の表示順："
 #~ msgid "Official position, title etc."
 #~ msgstr "役職、肩書きなど"
 
-#~ msgid "Staff Facebook URL"
-#~ msgstr "facebook URL"
-
-#~ msgid "Staff Twitter URL"
-#~ msgstr "Twitter URL"
-
-#~ msgid "Staff Instagram URL"
-#~ msgstr "InstagramページのURL"
-
 #~ msgid "Staff infomation"
 #~ msgstr "スタッフ情報"
 
@@ -3952,9 +4328,6 @@ msgstr "記事の表示順："
 
 #~ msgid "Customer voice"
 #~ msgstr "お客様の声本文"
-
-#~ msgid "Customer name"
-#~ msgstr "お客様名"
 
 #~ msgid "Customer age, occupation, etc."
 #~ msgstr "年齢・職業など"
@@ -4263,9 +4636,6 @@ msgstr "記事の表示順："
 #~ msgid "Template3"
 #~ msgstr "テンプレート3"
 
-#~ msgid "View image"
-#~ msgstr "画像を見る"
-
 #~ msgid "Recommend image size. Width:600px Height:200px"
 #~ msgstr "推奨サイズ：横幅600px、縦幅200px"
 
@@ -4355,9 +4725,6 @@ msgstr "記事の表示順："
 #~ msgstr ""
 #~ "TCD Google Mapsプラグインの設定画面に表示されているショートコードをコピー"
 #~ "アンドペーストしてください。"
-
-#~ msgid "Logo image"
-#~ msgstr "ロゴ画像"
 
 #~ msgid "Address, tel, etc."
 #~ msgstr "住所、電話番号など"
@@ -4863,10 +5230,6 @@ msgstr "記事の表示順："
 #~ msgstr "あなたのfacebook URL"
 
 #, fuzzy
-#~ msgid "Pinterest url"
-#~ msgstr "スライダーのリンク先URL"
-
-#, fuzzy
 #~ msgid "Content under profile data"
 #~ msgstr "スタッフ一覧の下に表示するコンテンツ"
 
@@ -5126,9 +5489,6 @@ msgstr "記事の表示順："
 
 #~ msgid "Load more post"
 #~ msgstr "さらに記事を表示する"
-
-#~ msgid "Single page widget (mobile)"
-#~ msgstr "記事ページ（スマホ用）"
 
 #~ msgid "Staff List"
 #~ msgstr "スタッフ一覧"
@@ -5475,9 +5835,6 @@ msgstr "記事の表示順："
 #~ msgid "This image will be displayed at left column."
 #~ msgstr "この画像は１列目に表示されます。"
 
-#~ msgid "This image will be displayed at center column."
-#~ msgstr "この画像は２列目に表示されます。"
-
 #~ msgid "Leave this field blank if you don't want to show link button."
 #~ msgstr "リンクボタンを表示したくない場合は空欄にしてください。"
 
@@ -5821,9 +6178,6 @@ msgstr "記事の表示順："
 #~ msgid "All"
 #~ msgstr "全て"
 
-#~ msgid "Displays post list with ranking."
-#~ msgstr "ランキング一覧を表示します。"
-
 #~ msgid "Ranking"
 #~ msgstr "ランキング"
 
@@ -5832,9 +6186,6 @@ msgstr "記事の表示順："
 
 #~ msgid "Rank2 Title"
 #~ msgstr "ランキング２位のタイトル"
-
-#~ msgid "Rank2 URL"
-#~ msgstr "ランキング2位のURL"
 
 #~ msgid "Rank3 Title"
 #~ msgstr "ランキング３位のタイトル"
@@ -6280,10 +6631,6 @@ msgstr "記事の表示順："
 #~ msgid "Displays your Ranking list."
 #~ msgstr "ランキング一覧を表示します。"
 
-#~ msgid "Please set Ranking in Theme option page first."
-#~ msgstr ""
-#~ "利用する前に、テーマオプション画面よりランキングの設定を行ってください。"
-
 #~ msgid "Name of Ranking post"
 #~ msgstr "ランキングの名前"
 
@@ -6389,9 +6736,6 @@ msgstr "記事の表示順："
 #~ msgid "Email"
 #~ msgstr "メールアドレス"
 
-#~ msgid "Website"
-#~ msgstr "ウェブサイト"
-
 #~ msgid "Right"
 #~ msgstr "2カラム2"
 
@@ -6442,9 +6786,6 @@ msgstr "記事の表示順："
 
 #~ msgid "Top page left widget"
 #~ msgstr "トップページ左"
-
-#~ msgid "Top page right widget"
-#~ msgstr "トップページ右下"
 
 #~ msgid "PR"
 #~ msgstr "おすすめ"

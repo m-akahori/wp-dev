@@ -1,19 +1,37 @@
 jQuery(document).ready(function($){
 
-	// Google Mapの選択
-	$(document).on('change', '.pb-widget-googlemap .form-field-map_type :radio', function(){
+	// Saturation
+	$(document).on('change', '.pb-widget-googlemap .range', function() {
+		$(this).prev('.range-output').find('span').text($(this).val());
+	});
+
+	// マーカータイプ
+	$(document).on('change', '.pb-widget-googlemap .form-field-marker_type :radio', function(){
 		if (this.checked) {
 			var $cl = $(this).closest('.pb-content');
-			if (this.value == 'type2') {
-				$cl.find('.form-field-map_code1').hide();
-				$cl.find('.form-field-map_code2').show();
+			if (this.value == 'type3') {
+				$cl.find('.form-field-marker_type-type3').show();
 			} else {
-				$cl.find('.form-field-map_code2').hide();
-				$cl.find('.form-field-map_code1').show();
+				$cl.find('.form-field-marker_type-type3').hide();
 			}
 		}
 	});
-	$('.pb-widget-googlemap .form-field-map_type :radio:checked').trigger('change');
+	$('.pb-widget-googlemap .form-field-marker_type :radio:checked').trigger('change');
+
+	// カスタムマーカータイプ
+	$(document).on('change', '.pb-widget-googlemap .form-field-custom_marker_type :radio', function(){
+		if (this.checked) {
+			var $cl = $(this).closest('.pb-content');
+			if (this.value == 'type1') {
+				$cl.find('.form-field-marker_text').show();
+				$cl.find('.form-field-marker_img').hide();
+			} else {
+				$cl.find('.form-field-marker_text').hide();
+				$cl.find('.form-field-marker_img').show();
+			}
+		}
+	});
+	$('.pb-widget-googlemap .form-field-custom_marker_type :radio:checked').trigger('change');
 
 	// Google Map オーバーレイ
 	$(document).on('change', '.pb-widget-googlemap .form-field-show_overlay :checkbox', function(){

@@ -3,8 +3,13 @@
 /**
  * ページビルダーバージョン
  */
-define('PAGE_BUILDER_VERSION', '1.1.5');
+define('PAGE_BUILDER_VERSION', '1.3.3');
 
+/**
+ * グローバル変数
+ */
+global $pagebuilder_vars;
+$pagebuilder_vars = array();
 
 /**
  * ページビルダーを適用する投稿タイプ
@@ -64,6 +69,11 @@ function is_admin_page_builder($recalc = false) {
 function page_builder_admin_scripts() {
 	if (is_admin_page_builder()) {
 		wp_enqueue_script('page_builder-admin', get_template_directory_uri().'/pagebuilder/assets/admin/js/admin.js', array('jquery', 'jquery-ui-resizable', 'jquery-ui-sortable', 'jquery-ui-draggable', 'wp-color-picker'), PAGE_BUILDER_VERSION, true);
+		wp_localize_script( 'page_builder-admin', 'pagebuilder_i18n', array(
+			'page_builder' => __('Page Builder', 'tcd-w'),
+			'visual_editor' => __( 'Visual Editor' ),
+			'code_editor' => __( 'Code Editor' )
+		) );
 
 		do_action('page_builder_admin_scripts');
 	}
@@ -78,7 +88,6 @@ function page_builder_admin_styles() {
 }
 add_action('admin_print_styles', 'page_builder_admin_styles', 11);
 
-
 /**
  * メタボックス追加
  */
@@ -89,7 +98,7 @@ function add_page_builder_metaboxes() {
 			__('Page Builder', 'tcd-w'),
 			'show_page_builder_metabox',
 			$post_type,
-			'advanced',
+			function_exists('gutenberg_init') || version_compare($GLOBALS['wp_version'], '5.0', '>=' ) ? 'normal' : 'advanced',
 			'high'
 		);
 	}
@@ -143,6 +152,10 @@ function show_page_builder_metabox() {
 	echo '<input type="hidden" name="use_page_builder" value="'.(boolean) $use_page_builder.'" />';
 	echo "\n";
 
+	// プレビュー対策 変更フラグ @TODO 変更あった場合のみ1に
+	echo '<input type="hidden" name="_page_builder_changed" value="1" />';
+	echo "\n";
+
 	// toolbar
 	echo '<div class="pb-toolbar">';
 	echo '<span class="pb-tool-button pb-switch-to-standard">'. __('Revert to Editor', 'tcd-w'). '</span>';
@@ -172,7 +185,6 @@ function show_page_builder_metabox() {
 
 	echo '</div>';
 	echo "\n";
-
 
 	// 行の追加モーダル
 	render_page_builder_edit_row_modal(array(
@@ -294,7 +306,6 @@ function render_page_builder_cell($args = array(), $data = array()) {
 		$args['widget_indexes'] = explode(',', $args['widget_indexes']);
 	}
 	$args['widget_indexes'] = array_filter($args['widget_indexes'], 'strlen');
-
 
 	echo '<div id="'.esc_attr($args['id']).'" class="cell" style="width:'.esc_attr($args['width']).'">';
 	echo '<div class="resize-handle"></div>';
@@ -420,7 +431,26 @@ function render_page_builder_edit_row_modal($args = array()) {
 		'row_width' => '',
 		'mobile_cells' => 'clear',
 		'nextpage' => 0,
-		'attribute' => '',
+		'show_border_top' => 0,
+		'show_border_bottom' => 0,
+		'show_border_left' => 0,
+		'show_border_right' => 0,
+		'show_border_top_mobile' => 0,
+		'show_border_bottom_mobile' => 0,
+		'show_border_left_mobile' => 0,
+		'show_border_right_mobile' => 0,
+		'border_color' => '#dddddd',
+		'border_width' => 1,
+		'border_width_mobile' => 1,
+		'padding_top' => 0,
+		'padding_bottom' => 0,
+		'padding_left' => 0,
+		'padding_right' => 0,
+		'padding_top_mobile' => 0,
+		'padding_bottom_mobile' => 0,
+		'padding_left_mobile' => 0,
+		'padding_right_mobile' => 0,
+		'attribute' => ''
 	));
 
 	// デフォルト値に入力値をマージ
@@ -439,6 +469,7 @@ function render_page_builder_edit_row_modal($args = array()) {
 	<div class="pb-overlay"></div>
 	<div class="pb-title-bar">
 		<h3 class="pb-title"><?php echo esc_html($args['title']); ?></h3>
+		<a class="pb-toggle-rightbar"><span class="pb-dialog-icon"></span></a>
 		<a class="pb-close"><span class="pb-dialog-icon"></span></a>
 	</div>
 
@@ -483,66 +514,183 @@ function render_page_builder_edit_row_modal($args = array()) {
 	</div>
 
 	<div class="pb-sidebar pb-right-sidebar">
-		<h3><?php _e('Layout setting', 'tcd-w'); ?></h3>
+		<h3 data-pb-toggle-target=".pb-right-sidebar-layout" data-pb-toggle-status="open"><?php _e('Layout setting', 'tcd-w'); ?></h3>
+		<div class="pb-toggle-content pb-right-sidebar-layout">
+			<div class="form-field">
+				<label><?php _e('Margin bottom of the row', 'tcd-w'); ?></label>
+				<input type="number" name="pagebuilder[row][<?php echo esc_attr($args['index']); ?>][margin_bottom]" value="<?php echo esc_attr($args['margin_bottom']); ?>" class="small-text" /> px
+				<p class="pb-description"><?php _e('Space below the row.<br />Default is 30px.', 'tcd-w'); ?></p>
+			</div>
 
-		<div class="form-field">
-			<label><?php _e('Margin bottom of the row', 'tcd-w'); ?></label>
-			<input type="text" name="pagebuilder[row][<?php echo esc_attr($args['index']); ?>][margin_bottom]" value="<?php echo esc_attr($args['margin_bottom']); ?>" class="pb-input-narrow hankaku" /> px
-			<p class="pb-description"><?php _e('Space below the row.<br />Default is 30px.', 'tcd-w'); ?></p>
-		</div>
+			<div class="form-field">
+				<label><?php _e('Margin bottom of the row for mobile', 'tcd-w'); ?></label>
+				<input type="number" name="pagebuilder[row][<?php echo esc_attr($args['index']); ?>][margin_bottom_mobile]" value="<?php echo esc_attr($args['margin_bottom_mobile']); ?>" class="small-text" /> px
+				<p class="pb-description"><?php _e('Space below the row.<br />Default is 30px.', 'tcd-w'); ?></p>
+			</div>
 
-		<div class="form-field">
-			<label><?php _e('Margin bottom of the row for mobile', 'tcd-w'); ?></label>
-			<input type="text" name="pagebuilder[row][<?php echo esc_attr($args['index']); ?>][margin_bottom_mobile]" value="<?php echo esc_attr($args['margin_bottom_mobile']); ?>" class="pb-input-narrow hankaku" /> px
-			<p class="pb-description"><?php _e('Space below the row.<br />Default is 30px.', 'tcd-w'); ?></p>
-		</div>
+			<div class="form-field hide-if-one-column">
+				<label><?php _e('Gutter', 'tcd-w'); ?></label>
+				<input type="number" name="pagebuilder[row][<?php echo esc_attr($args['index']); ?>][gutter]" value="<?php echo esc_attr($args['gutter']); ?>" class="small-text" min="0" /> px
+				<p class="pb-description"><?php _e('Amount of space between columns.<br />Default is 30px.', 'tcd-w'); ?></p>
+			</div>
 
-		<div class="form-field hide-if-one-column">
-			<label><?php _e('Gutter', 'tcd-w'); ?></label>
-			<input type="text" name="pagebuilder[row][<?php echo esc_attr($args['index']); ?>][gutter]" value="<?php echo esc_attr($args['gutter']); ?>" class="pb-input-narrow hankaku" /> px
-			<p class="pb-description"><?php _e('Amount of space between columns.<br />Default is 30px.', 'tcd-w'); ?></p>
-		</div>
+			<div class="form-field hide-if-one-column">
+				<label><?php _e('Gutter for mobile', 'tcd-w'); ?></label>
+				<input type="number" name="pagebuilder[row][<?php echo esc_attr($args['index']); ?>][gutter_mobile]" value="<?php echo esc_attr($args['gutter_mobile']); ?>" class="small-text" min="0" /> px
+				<p class="pb-description"><?php _e('Amount of space between columns.<br />Default is 30px.', 'tcd-w'); ?></p>
+			</div>
 
-		<div class="form-field hide-if-one-column">
-			<label><?php _e('Gutter  for mobile', 'tcd-w'); ?></label>
-			<input type="text" name="pagebuilder[row][<?php echo esc_attr($args['index']); ?>][gutter_mobile]" value="<?php echo esc_attr($args['gutter_mobile']); ?>" class="pb-input-narrow hankaku" /> px
-			<p class="pb-description"><?php _e('Amount of space between columns.<br />Default is 30px.', 'tcd-w'); ?></p>
-		</div>
+			<div class="form-field">
+				<label><?php _e('Row width', 'tcd-w'); ?></label>
+				<input type="number" name="pagebuilder[row][<?php echo esc_attr($args['index']); ?>][row_width]" value="<?php echo esc_attr($args['row_width']); ?>" class="small-text" /> px
+				<p class="pb-description"><?php _e('Please register the <strong>px</strong> of width if you want to change the width of this row.<br /><br />If you registered the width, the row will be center aligned.', 'tcd-w'); ?></p>
+			</div>
 
-		<div class="form-field">
-			<label><?php _e('Background color', 'tcd-w'); ?></label>
-			<input type="text" name="pagebuilder[row][<?php echo esc_attr($args['index']); ?>][background_color]" value="<?php echo esc_attr($args['background_color']); ?>" class="pb-input-narrow pb-wp-color-picker" data-default-color="<?php echo esc_attr($defaults['background_color']); ?>" />
-		</div>
-
-		<div class="form-field">
-			<label><?php _e('Row width', 'tcd-w'); ?></label>
-			<input type="text" name="pagebuilder[row][<?php echo esc_attr($args['index']); ?>][row_width]" value="<?php echo esc_attr($args['row_width']); ?>" class="pb-input-narrow hankaku" /> px
-			<p class="pb-description"><?php _e('Please register the <strong>px</strong> of width if you want to change the width of this row.<br /><br />If you registered the width, the row will be center aligned.', 'tcd-w'); ?></p>
-		</div>
-
-		<div class="form-field hide-if-one-column">
-			<label><?php _e('Layout of column at mobile device.', 'tcd-w'); ?></label>
-			<select name="pagebuilder[row][<?php echo esc_attr($args['index']); ?>][mobile_cells]">
-				<?php
-					$select_options = array(
-						'clear' => __('Display vertically', 'tcd-w'),
-						'float' => __('Keep in horizontal', 'tcd-w')
-					);
-					foreach($select_options as $key => $value) {
-						$attr = '';
-						if ($args['mobile_cells'] == $key) {
-							$attr .= ' selected="selected"';
+			<div class="form-field hide-if-one-column">
+				<label><?php _e('Layout of column at mobile device.', 'tcd-w'); ?></label>
+				<select name="pagebuilder[row][<?php echo esc_attr($args['index']); ?>][mobile_cells]">
+					<?php
+						$select_options = array(
+							'clear' => __('Display vertically', 'tcd-w'),
+							'float' => __('Keep in horizontal', 'tcd-w')
+						);
+						foreach($select_options as $key => $value) {
+							$attr = '';
+							if ($args['mobile_cells'] == $key) {
+								$attr .= ' selected="selected"';
+							}
+							echo '<option value="'.esc_attr($key).'"'.$attr.'>'.esc_html($value).'</option>';
 						}
-						echo '<option value="'.esc_attr($key).'"'.$attr.'>'.esc_html($value).'</option>';
-					}
-				?>
-			</select>
+					?>
+				</select>
+			</div>
+
+			<div class="form-field form-field-checkbox">
+				<label><?php _e('Splitting contents', 'tcd-w'); ?></label>
+				<input type="hidden" name="pagebuilder[row][<?php echo esc_attr($args['index']); ?>][nextpage]" value="0" />
+				<label class="checkbox"><input type="checkbox" name="pagebuilder[row][<?php echo esc_attr($args['index']); ?>][nextpage]" value="1" <?php if ($args['nextpage'] == 1) echo 'checked="checked"'; ?> /> <?php _e('Display this row at next page.', 'tcd-w'); ?></label>
+			</div>
 		</div>
 
-		<div class="form-field form-field-checkbox">
-			<label><?php _e('Splitting contents', 'tcd-w'); ?></label>
-			<input type="hidden" name="pagebuilder[row][<?php echo esc_attr($args['index']); ?>][nextpage]" value="0" />
-			<label class="checkbox"><input type="checkbox" name="pagebuilder[row][<?php echo esc_attr($args['index']); ?>][nextpage]" value="1" <?php if ($args['nextpage'] == 1) echo 'checked="checked"'; ?> /> <?php _e('Display this row at next page.', 'tcd-w'); ?></label>
+		<h3 data-pb-toggle-target=".pb-right-sidebar-background" data-pb-toggle-status="close"><?php _e('Background setting', 'tcd-w'); ?></h3>
+		<div class="pb-toggle-content pb-right-sidebar-background">
+			<div class="form-field">
+				<label><?php _e('Background color', 'tcd-w'); ?></label>
+				<input type="text" name="pagebuilder[row][<?php echo esc_attr($args['index']); ?>][background_color]" value="<?php echo esc_attr($args['background_color']); ?>" class="pb-wp-color-picker" data-default-color="<?php echo esc_attr($defaults['background_color']); ?>" />
+			</div>
+		</div>
+
+		<h3 data-pb-toggle-target=".pb-right-sidebar-border" data-pb-toggle-status="close"><?php _e('Border setting', 'tcd-w'); ?></h3>
+		<div class="pb-toggle-content pb-right-sidebar-border">
+			<div class="form-field">
+				<ul>
+					<li>
+						<label class="checkbox">
+							<input type="checkbox" name="pagebuilder[row][<?php echo esc_attr($args['index']); ?>][show_border_top]" value="1" <?php checked($args['show_border_top'] ,1); ?> />
+							<?php _e('Display top border', 'tcd-w'); ?>
+						</label>
+					</li>
+					<li>
+						<label class="checkbox">
+							<input type="checkbox" name="pagebuilder[row][<?php echo esc_attr($args['index']); ?>][show_border_bottom]" value="1" <?php checked($args['show_border_bottom'] ,1); ?> />
+							<?php _e('Display bottom border', 'tcd-w'); ?>
+						</label>
+					</li>
+					<li>
+						<label class="checkbox">
+							<input type="checkbox" name="pagebuilder[row][<?php echo esc_attr($args['index']); ?>][show_border_left]" value="1" <?php checked($args['show_border_left'] ,1); ?> />
+							<?php _e('Display left border', 'tcd-w'); ?>
+						</label>
+					</li>
+					<li>
+						<label class="checkbox">
+							<input type="checkbox" name="pagebuilder[row][<?php echo esc_attr($args['index']); ?>][show_border_right]" value="1" <?php checked($args['show_border_right'] ,1); ?> />
+							<?php _e('Display right border', 'tcd-w'); ?>
+						</label>
+					</li>
+					<li>
+						<label class="checkbox">
+							<input type="checkbox" name="pagebuilder[row][<?php echo esc_attr($args['index']); ?>][show_border_top_mobile]" value="1" <?php checked($args['show_border_top_mobile'] ,1); ?> />
+							<?php _e('Display top border for mobile', 'tcd-w'); ?>
+						</label>
+					</li>
+					<li>
+						<label class="checkbox">
+							<input type="checkbox" name="pagebuilder[row][<?php echo esc_attr($args['index']); ?>][show_border_bottom_mobile]" value="1" <?php checked($args['show_border_bottom_mobile'] ,1); ?> />
+							<?php _e('Display bottom border for mobile', 'tcd-w'); ?>
+						</label>
+					</li>
+					<li>
+						<label class="checkbox">
+							<input type="checkbox" name="pagebuilder[row][<?php echo esc_attr($args['index']); ?>][show_border_left_mobile]" value="1" <?php checked($args['show_border_left_mobile'] ,1); ?> />
+							<?php _e('Display left border for mobile', 'tcd-w'); ?>
+						</label>
+					</li>
+					<li>
+						<label class="checkbox">
+							<input type="checkbox" name="pagebuilder[row][<?php echo esc_attr($args['index']); ?>][show_border_right_mobile]" value="1" <?php checked($args['show_border_right_mobile'] ,1); ?> />
+							<?php _e('Display right border for mobile', 'tcd-w'); ?>
+						</label>
+					</li>
+				</ul>
+			</div>
+
+			<div class="form-field">
+				<label><?php _e('Border color', 'tcd-w'); ?></label>
+				<input type="text" name="pagebuilder[row][<?php echo esc_attr($args['index']); ?>][border_color]" value="<?php echo esc_attr($args['border_color']); ?>" class="pb-wp-color-picker" data-default-color="<?php echo esc_attr($defaults['border_color']); ?>" />
+			</div>
+
+			<div class="form-field">
+				<label><?php _e('Border width', 'tcd-w'); ?></label>
+				<input type="number" name="pagebuilder[row][<?php echo esc_attr($args['index']); ?>][border_width]" value="<?php echo esc_attr($args['border_width']); ?>" class="small-text" min="1" /> px
+			</div>
+			<div class="form-field">
+				<label><?php _e('Border width for mobile', 'tcd-w'); ?></label>
+				<input type="number" name="pagebuilder[row][<?php echo esc_attr($args['index']); ?>][border_width_mobile]" value="<?php echo esc_attr($args['border_width_mobile']); ?>" class="small-text" min="1" /> px
+			</div>
+		</div>
+
+		<h3 data-pb-toggle-target=".pb-right-sidebar-padding" data-pb-toggle-status="close"><?php _e('Padding setting', 'tcd-w'); ?></h3>
+		<div class="pb-toggle-content pb-right-sidebar-padding">
+			<div class="form-field">
+				<label><?php _e('Top padding width', 'tcd-w'); ?></label>
+				<input type="number" name="pagebuilder[row][<?php echo esc_attr($args['index']); ?>][padding_top]" value="<?php echo esc_attr($args['padding_top']); ?>" class="small-text" min="0" /> px
+			</div>
+
+			<div class="form-field">
+				<label><?php _e('Bottom padding width', 'tcd-w'); ?></label>
+				<input type="number" name="pagebuilder[row][<?php echo esc_attr($args['index']); ?>][padding_bottom]" value="<?php echo esc_attr($args['padding_bottom']); ?>" class="small-text" min="0" /> px
+			</div>
+
+			<div class="form-field">
+				<label><?php _e('Left padding width', 'tcd-w'); ?></label>
+				<input type="number" name="pagebuilder[row][<?php echo esc_attr($args['index']); ?>][padding_left]" value="<?php echo esc_attr($args['padding_left']); ?>" class="small-text" min="0" /> px
+			</div>
+
+			<div class="form-field">
+				<label><?php _e('Right padding width', 'tcd-w'); ?></label>
+				<input type="number" name="pagebuilder[row][<?php echo esc_attr($args['index']); ?>][padding_right]" value="<?php echo esc_attr($args['padding_right']); ?>" class="small-text" min="0" /> px
+			</div>
+
+			<div class="form-field">
+				<label><?php _e('Top padding width for mobile', 'tcd-w'); ?></label>
+				<input type="number" name="pagebuilder[row][<?php echo esc_attr($args['index']); ?>][padding_top_mobile]" value="<?php echo esc_attr($args['padding_top_mobile']); ?>" class="small-text" min="0" /> px
+			</div>
+
+			<div class="form-field">
+				<label><?php _e('Bottom padding width for mobile', 'tcd-w'); ?></label>
+				<input type="number" name="pagebuilder[row][<?php echo esc_attr($args['index']); ?>][padding_bottom_mobile]" value="<?php echo esc_attr($args['padding_bottom_mobile']); ?>" class="small-text" min="0" /> px
+			</div>
+
+			<div class="form-field">
+				<label><?php _e('Left padding width for mobile', 'tcd-w'); ?></label>
+				<input type="number" name="pagebuilder[row][<?php echo esc_attr($args['index']); ?>][padding_left_mobile]" value="<?php echo esc_attr($args['padding_left_mobile']); ?>" class="small-text" min="0" /> px
+			</div>
+
+			<div class="form-field">
+				<label><?php _e('Right padding width for mobile', 'tcd-w'); ?></label>
+				<input type="number" name="pagebuilder[row][<?php echo esc_attr($args['index']); ?>][padding_right_mobile]" value="<?php echo esc_attr($args['padding_right_mobile']); ?>" class="small-text" min="0" /> px
+			</div>
 		</div>
 	</div>
 </div>
@@ -643,6 +791,9 @@ function render_page_builder_edit_widget_modal($args = array(), $values = array(
 	<div class="pb-overlay"></div>
 	<div class="pb-title-bar">
 		<h3 class="pb-title"><?php echo esc_html($args['title'].$args['title_after']); ?></h3>
+<?php if ($has_rightbar) { ?>
+		<a class="pb-toggle-rightbar"><span class="pb-dialog-icon"></span></a>
+<?php } ?>
 		<a class="pb-close"><span class="pb-dialog-icon"></span></a>
 	</div>
 
@@ -668,7 +819,7 @@ function render_page_builder_edit_widget_modal($args = array(), $values = array(
 
 <?php if ($has_rightbar) { ?>
 	<div class="pb-sidebar pb-right-sidebar">
-		<?php call_user_func($args['form_rightbar'], $values); ?>
+		<?php call_user_func($args['form_rightbar'], $values, $args['widget_id'], $args); ?>
 	</div>
 <?php } ?>
 
@@ -709,7 +860,8 @@ function save_page_builder_metabox($post_id) {
 
 	// ページビルダーフラグ
 	if (isset($_POST['use_page_builder'])) {
-		update_post_meta($post_id, 'use_page_builder', $_POST['use_page_builder']);
+		// メタ保存 プレビュー対策でupdate_post_metaではなくupdate_metadataを使用
+		update_metadata('post', $post_id, 'use_page_builder', $_POST['use_page_builder']);
 	}
 
 	// ページビルダーデータ
@@ -758,7 +910,6 @@ function save_page_builder_metabox($post_id) {
 
 		// ウィジェット
 		if (!empty($data['widget']) && is_array($data['widget'])) {
-
 			foreach($data['widget'] as $key => $value) {
 				// クローン用は削除
 				if (strpos($key, 'widgetindex') !== false) {
@@ -783,18 +934,53 @@ function save_page_builder_metabox($post_id) {
 
 				$data['widget'][$key] = $value;
 			}
-
 		}
 
 		// 全体フィルター適用
 		$data = apply_filters('save_pagebuilder', $data);
 
-		// メタ保存
-		update_post_meta($post_id, 'page_builder', $data);
+		// メタ保存 プレビュー対策でupdate_post_metaではなくupdate_metadataを使用
+		update_metadata('post', $post_id, 'page_builder', $data);
 	}
 }
 add_action('save_post', 'save_page_builder_metabox');
 
+/**
+ * プレビュー対策 プレビュー時のカスタムフィールド値差し替え
+ */
+function page_builder_preview_get_post_metadata($meta_value, $post_id, $meta_key, $single) {
+	global $post;
+
+	// プレビュー時
+	if (is_preview()) {
+		// ページビルダーのカスタムフィールドキー
+		if (in_array($meta_key, array('use_page_builder', 'page_builder'), true)) {
+			// 記事IDチェック
+			if (!empty($post->ID) && $post->ID == $post_id && $post_id == url_to_postid($_SERVER['REQUEST_URI'])) {
+				// 最終リビジョン取得
+				$preview = wp_get_post_autosave($post_id);
+				if (isset($preview->ID) && $preview->ID != $post_id) {
+					// カスタムフィールド値差し替え 第3引数に$singleは渡さないで常にfalse
+					$meta_value = get_post_meta($preview->ID, $meta_key, false);
+				}
+			}
+		}
+	}
+
+	return $meta_value;
+}
+add_filter('get_post_metadata', 'page_builder_preview_get_post_metadata', 12, 4);
+
+/**
+ * プレビュー対策 リビジョン比較フィールドにページビルダーフィールドに追加 要POSTデータにも同じキーを入れる必要あり
+ */
+function page_builder_preview_wp_post_revision_fields($fields, $post) {
+	if (!empty($_POST['wp-preview']) && $_POST['wp-preview'] == 'dopreview' && !empty($_POST['_page_builder_changed'])) {
+		$fields['_page_builder_changed'] = '_page_builder_changed';
+	}
+	return $fields;
+}
+add_filter('_wp_post_revision_fields', 'page_builder_preview_wp_post_revision_fields', 20, 2);
 
 /**
  * フロント用 ページビルダー対象か
@@ -821,7 +1007,7 @@ function is_page_builder($post_id = null) {
 /**
  * フロント用 ページビルダーHTML
  */
-function render_page_builder_content($post_id = null, $echo = false) {
+function render_page_builder_content($post_id = null, $echo = false, $is_archive = false) {
 	if (!$post_id) $post_id = get_the_ID();
 	if (!$post_id) return false;
 
@@ -829,12 +1015,13 @@ function render_page_builder_content($post_id = null, $echo = false) {
 	if (!get_post_meta($post_id, 'use_page_builder', true)) return false;
 
 	// ページ分割用グローバル変数
-	global $page, $numpages, $multipage, $more;
+	global $page, $numpages, $multipage, $more, $pages;
 
 	// ページ分割用グローバル変数初期化
 	$page = 1;
 	$numpages = 1;
 	$multipage = 0;
+	$pages = array();
 
 	// 出力変数
 	$output = '';
@@ -878,7 +1065,9 @@ function render_page_builder_content($post_id = null, $echo = false) {
 			}
 
 			// 行div
-			$output .= str_repeat($sep, 1).'<div class="tcd-pb-row row'.$row_num.' clearfix">'."\n";
+			$output .= str_repeat($sep, 1).'<div class="tcd-pb-row row'.$row_num.'">'."\n";
+			$output .= str_repeat($sep, 2).'<div class="tcd-pb-row-inner clearfix">'."\n";
+
 			// カラム番号
 			$cell_index = 0;
 
@@ -887,7 +1076,7 @@ function render_page_builder_content($post_id = null, $echo = false) {
 				$cell_index++;
 
 				// カラムdiv
-				$output .= str_repeat($sep, 2).'<div class="tcd-pb-col col'.$cell_index.'">'."\n";
+				$output .= str_repeat($sep, 3).'<div class="tcd-pb-col col'.$cell_index.'">'."\n";
 
 				// カラム内のウィジェットインデックスデータ
 				if (!empty($data['cell'][$row_index.'-'.$cell_index])) {
@@ -910,24 +1099,26 @@ function render_page_builder_content($post_id = null, $echo = false) {
 							// ウィジェットの出力関数
 							if (!empty($widget['display']) && function_exists($widget['display'])) {
 								// ウィジェットdiv
-								$output .= str_repeat($sep, 3).'<div class="tcd-pb-widget widget'.$widget_num.' '.$widget_id.'">'."\n";
+								$output .= str_repeat($sep, 4).'<div class="tcd-pb-widget widget'.$widget_num.' '.$widget_id.'">'."\n";
+
 								// バッファリング
 								ob_start();
 								call_user_func($widget['display'], $widget_value, $widget_index, $widget);
 								$output .= ob_get_clean();
 
-								$output .= str_repeat($sep, 3).'</div>'."\n"; // .tcd-pb-widget
+								$output .= str_repeat($sep, 4).'</div>'."\n"; // .tcd-pb-widget
 							}
 						}
 					}
 				} else {
 					// ウィジェットなし
-					$output .= str_repeat($sep, 3).'&nbsp;'."\n";
+					$output .= str_repeat($sep, 4).'&nbsp;'."\n";
 				}
 
-				$output .= str_repeat($sep, 2).'</div>'."\n"; // .tcd-pb-col
+				$output .= str_repeat($sep, 3).'</div>'."\n"; // .tcd-pb-col
 			}
 
+			$output .= str_repeat($sep, 2).'</div>'."\n"; // .tcd-pb-row-inner
 			$output .= str_repeat($sep, 1).'</div>'."\n"; // .tcd-pb-row
 		}
 	}
@@ -954,11 +1145,41 @@ function render_page_builder_content($post_id = null, $echo = false) {
 			$output = trim($pages[0]);
 			$page = 1;
 		}
+	} else {
+		$pages = array($output);
 	}
 
-	// 全体div
 	if ($output) {
-		$output = '<div id="tcd-pb-wrap">'."\n".$output.'</div>'."\n";
+		// アーカイブ時は対象cssが存在しないためタグ・ショートコードを削除
+		if ($is_archive) {
+			$output = preg_replace('!<style.*?>.*?</style.*?>!is', '', $output);
+			$output = preg_replace('!<script.*?>.*?</script.*?>!is', '', $output);
+			$output = strip_shortcodes($output);
+			$output = str_replace(']]>', ']]&gt;', $output);
+			$output = strip_tags($output);
+			$output = strip_tags($output);
+			$output = preg_replace("!\s+[\r\n]+!", "\n", $output);
+			$output = preg_replace('![\t ]+!', ' ', $output);
+			$output = trim($output);
+
+			foreach($pages as $key => $value) {
+				if ($value) {
+					$value = preg_replace('!<style.*?>.*?</style.*?>!is', '', $value);
+					$value = preg_replace('!<script.*?>.*?</script.*?>!is', '', $value);
+					$value = strip_shortcodes($value);
+					$value = str_replace(']]>', ']]&gt;', $value);
+					$value = strip_tags($value);
+					$value = preg_replace("!\s+[\r\n]+!", "\n", $value);
+					$value = preg_replace('![\t ]+!', ' ', $value);
+					$value = trim($value);
+					$pages[$key] = $value;
+				}
+			}
+
+		// 全体div
+		} else {
+			$output = '<div id="tcd-pb-wrap">'."\n".$output.'</div>'."\n";
+		}
 	}
 
 	if ($echo) {
@@ -1030,7 +1251,6 @@ function page_builder_nextpage_override($post_id = null) {
 	// ページ分割処理
 	if ($multipage && $numpages > 1) {
 		// リクエストページ番号
-		global $wp_query;
 		$request_page = (int) get_query_var('page');
 		if ($request_page < 1) {
 			$request_page = 1;
@@ -1054,13 +1274,8 @@ function page_builder_nextpage_override($post_id = null) {
  */
 function page_builder_filter_wp($content) {
 	if (is_singular() && is_page_builder()) {
-		global $pagebuilder_content;
-		$pagebuilder_content = render_page_builder_content();
-
-		if ($pagebuilder_content) {
-			add_action('the_post', 'page_builder_action_the_post', 10, 2);
-			add_filter('the_content', 'page_builder_filter_the_content', 8);
-		}
+		global $pagebuilder_vars;
+		$pagebuilder_vars['content'] = render_page_builder_content();
 	}
 }
 add_filter('wp', 'page_builder_filter_wp', 9);
@@ -1069,17 +1284,35 @@ add_filter('wp', 'page_builder_filter_wp', 9);
  * フロント用 the_postアクション
  */
 function page_builder_action_the_post($post, $wp_query) {
-	// ページ分割用 ページ番号上書き処理
-	page_builder_nextpage_override($post->ID);
+	if (is_admin()) return;
+
+	global $pagebuilder_vars;
+	$pagebuilder_vars['is_main_query'] = $wp_query->is_main_query();
+	$pagebuilder_vars['is_singular'] = $wp_query->is_singular();
+
+	// 詳細ページ
+	if ($wp_query->is_main_query() && $wp_query->is_singular()) {
+		// ページ分割用 ページ番号上書き処理
+		page_builder_nextpage_override($post->ID);
+
+	// アーカイブ
+	} elseif (is_page_builder($post->ID)) {
+		// get_the_content()用にHTML生成し各種グローバル変数を上書き
+		render_page_builder_content($post->ID, false, true);
+	}
 }
+add_action('the_post', 'page_builder_action_the_post', 10, 2);
 
 /**
  * フロント用 the_contentフィルター
  */
 function page_builder_filter_the_content($content) {
-	global $pagebuilder_content;
+	if (is_admin()) return $content;
 
-	if ($pagebuilder_content) {
+	global $pagebuilder_vars;
+
+	// 詳細ページ
+	if (!empty($pagebuilder_vars['is_main_query']) && !empty($pagebuilder_vars['is_singular']) && !empty($pagebuilder_vars['content'])) {
 		// ページ分割用 ページ番号上書き処理
 		page_builder_nextpage_override();
 
@@ -1089,15 +1322,19 @@ function page_builder_filter_the_content($content) {
 			add_filter('the_content', 'page_builder_filter_the_content_after', 999);
 		}
 
-		return $pagebuilder_content;
+		return $pagebuilder_vars['content'];
 	}
 
 	return $content;
 }
 function page_builder_filter_the_content_after($content) {
-	add_filter('the_content', 'wpautop');
+	if (!has_filter('the_content', 'wpautop')) {
+		add_filter('the_content', 'wpautop');
+	}
+	remove_filter('the_content', 'page_builder_filter_the_content_after', 999);
 	return $content;
 }
+add_filter('the_content', 'page_builder_filter_the_content', 8);
 
 /**
  * フロント用 動的css
@@ -1141,60 +1378,126 @@ function page_builder_css_wp_head() {
 
 		$css = array();
 		$css_responsive = array();
-		$row_background_color = '';
 		$mobile_media_query = apply_filters('page_builder_mobile_media_query', 767);
 
-		if (!empty($row['margin_bottom'])) {
-			$row['margin_bottom'] = intval($row['margin_bottom']);
+		// 整数化マイナスあり
+		foreach(array('margin_bottom', 'margin_bottom_mobile') as $key) {
+			if (!empty($row[$key])) {
+				$row[$key] = intval($row[$key]);
+			} else {
+				$row[$key] = 0;
+			}
 		}
-		if (!empty($row['margin_bottom_mobile'])) {
-			$row['margin_bottom_mobile'] = intval($row['margin_bottom_mobile']);
+
+		// 整数化マイナスなし
+		foreach(array(
+			'gutter', 'gutter_mobile',
+			'row_width',
+			'show_border_top', 'show_border_top_mobile',
+			'show_border_bottom', 'show_border_bottom_mobile',
+			'show_border_left', 'show_border_left_mobile',
+			'show_border_right', 'show_border_right_mobile',
+			'border_width', 'border_width_mobile',
+			'padding_top', 'padding_top_mobile',
+			'padding_bottom', 'padding_bottom_mobile',
+			'padding_left', 'padding_left_mobile',
+			'padding_right', 'padding_right_mobile'
+		) as $key) {
+			if (!empty($row[$key])) {
+				$row[$key] = abs(intval($row[$key]));
+			} else {
+				$row[$key] = 0;
+			}
 		}
-		if (!empty($row['gutter'])) {
-			$row['gutter'] = abs(intval($row['gutter']));
+		if (!$row['border_width']) {
+			$row['border_width'] = 1;
+		}
+		if (!$row['border_width_mobile']) {
+			$row['border_width_mobile'] = 1;
+		}
+
+		// gutter半分計算
+		if ($row['gutter']) {
 			$row['gutter_harf'] = floor($row['gutter'] * 50) / 100; // 小数点2桁切り捨て
 		} else {
-			$row['gutter'] = 0;
 			$row['gutter_harf'] = 0;
 		}
-		if (!empty($row['gutter_mobile'])) {
-			$row['gutter_mobile'] = abs(intval($row['gutter_mobile']));
+		if ($row['gutter_mobile']) {
 			$row['gutter_mobile_harf'] = floor($row['gutter_mobile'] * 50) / 100; // 小数点2桁切り捨て
 		} else {
-			$row['gutter_mobile'] = 0;
 			$row['gutter_mobile_harf'] = 0;
 		}
+
+		// 行スタイル配列
+		$row_styles = array();
+		$row_styles_responsive = array();
+		$row_inner_styles = array();
+		$row_inner_styles_responsive = array();
+
+		// 行幅指定あり
+		if (!empty($row['row_width'])) {
+			$row_styles[] = 'max-width:'.$row['row_width'].'px;';
+			$row_styles[] = 'margin-left:auto;';
+			$row_styles[] = 'margin-right:auto;';
+		}
+
+		// 行 2カラム～
+		if (count($cells_width) > 1) {
+			$row_inner_styles[] = 'margin-left:-'.$row['gutter_harf'].'px;';
+			$row_inner_styles[] = 'margin-right:-'.$row['gutter_harf'].'px;';
+			$row_inner_styles_responsive[] = 'margin-left:-'.$row['gutter_mobile_harf'].'px;';
+			$row_inner_styles_responsive[] = 'margin-right:-'.$row['gutter_mobile_harf'].'px;';
+		}
+
+		// 行下マージン
+		$row_styles[] = 'margin-bottom:'.$row['margin_bottom'].'px;';
+		$row_styles_responsive[] = 'margin-bottom:'.$row['margin_bottom_mobile'].'px;';
+
+		// 行背景色
 		if (!empty($row['background_color'])) {
 			// 旧カラーピッカー対策
 			if (preg_match('/^[0-9a-f]{6}$/i', $row['background_color'])) {
 				$row['background_color'] = '#'.$row['background_color'];
 			}
-			$row_background_color = 'background-color:'.$row['background_color'].'; ';
+			$row_styles[] = 'background-color:'.$row['background_color'].';';
 		}
-		if (!empty($row['row_width'])) {
-			$row['row_width'] = abs(intval($row['row_width']));
+
+		// 行ボーダー
+		if (!empty($row['border_color'])) {
+			foreach(array('top', 'bottom', 'left', 'right') as $key) {
+				if ($row['show_border_'.$key]) {
+					$row_styles[] = 'border-'.$key.':'.$row['border_width'].'px solid '.$row['border_color'].';';
+					if ($row['show_border_'.$key.'_mobile']) {
+						$row_styles_responsive[] = 'border-'.$key.':'.$row['border_width_mobile'].'px solid '.$row['border_color'].';';
+					} else {
+						$row_styles_responsive[] = 'border-'.$key.':none;';
+					}
+				} elseif ($row['show_border_'.$key.'_mobile']) {
+					$row_styles_responsive[] = 'border-'.$key.':'.$row['border_width_mobile'].'px solid '.$row['border_color'].';';
+				}
+			}
+		}
+
+		// 行パディング
+		if ($row['padding_top'] || $row['padding_bottom'] || $row['padding_left'] || $row['padding_right']) {
+			$row_styles[] = 'padding:'.$row['padding_top'].'px '.$row['padding_right'].'px '.$row['padding_bottom'].'px '.$row['padding_left'].'px;';
+			$row_styles_responsive[] = 'padding:'.$row['padding_top_mobile'].'px '.$row['padding_right_mobile'].'px '.$row['padding_bottom_mobile'].'px '.$row['padding_left_mobile'].'px;';
+		} elseif ($row['padding_top_mobile'] || $row['padding_bottom_mobile'] || $row['padding_left_mobile'] || $row['padding_right_mobile']) {
+			$row_styles_responsive[] = 'padding:'.$row['padding_top_mobile'].'px '.$row['padding_right_mobile'].'px '.$row['padding_bottom_mobile'].'px '.$row['padding_left_mobile'].'px;';
 		}
 
 		// 行css
-		// 行幅指定あり 1カラム
-		if (!empty($row['row_width']) && count($cells_width) == 1) {
-			$css[0][] = '.tcd-pb-row.row'.$row_num.' { max-width:'.$row['row_width'].'px; margin-left:auto; margin-right:auto; margin-bottom:'.$row['margin_bottom'].'px; '.$row_background_color.'}';
-			$css_responsive[$mobile_media_query][] = '.tcd-pb-row.row'.$row_num.' { width:initial; margin-bottom:'.$row['margin_bottom_mobile'].'px; }';
-
-		// 行幅指定あり 2カラム～
-		} elseif (!empty($row['row_width'])) {
-			$css[0][] = '.tcd-pb-row.row'.$row_num.' { max-width:'.$row['row_width'].'px; margin-left:auto; margin-right:auto; margin-bottom:'.$row['margin_bottom'].'px; '.$row_background_color.'}';
-			$css_responsive[$mobile_media_query][] = '.tcd-pb-row.row'.$row_num.' { width:initial; margin-left:-'.$row['gutter_mobile_harf'].'px; margin-right:-'.$row['gutter_mobile_harf'].'px; margin-bottom:'.$row['margin_bottom_mobile'].'px; '.$row_background_color.'}';
-
-		// 行幅指定なし 1カラム
-		} elseif (count($cells_width) == 1) {
-			$css[0][] = '.tcd-pb-row.row'.$row_num.' { margin-bottom:'.$row['margin_bottom'].'px; '.$row_background_color.'}';
-			$css_responsive[$mobile_media_query][] = '.tcd-pb-row.row'.$row_num.' { margin-bottom:'.$row['margin_bottom_mobile'].'px; }';
-
-		// 行幅指定なし 2カラム～
-		} else {
-			$css[0][] = '.tcd-pb-row.row'.$row_num.' { margin-left:-'.$row['gutter_harf'].'px; margin-right:-'.$row['gutter_harf'].'px; margin-bottom:'.$row['margin_bottom'].'px; '.$row_background_color.'}';
-			$css_responsive[$mobile_media_query][] = '.tcd-pb-row.row'.$row_num.' { margin-left:-'.$row['gutter_mobile_harf'].'px; margin-right:-'.$row['gutter_mobile_harf'].'px; margin-bottom:'.$row['margin_bottom_mobile'].'px; }';
+		if ($row_styles) {
+			$css[0][] = '.tcd-pb-row.row'.$row_num.' { '.implode(' ', $row_styles).' }';
+		}
+		if ($row_inner_styles) {
+			$css[0][] = '.tcd-pb-row.row'.$row_num.' .tcd-pb-row-inner { '.implode(' ', $row_inner_styles).' }';
+		}
+		if ($row_styles_responsive) {
+			$css_responsive[$mobile_media_query][] = '.tcd-pb-row.row'.$row_num.' { '.implode(' ', $row_styles_responsive).' }';
+		}
+		if ($row_inner_styles_responsive) {
+			$css_responsive[$mobile_media_query][] = '.tcd-pb-row.row'.$row_num.' .tcd-pb-row-inner { '.implode(' ', $row_inner_styles_responsive).' }';
 		}
 
 		// カラム番号
@@ -1242,12 +1545,90 @@ function page_builder_css_wp_head() {
 					if (empty($data['widget'][$widget_index]['widget_id'])) continue;
 
 					$widget_num++;
+					$widget_value = $data['widget'][$widget_index];
 
-					if (isset($data['widget'][$widget_index]['margin_bottom'])) {
-						$css[10][] = '.tcd-pb-row.row'.$row_num.' .tcd-pb-col.col'.$cell_index.' .tcd-pb-widget.widget'.$widget_num.' { margin-bottom:'.$data['widget'][$widget_index]['margin_bottom'].'px; }';
+					// 整数化マイナスあり
+					foreach(array('margin_bottom', 'margin_bottom_mobile') as $key) {
+						if (!empty($widget_value[$key])) {
+							$widget_value[$key] = intval($widget_value[$key]);
+						} else {
+							$widget_value[$key] = 0;
+						}
 					}
-					if (isset($data['widget'][$widget_index]['margin_bottom_mobile'])) {
-						$css_responsive[$mobile_media_query][] = '.tcd-pb-row.row'.$row_num.' .tcd-pb-col.col'.$cell_index.' .tcd-pb-widget.widget'.$widget_num.' { margin-bottom:'.$data['widget'][$widget_index]['margin_bottom_mobile'].'px; }';
+
+					// 整数化マイナスなし
+					foreach(array(
+						'show_border_top', 'show_border_top_mobile',
+						'show_border_bottom', 'show_border_bottom_mobile',
+						'show_border_left', 'show_border_left_mobile',
+						'show_border_right', 'show_border_right_mobile',
+						'border_width', 'border_width_mobile',
+						'padding_top', 'padding_top_mobile',
+						'padding_bottom', 'padding_bottom_mobile',
+						'padding_left', 'padding_left_mobile',
+						'padding_right', 'padding_right_mobile'
+					) as $key) {
+						if (!empty($widget_value[$key])) {
+							$widget_value[$key] = abs(intval($widget_value[$key]));
+						} else {
+							$widget_value[$key] = 0;
+						}
+					}
+					if (!$widget_value['border_width']) {
+						$widget_value['border_width'] = 1;
+					}
+					if (!$widget_value['border_width_mobile']) {
+						$widget_value['border_width_mobile'] = 1;
+					}
+
+					// ウィジェットスタイル配列
+					$widget_styles = array();
+					$widget_styles_responsive = array();
+
+					// マージン
+					if ($widget_value['margin_bottom']) {
+						$widget_styles[] = 'margin-bottom:'.$widget_value['margin_bottom'].'px;';
+					}
+					if ($widget_value['margin_bottom_mobile']) {
+						$widget_styles_responsive[] = 'margin-bottom:'.$widget_value['margin_bottom_mobile'].'px;';
+					}
+
+					// ウィジェット背景色
+					if (!empty($widget_value['use_widget_background_color']) && !empty($widget_value['widget_background_color'])) {
+						$widget_styles[] = 'background-color:'.$widget_value['widget_background_color'].';';
+					}
+
+					// ウィジェットボーダー
+					if (!empty($widget_value['border_color'])) {
+
+						foreach(array('top', 'bottom', 'left', 'right') as $key) {
+							if ($widget_value['show_border_'.$key]) {
+								$widget_styles[] = 'border-'.$key.':'.$widget_value['border_width'].'px solid '.$widget_value['border_color'].';';
+								if ($widget_value['show_border_'.$key.'_mobile']) {
+									$widget_styles_responsive[] = 'border-'.$key.':'.$widget_value['border_width_mobile'].'px solid '.$widget_value['border_color'].';';
+								} else {
+									$widget_styles_responsive[] = 'border-'.$key.':none;';
+								}
+							} elseif ($widget_value['show_border_'.$key.'_mobile']) {
+								$widget_styles_responsive[] = 'border-'.$key.':'.$widget_value['border_width_mobile'].'px solid '.$widget_value['border_color'].';';
+							}
+						}
+					}
+
+					// ウィジェットパディング
+					if ($widget_value['padding_top'] || $widget_value['padding_bottom'] || $widget_value['padding_left'] || $widget_value['padding_right']) {
+						$widget_styles[] = 'padding:'.$widget_value['padding_top'].'px '.$widget_value['padding_right'].'px '.$widget_value['padding_bottom'].'px '.$widget_value['padding_left'].'px;';
+						$widget_styles_responsive[] = 'padding:'.$widget_value['padding_top_mobile'].'px '.$widget_value['padding_right_mobile'].'px '.$widget_value['padding_bottom_mobile'].'px '.$widget_value['padding_left_mobile'].'px;';
+					} elseif ($widget_value['padding_top_mobile'] || $widget_value['padding_bottom_mobile'] || $widget_value['padding_left_mobile'] || $widget_value['padding_right_mobile']) {
+						$widget_styles_responsive[] = 'padding:'.$widget_value['padding_top_mobile'].'px '.$widget_value['padding_right_mobile'].'px '.$widget_value['padding_bottom_mobile'].'px '.$widget_value['padding_left_mobile'].'px;';
+					}
+
+					// ウィジェットcss
+					if ($widget_styles) {
+						$css[10][] = '.tcd-pb-row.row'.$row_num.' .tcd-pb-col.col'.$cell_index.' .tcd-pb-widget.widget'.$widget_num.' { '.implode(' ', $widget_styles).' }';
+					}
+					if ($widget_styles_responsive) {
+						$css_responsive[$mobile_media_query][] = '.tcd-pb-row.row'.$row_num.' .tcd-pb-col.col'.$cell_index.' .tcd-pb-widget.widget'.$widget_num.' { '.implode(' ', $widget_styles_responsive).' }';
 					}
 				}
 			}
@@ -1294,6 +1675,106 @@ function page_builder_css_wp_head() {
 	do_action('page_builder_wp_head');
 }
 add_filter('wp_head', 'page_builder_css_wp_head', 11);
+
+/**
+ * 検索対象にページビルダーカスタムフィールド追加
+ */
+function page_builder_posts_search($search, $query) {
+	global $wpdb, $is_page_builder_posts_search;
+	$is_page_builder_posts_search = false;
+
+	if ($query->is_search() && $query->get('search_terms')) {
+
+		// 5.1.1版のWP_Query::parse_searchを元にカスタマイズ
+
+		$search           = '';
+		$n                = $query->get('exact') ? '' : '%';
+		$searchand        = '';
+		$exclusion_prefix = apply_filters( 'wp_query_search_exclusion_prefix', '-' );
+
+		foreach ( $query->get('search_terms') as $term ) {
+			$exclude = $exclusion_prefix && ( $exclusion_prefix === substr( $term, 0, 1 ) );
+			if ( $exclude ) {
+				$like_op  = 'NOT LIKE';
+				$andor_op = 'AND';
+				$term     = substr( $term, 1 );
+			} else {
+				$like_op  = 'LIKE';
+				$andor_op = 'OR';
+			}
+
+			$like      = $n . $wpdb->esc_like( $term ) . $n;
+			$search   .= $wpdb->prepare( "{$searchand}(({$wpdb->posts}.post_title $like_op %s) $andor_op ({$wpdb->posts}.post_excerpt $like_op %s) $andor_op ({$wpdb->posts}.post_content $like_op %s) $andor_op (pm_use_pb.meta_value = '1' AND pm_pb_data.meta_value LIKE %s))", $like, $like, $like, $like );
+			$searchand = ' AND ';
+		}
+
+		if ( ! empty( $search ) ) {
+			$search = " AND ({$search}) ";
+			if ( ! is_user_logged_in() ) {
+				$search .= " AND ({$wpdb->posts}.post_password = '') ";
+			}
+		}
+
+		$is_page_builder_posts_search = true;
+	}
+
+	return $search;
+}
+function page_builder_posts_clauses($clauses, $query) {
+	global $wpdb, $is_page_builder_posts_search;
+
+	if ($is_page_builder_posts_search) {
+
+		// join
+		$clauses['join'] .= " LEFT JOIN $wpdb->postmeta AS pm_use_pb ON ($wpdb->posts.ID = pm_use_pb.post_id AND pm_use_pb.meta_key = 'use_page_builder') ";
+		$clauses['join'] .= " LEFT JOIN $wpdb->postmeta AS pm_pb_data ON ($wpdb->posts.ID = pm_pb_data.post_id AND pm_pb_data.meta_key = 'page_builder') ";
+
+		// groupby
+		if (!$clauses['groupby']) {
+			$clauses['groupby'] = "$wpdb->posts.ID";
+		} elseif (false === strpos($clauses['groupby'], "$wpdb->posts.ID")) {
+			$clauses['groupby'] = "$wpdb->posts.ID, " . $clauses['groupby'];
+		}
+
+		$is_page_builder_posts_search = false;
+	}
+
+	return $clauses;
+}
+add_filter('posts_search', 'page_builder_posts_search', 10, 2);
+add_filter('posts_clauses', 'page_builder_posts_clauses', 10, 2);
+
+/**
+ * WordPress Importer インポートフィルター
+ *
+ * 改行が含まれているとインポート時に改行コードが\r\nから\nになる問題対策
+ */
+if (!function_exists('page_builder_filter_wp_import_post_data_raw')) {
+	function page_builder_filter_wp_import_post_data_raw($post) {
+		if (!empty($post['postmeta']) && is_array($post['postmeta'])) {
+			foreach($post['postmeta'] as $k => $v) {
+				if (!empty($v['key']) && $v['key'] === 'page_builder') {
+					$meta_value = $v['value'];
+					$meta_value_unserialized = maybe_unserialize($meta_value);
+
+					// maybe_unserialize()が失敗した場合
+					if ($meta_value && !$meta_value_unserialized) {
+						// 改行を\r\nに変換
+						$meta_value = str_replace(array("\r\n", "\r", "\n"), '%%__\n__%%', $meta_value);
+						$meta_value = str_replace('%%__\n__%%', "\r\n", $meta_value);
+						// maybe_unserialize()が成功すれば代入
+						$meta_value_unserialized = maybe_unserialize($meta_value);
+						if ($meta_value_unserialized) {
+							$post['postmeta'][$k]['value'] = $meta_value_unserialized;
+						}
+					}
+				}
+			}
+		}
+		return $post;
+	}
+	add_filter('wp_import_post_data_raw', 'page_builder_filter_wp_import_post_data_raw');
+}
 
 
 
@@ -1425,6 +1906,195 @@ function page_builder_has_widget($widget_id, $post_id = null) {
 	}
 
 	return false;
+}
+
+/**
+ * ウィジェットフォーム 標準右サイドバー
+ */
+function form_rightbar_page_builder_widget($values = array(), $widget_id = null, $args = array()) {
+	// デフォルト値
+	$default_values = array(
+		'widget_index' => '',
+		'margin_bottom' => 30,
+		'margin_bottom_mobile' => 30,
+		'use_widget_background_color' => 0,
+		'widget_background_color' => '#ffffff',
+		'show_border_top' => 0,
+		'show_border_bottom' => 0,
+		'show_border_left' => 0,
+		'show_border_right' => 0,
+		'show_border_top_mobile' => 0,
+		'show_border_bottom_mobile' => 0,
+		'show_border_left_mobile' => 0,
+		'show_border_right_mobile' => 0,
+		'border_color' => '#dddddd',
+		'border_width' => 1,
+		'border_width_mobile' => 1,
+		'padding_top' => 0,
+		'padding_bottom' => 0,
+		'padding_left' => 0,
+		'padding_right' => 0,
+		'padding_top_mobile' => 0,
+		'padding_bottom_mobile' => 0,
+		'padding_left_mobile' => 0,
+		'padding_right_mobile' => 0
+	);
+
+	// デフォルト値フィルター
+	$default_values = apply_filters('page_builder_widget_form_rightbar_default_values', $default_values, 'form_rightbar', $widget_id, $args);
+	$default_values = apply_filters('page_builder_widget_default_values', $default_values, 'form_rightbar', $widget_id, $args);
+	if ($widget_id) {
+		$default_values = apply_filters('page_builder_widget_'.$widget_id.'_default_values', $default_values, 'form_rightbar', $widget_id, $args);
+	}
+
+	// デフォルト値に入力値をマージ
+	$values = array_merge($default_values, (array) $values);
+?>
+
+<h3 data-pb-toggle-target=".pb-right-sidebar-margin" data-pb-toggle-status="open"><?php _e('Margin setting', 'tcd-w'); ?></h3>
+<div class="pb-toggle-content pb-right-sidebar-margin">
+	<div class="form-field">
+		<label><?php _e('Margin bottom', 'tcd-w'); ?></label>
+		<input type="number" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][margin_bottom]" value="<?php echo esc_attr($values['margin_bottom']); ?>" class="small-text" /> px
+		<p class="pb-description"><?php _e('Space below the content.<br />Default is 30px.', 'tcd-w'); ?></p>
+	</div>
+
+	<div class="form-field">
+		<label><?php _e('Margin bottom for mobile', 'tcd-w'); ?></label>
+		<input type="number" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][margin_bottom_mobile]" value="<?php echo esc_attr($values['margin_bottom_mobile']); ?>" class="small-text" /> px
+		<p class="pb-description"><?php _e('Space below the content.<br />Default is 30px.', 'tcd-w'); ?></p>
+	</div>
+</div>
+
+<h3 data-pb-toggle-target=".pb-right-sidebar-background" data-pb-toggle-status="close"><?php _e('Background setting', 'tcd-w'); ?></h3>
+<div class="pb-toggle-content pb-right-sidebar-background">
+		<div class="form-field">
+			<label class="checkbox">
+				<input type="checkbox" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][use_widget_background_color]" value="1" <?php checked($values['use_widget_background_color'] ,1); ?> class="use_widget_background_color" />
+				<?php _e('Set the background color', 'tcd-w'); ?>
+			</label>
+		</div>
+		<div class="form-field form-field-widget_background_color">
+			<label><?php _e('Background color', 'tcd-w'); ?></label>
+			<input type="text" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][widget_background_color]" value="<?php echo esc_attr($values['widget_background_color']); ?>" class="pb-wp-color-picker" data-default-color="<?php echo esc_attr($default_values['widget_background_color']); ?>" />
+		</div>
+</div>
+
+<h3 data-pb-toggle-target=".pb-right-sidebar-border" data-pb-toggle-status="close"><?php _e('Border setting', 'tcd-w'); ?></h3>
+<div class="pb-toggle-content pb-right-sidebar-border">
+	<div class="form-field">
+		<ul>
+			<li>
+				<label class="checkbox">
+					<input type="checkbox" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][show_border_top]" value="1" <?php checked($values['show_border_top'] ,1); ?> />
+					<?php _e('Display top border', 'tcd-w'); ?>
+				</label>
+			</li>
+			<li>
+				<label class="checkbox">
+					<input type="checkbox" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][show_border_bottom]" value="1" <?php checked($values['show_border_bottom'] ,1); ?> />
+					<?php _e('Display bottom border', 'tcd-w'); ?>
+				</label>
+			</li>
+			<li>
+				<label class="checkbox">
+					<input type="checkbox" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][show_border_left]" value="1" <?php checked($values['show_border_left'] ,1); ?> />
+					<?php _e('Display left border', 'tcd-w'); ?>
+				</label>
+			</li>
+			<li>
+				<label class="checkbox">
+					<input type="checkbox" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][show_border_right]" value="1" <?php checked($values['show_border_right'] ,1); ?> />
+					<?php _e('Display right border', 'tcd-w'); ?>
+				</label>
+			</li>
+			<li>
+				<label class="checkbox">
+					<input type="checkbox" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][show_border_top_mobile]" value="1" <?php checked($values['show_border_top_mobile'] ,1); ?> />
+					<?php _e('Display top border for mobile', 'tcd-w'); ?>
+				</label>
+			</li>
+			<li>
+				<label class="checkbox">
+					<input type="checkbox" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][show_border_bottom_mobile]" value="1" <?php checked($values['show_border_bottom_mobile'] ,1); ?> />
+					<?php _e('Display bottom border for mobile', 'tcd-w'); ?>
+				</label>
+			</li>
+			<li>
+				<label class="checkbox">
+					<input type="checkbox" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][show_border_left_mobile]" value="1" <?php checked($values['show_border_left_mobile'] ,1); ?> />
+					<?php _e('Display left border for mobile', 'tcd-w'); ?>
+				</label>
+			</li>
+			<li>
+				<label class="checkbox">
+					<input type="checkbox" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][show_border_right_mobile]" value="1" <?php checked($values['show_border_right_mobile'] ,1); ?> />
+					<?php _e('Display right border for mobile', 'tcd-w'); ?>
+				</label>
+			</li>
+		</ul>
+	</div>
+
+	<div class="form-field">
+		<label><?php _e('Border color', 'tcd-w'); ?></label>
+		<input type="text" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][border_color]" value="<?php echo esc_attr($values['border_color']); ?>" class="pb-wp-color-picker" data-default-color="<?php echo esc_attr($default_values['border_color']); ?>" />
+	</div>
+
+	<div class="form-field">
+		<label><?php _e('Border width', 'tcd-w'); ?></label>
+		<input type="number" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][border_width]" value="<?php echo esc_attr($values['border_width']); ?>" class="small-text" min="1" /> px
+	</div>
+
+	<div class="form-field">
+		<label><?php _e('Border width for mobile', 'tcd-w'); ?></label>
+		<input type="number" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][border_width_mobile]" value="<?php echo esc_attr($values['border_width_mobile']); ?>" class="small-text" min="1" /> px
+	</div>
+</div>
+
+<h3 data-pb-toggle-target=".pb-right-sidebar-padding" data-pb-toggle-status="close"><?php _e('Padding setting', 'tcd-w'); ?></h3>
+<div class="pb-toggle-content pb-right-sidebar-padding">
+	<div class="form-field">
+		<label><?php _e('Top padding width', 'tcd-w'); ?></label>
+		<input type="number" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][padding_top]" value="<?php echo esc_attr($values['padding_top']); ?>" class="small-text" min="0" /> px
+	</div>
+
+	<div class="form-field">
+		<label><?php _e('Bottom padding width', 'tcd-w'); ?></label>
+		<input type="number" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][padding_bottom]" value="<?php echo esc_attr($values['padding_bottom']); ?>" class="small-text" min="0" /> px
+	</div>
+
+	<div class="form-field">
+		<label><?php _e('Left padding width', 'tcd-w'); ?></label>
+		<input type="number" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][padding_left]" value="<?php echo esc_attr($values['padding_left']); ?>" class="small-text" min="0" /> px
+	</div>
+
+	<div class="form-field">
+		<label><?php _e('Right padding width', 'tcd-w'); ?></label>
+		<input type="number" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][padding_right]" value="<?php echo esc_attr($values['padding_right']); ?>" class="small-text" min="0" /> px
+	</div>
+
+	<div class="form-field">
+		<label><?php _e('Top padding width for mobile', 'tcd-w'); ?></label>
+		<input type="number" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][padding_top_mobile]" value="<?php echo esc_attr($values['padding_top_mobile']); ?>" class="small-text" min="0" /> px
+	</div>
+
+	<div class="form-field">
+		<label><?php _e('Bottom padding width for mobile', 'tcd-w'); ?></label>
+		<input type="number" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][padding_bottom_mobile]" value="<?php echo esc_attr($values['padding_bottom_mobile']); ?>" class="small-text" min="0" /> px
+	</div>
+
+	<div class="form-field">
+		<label><?php _e('Left padding width for mobile', 'tcd-w'); ?></label>
+		<input type="number" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][padding_left_mobile]" value="<?php echo esc_attr($values['padding_left_mobile']); ?>" class="small-text" min="0" /> px
+	</div>
+
+	<div class="form-field">
+		<label><?php _e('Right padding width for mobile', 'tcd-w'); ?></label>
+		<input type="number" name="pagebuilder[widget][<?php echo esc_attr($values['widget_index']); ?>][padding_right_mobile]" value="<?php echo esc_attr($values['padding_right_mobile']); ?>" class="small-text" min="0" /> px
+	</div>
+</div>
+
+<?php
 }
 
 /**

@@ -99,13 +99,26 @@ if ($dp_options['footer_nav_type2'] != 'none' && $dp_options['use_'.$dp_options[
           if ($dp_options['footer_ad_image_mobile']) {
             $footer_widget_vars['footer_ad_image_src'] = wp_get_attachment_image_src($dp_options['footer_ad_image_mobile'], 'full');
             $footer_widget_vars['footer_ad_image'] = $dp_options['footer_ad_image_mobile'];
-            $footer_widget_vars['footer_ad_code'] = $dp_options['footer_ad_code_mobile'];
-            $footer_widget_vars['footer_ad_url'] = $dp_options['footer_ad_url_mobile'];
           } elseif ($dp_options['footer_ad_image']) {
             $footer_widget_vars['footer_ad_image_src'] = wp_get_attachment_image_src($dp_options['footer_ad_image'], 'full');
             $footer_widget_vars['footer_ad_image'] = $dp_options['footer_ad_image'];
-            $footer_widget_vars['footer_ad_code'] = $dp_options['footer_ad_code'];
+          }else{
+            $footer_widget_vars['footer_ad_image_src'] = '';
+            $footer_widget_vars['footer_ad_image'] = '';
+          }
+          if($dp_options['footer_ad_url_mobile']){
+            $footer_widget_vars['footer_ad_url'] = $dp_options['footer_ad_url_mobile'];
+          }elseif($dp_options['footer_ad_url']){
             $footer_widget_vars['footer_ad_url'] = $dp_options['footer_ad_url'];
+          }else{
+            $footer_widget_vars['footer_ad_url'] = '';
+          }
+          if($dp_options['footer_ad_code_mobile']){
+            $footer_widget_vars['footer_ad_code'] = $dp_options['footer_ad_code_mobile'];
+          }elseif($dp_options['footer_ad_code']){
+            $footer_widget_vars['footer_ad_code'] = $dp_options['footer_ad_code'];
+          }else{
+            $footer_widget_vars['footer_ad_code'] = '';
           }
         }
         if ($dp_options['footer_banner_image1']) {
@@ -304,7 +317,7 @@ jQuery(document).ready(function($){
       slides: [
         { <?php if (!empty($header_slider['slider_video_image'][0])) { ?>src: '<?php echo esc_attr($header_slider['slider_video_image'][0]); ?>',<?php } ?>
           video: {
-            src: [ '<?php echo esc_attr($header_slider['slider_video']); ?>' ], loop: true, mute: false
+            src: [ '<?php echo esc_attr($header_slider['slider_video']); ?>' ], loop: true, mute: true
           },
         }
       ]

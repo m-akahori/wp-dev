@@ -48,7 +48,7 @@ function ogp() {
 ?>
 <?php if(is_singular()) { ?>
 <meta property="og:type" content="article" />
-<meta property="og:url" content="<?php echo ( isset( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] == 'on' ? 'https' : 'http' ) . ':/' . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"]; ?>">
+<meta property="og:url" content="<?php echo ( isset( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] == 'on' ? 'https' : 'http' ) . '://' . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"]; ?>">
 <?php if(is_front_page()){ ?>
 <meta property="og:title" content="<?php echo get_bloginfo('name'); ?>" />
 <?php }else{ ?>
@@ -77,7 +77,7 @@ function ogp() {
 <?php }; ?>
 <?php }else{ ?>
 <meta property="og:type" content="blog" />
-<meta property="og:url" content="<?php echo ( isset( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] == 'on' ? 'https' : 'http' ) . ':/' . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"]; ?>">
+<meta property="og:url" content="<?php echo ( isset( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] == 'on' ? 'https' : 'http' ) . '://' . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"]; ?>">
 <?php if(is_home()){ ?>
 <meta property="og:title" content="<?php echo get_bloginfo('name'); ?>" />
 <?php }else{ ?>

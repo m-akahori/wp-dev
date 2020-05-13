@@ -26,7 +26,7 @@ function show_tcd_page_meta_box() {
       array('name' => __('No title', 'tcd-w'), 'value' => 'hide')
     )
   );
-  $display_title_meta = get_post_meta($post->ID, 'display_side_content', true);
+  $display_title_meta = get_post_meta($post->ID, 'display_title', true);
 
   // サイドコンテンツの設定
   $display_side_content = array(
@@ -49,7 +49,7 @@ function show_tcd_page_meta_box() {
   echo '<dt class="label"><label for="' , $display_title['id'] , '">' , $display_title['name'] , '</label></dt>';
   echo '<dd class="content"><ul class="radio template side_content cf">';
   foreach ($display_title['options'] as $display_title_option) {
-    echo '<li><label', ((empty($display_title_meta) && $display_title_option['value'] == $display_title['std']) || $display_title_meta == $display_title_option['value']) ? ' class="active"' : '' ,'><input type="radio" id ="side_content', $display_title_option['value'], '" name="', $display_title['id'], '" value="', $display_title_option['value'], '"', ((empty($display_title_meta) && $display_title_option['value'] == $display_title['std']) || $display_title_meta == $display_title_option['value']) ? ' checked="checked"' : '', ' />', $display_title_option['name'] , '</label></li>';
+    echo '<li><label', ((empty($display_title_meta) && $display_title_option['value'] == $display_title['std']) || $display_title_meta == $display_title_option['value']) ? ' class="active"' : '' ,'><input type="radio" id ="title', $display_title_option['value'], '" name="', $display_title['id'], '" value="', $display_title_option['value'], '"', ((empty($display_title_meta) && $display_title_option['value'] == $display_title['std']) || $display_title_meta == $display_title_option['value']) ? ' checked="checked"' : '', ' />', $display_title_option['name'] , '</label></li>';
   }
   echo '</ul></dd>';
 

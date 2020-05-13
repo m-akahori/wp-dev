@@ -4,11 +4,8 @@ jQuery(document).ready(function($){
 	$(document).on('change', '.pb-widget-tab .form-field-tab_type :radio', function(){
 		if (this.checked) {
 			var $cl = $(this).closest('.pb-content');
-			if (this.value == 'type2') {
-				$cl.find('.form-field-tab_type-type2').show();
-			} else {
-				$cl.find('.form-field-tab_type-type2').hide();
-			}
+			$cl.find('[class*="form-field-tab_type-type"]').hide();
+			$cl.find('.form-field-tab_type-' + this.value).show();
 		}
 	});
 	$('.pb-widget-tab .form-field-tab_type :radio:checked').trigger('change');
@@ -33,16 +30,4 @@ jQuery(document).ready(function($){
 	});
 	$('.pb-widget-tab .form-field-video_type :radio:checked').trigger('change');
 
-
-/*
-	// Google Map オーバーレイ
-	$(document).on('change', '.pb-widget-googlemap .form-field-show_overlay :checkbox', function(){
-		if (this.checked) {
-			$(this).closest('.pb-content').find('.form-field-overlay').show();
-		} else {
-			$(this).closest('.pb-content').find('.form-field-overlay').hide();
-		}
-	});
-	$('.pb-widget-googlemap .form-field-show_overlay :checkbox').trigger('change');
-*/
 });

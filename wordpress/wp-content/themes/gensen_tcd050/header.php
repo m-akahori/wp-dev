@@ -13,7 +13,7 @@ if (! $dp_options) $dp_options = get_desing_plus_option();
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width">
 <title><?php wp_title('|', true, 'right'); ?></title>
-<!-- <meta name="description" content="<?php seo_description(); ?>"> -->
+<meta name="description" content="<?php seo_description(); ?>">
 <?php if ($dp_options['use_ogp']) { ogp(); }; ?>
 <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
 <?php if ($favicon = wp_get_attachment_image_src($dp_options['favicon'], 'full')) : ?>
@@ -21,13 +21,6 @@ if (! $dp_options) $dp_options = get_desing_plus_option();
 <?php endif; ?>
 <?php wp_enqueue_style('style', get_stylesheet_uri(), false, version_num(), 'all'); wp_enqueue_script( 'jquery' ); if ( is_singular() ) wp_enqueue_script( 'comment-reply' ); ?>
 <?php wp_head(); ?>
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({
-          google_ad_client: "ca-pub-5514555133673705",
-          enable_page_level_ads: true
-     });
-</script>
 </head>
 <body id="body" <?php body_class(); ?>>
 

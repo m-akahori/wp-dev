@@ -40,7 +40,7 @@
 <?php
 		if ($queried_object->description) {
 ?>
-  <p class="desc"><?php echo str_replace(array("\r\n", "\r", "\n"), '<br>', esc_html($queried_object->description)); ?></h2>
+  <p class="desc"><?php echo str_replace(array("\r\n", "\r", "\n"), '<br>', esc_html($queried_object->description)); ?></p>
 <?php
 		}
 ?>
@@ -139,11 +139,7 @@
     <div class="image">
      <?php 
 			if ( has_post_thumbnail() ) { 
-				if ( is_mobile() ) {
-					the_post_thumbnail('size1'); 
-				} else {
 					the_post_thumbnail('size2'); 
-				}
 			} else { 
 				if ( is_mobile() ) {
 					echo '<img src="' . get_template_directory_uri() . '/img/common/no_image1.gif" title="" alt="" />';

@@ -185,20 +185,6 @@ jQuery(document).ready(function($){
 			}
 		});
 
-/*
-		// リッチエディター用属性置換
-		$widget.find('.pb_repeater_wrap [data-editor]').each(function(){
-			var v = $(this).attr('data-editor');
-			v = v.replace('_' + source_widget_index + '_', '_' + widget_index + '_');
-			$(this).attr('data-editor', v);
-		});
-		$widget.find('.pb_repeater_wrap [data-wp-editor-id]').each(function(){
-			var v = $(this).attr('data-wp-editor-id');
-			v = v.replace('_' + source_widget_index + '_', '_' + widget_index + '_');
-			$(this).attr('data-wp-editor-id', v);
-		});
-*/
-
 		// リッチエディターがある場合
 		if ($widget.find(' .pb_repeater .wp-editor-area').length) {
 			// クローン元のリッチエディターをループ（リピーターではなくページビルダーのクローン元）
@@ -273,30 +259,60 @@ jQuery(document).ready(function($){
 							switchEditors.go(id_new, 'toggle');
 							switchEditors.go(id_new, 'tmce');
 						} else {
-							switchEditors.go(id_new, 'toggle');
 							switchEditors.go(id_new, 'html');
 						}
 					}, 500);
 				});
-
-
 			});
 		}
-/*
-admin.jsで一括処理されるので不要なはず
-		// WordPress Color Picker
-		if ($widget.find('wp-color-picker').length) {
-			$wrap.find('.pb_repeater-' + row_index + ' .wp-color-picker').each(function(){
-				// WordPress Color Picker 解除して再セット
-				var $pickercontainer = $(this).closest('.wp-picker-container');
-				var $clone = $(this).clone();
-				$pickercontainer.after($clone).remove();
-				$clone.wpColorPicker();
-			});
-		}
-*/
+	});
 
+	// リッチエディターの異なるセルへのドラッグ対策
+	var cell_id_before, cell_id_after;
+	$(document).on('page-builder-widget-sortable-start', function(e, item) {
+		if (!$(item).hasClass('pb-repeater-widget') || !$(item).find('.wp-editor-area').length) return;
 
+		cell_id_before = $(item).closest('.cell').attr('id') || null;
+	});
+	$(document).on('page-builder-widget-sortable-stop', function(e, item) {
+		if (!$(item).hasClass('pb-repeater-widget') || !$(item).find('.wp-editor-area').length) return;
+
+		cell_id_after = $(item).closest('.cell').attr('id') || null;
+		if (!cell_id_before || cell_id_before == cell_id_after) return;
+
+		var $this = $(this);
+
+		$(item).find('.wp-editor-area').each(function(){
+			var id = $(this).attr('id');
+			var $editor_wrap = $(this).closest('.wp-editor-wrap');
+
+			if (!id || $(this).closest('.add_pb_repeater_clone').length) return;
+
+			if (window.tinymce) {
+				var mceInstance = window.tinymce.get(id);
+				if (mceInstance) {
+					mceInstance.remove();
+					tinymce.init(id);
+				}
+			}
+
+			if (window.quicktags) {
+				var qtInstance = window.QTags.getInstance(id);
+				if (qtInstance) {
+					qtInstance.remove();
+					quicktags(tinyMCEPreInit.qtInit[id]);
+				}
+			}
+
+			setTimeout(function(){
+				if ($editor_wrap.hasClass('tmce-active')) {
+					switchEditors.go(id, 'toggle');
+					switchEditors.go(id, 'tmce');
+				} else {
+					switchEditors.go(id, 'html');
+				}
+			}, 500);
+		});
 	});
 
 });

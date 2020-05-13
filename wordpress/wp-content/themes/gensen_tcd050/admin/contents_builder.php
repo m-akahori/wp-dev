@@ -588,7 +588,7 @@ function the_cb_content_setting( $cb_index = 'cb_cloneindex', $cb_content_select
 		endif;
 ?>
 
-			<div class="cb_list_type-content-category" <?php if ( $value['cb_list_type'] == 'category' ) echo 'style="display:none;"'; ?>>
+			<div class="cb_list_type-content-category" <?php if ( $value['cb_list_type'] != 'category' ) echo 'style="display:none;"'; ?>>
 				<h4 class="theme_option_headline2"><?php _e( 'Categories to display', 'tcd-w' ); ?></h4>
 				<select name="dp_options[contents_builder][<?php echo $cb_index; ?>][cb_post_term]">
 					<option value=""><?php _e( 'All categories', 'tcd-w' ); ?></option>
